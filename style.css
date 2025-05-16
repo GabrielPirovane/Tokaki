@@ -1,56 +1,165 @@
 :root {
     --fonte-base: 'Open Sans', sans-serif;
     --fonte-destaque: 'Bebas Neue', sans-serif;
-}
-
-nav {
-  height: 5em;
-  font-family: var(--fonte-destaque) !important; 
-}
-
-footer {
-  height: 7em;
+    --cor-1: #b08968;
+    --cor-2: #7f5539;
+    --cor-3: #3d291b;
+    --cor-4: #e6ccb2;
 }
 
 body {
-  overflow-y: scroll;
-  font-family: var(--fonte-base);
+    overflow-y: scroll;
+    font-family: var(--fonte-base);
+}
+
+/* Navbar */
+nav {
+    height: 5em;
+    font-family: var(--fonte-destaque);
+    background-color: var(--cor-1) !important;
+}
+
+.navbar-nav .nav-link {
+    font-size: 2rem;
+    font-family: var(--fonte-destaque);
+    font-weight: 700;
+    letter-spacing: 1px;
+   
+}
+
+/* Footer */
+footer {
+    height: 7em;
+    font-family: var(--fonte-destaque);
+    background-color: var(--cor-1);
+}
+
+/* Placeholder (caso haja input com class="placeholder") */
+.placeholder {
+    color: var(--cor-2);
+}
+
+#carrossel-principal {
+    height: 50em;
 }
 
 
+/* Barra de pesquisa */
+#barra-pesquisa {
+    width: 50em;
+    border-radius: 1em;
+}
+
+#barra-pesquisa .btn {
+    background-color: var(--cor-2) !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+#barra-pesquisa .btn:hover {
+    opacity: 80%;
+}
+
+/* Ícone de perfil */
+#icone-perfil {
+    font-size: 1.8em;
+    margin-bottom: 2em;
+    filter: invert();
+}
+
+#secao-nav {
+    color: var(--cor-3);
+}
+
+/* Carrossel principal */
 .carousel,
 .carousel-inner,
 .carousel-item {
-  height: 50em; /* ajuste conforme desejar */
+    height: auto;
 }
 
 .carousel-item {
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+    overflow: hidden;
+    padding: 2rem 0;
 }
 
+/* Garante que todos os cards fiquem com altura igual no slide */
+.carousel-item .row {
+    display: flex;
+    align-items: stretch;
+}
+
+/* Imagens do carrossel (principal ou interno) */
 .carousel-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
 }
 
-#barra-pesquisa {
-    width: 50em;
+/* Controles do carrossel de cards */
+#carouselCards .carousel-control-prev,
+#carouselCards .carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+    height: auto;
+    z-index: 2;
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  border: 2px solid #000;
-  border-radius: 50%;
-  background-color: #000000; /* opcional: fundo branco para destacar */
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+    background-color: var(--cor-2);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    opacity: 90%;
+}
+
+/* Card dos músicos no carrossel */
+.card-carousel {
+    background: var(--cor-4);
+    border-radius: 2em;
+    padding: 0 0 1em 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    height: 370px; /* altura padronizada */
+}
+
+/* Imagem no topo do card */
+.card-img-top {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 2em 2em 0 0;
+    display: block;
+}
+
+/* Conteúdo do card */
+.card-body {
+    background: transparent;
+    padding: 1.2em 1em 0.8em 1em;
+    text-align: left;
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-fixo {
+    background-color: var(--cor-4);
+    border: 0 !important;
+    width: auto;
+}
+
 

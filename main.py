@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 import uvicorn
 
 from data import uf_repo
+from data import cidade_repo
 
 
 app = FastAPI()
@@ -13,6 +14,8 @@ templates = Jinja2Templates(directory="templates")
 
 uf_repo_instance = uf_repo.UfRepo("dados.db")
 uf_repo_instance.create_table()
+cidade_repo_instance = cidade_repo.CidadeRepo("dados.db")
+cidade_repo_instance.create_table()
 
 @app.get("/")
 async def get_root():

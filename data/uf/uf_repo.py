@@ -1,7 +1,7 @@
 import sqlite3
 from typing import List, Optional
-from data.uf_sql import *
-from data.uf_model import Uf
+from data.uf.uf_sql import *
+from data.uf.uf_model import Uf
 from data.util import get_connection
 
 class UfRepo:

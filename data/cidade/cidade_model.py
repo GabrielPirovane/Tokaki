@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from data.uf_model import Uf
+from data.uf.uf_model import Uf
 
 @dataclass
 class Cidade:

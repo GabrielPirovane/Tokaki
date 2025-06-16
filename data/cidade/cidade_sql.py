@@ -13,24 +13,27 @@ VALUES (?, ?);
 """
 
 SQL_SELECT_RANGE_CIDADE = """
-SELECT id, nome, id_uf
-FROM cidade
-ORDER BY nome
+SELECT c.id, c.nome, c.id_uf, u.nome AS nome_uf
+FROM cidade c
+JOIN uf u ON c.id_uf = u.id
+ORDER BY c.id
 LIMIT ? OFFSET ?;
 """
 
 SQL_SELECT_RANGE_BUSCA_CIDADE = """
-SELECT id, nome, id_uf
-FROM cidade
+SELECT c.id, c.nome, c.id_uf, u.nome AS nome_uf
+FROM cidade c
+JOIN uf u ON c.id_uf = u.id
 WHERE nome LIKE ?
-ORDER BY nome
+ORDER BY c.nome
 LIMIT ? OFFSET ?;
 """
 
 SQL_SELECT_CIDADE_BY_ID = """
-SELECT id, nome, id_uf
-FROM cidade
-WHERE id = ?;
+SELECT c.id, c.nome, c.id_uf, u.nome AS nome_uf
+FROM cidade c
+JOIN uf u ON c.id_uf = u.id
+WHERE c.id = ?;
 """
 
 SQL_SELECT_COUNT_CIDADE = """

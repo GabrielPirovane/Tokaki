@@ -1,8 +1,8 @@
 import sqlite3
 from typing import List, Optional
-from data.cidade_sql import *
-from data.cidade_model import Cidade
-from data.uf_model import Uf
+from data.cidade.cidade_sql import *
+from data.cidade.cidade_model import Cidade
+from data.uf.uf_model import Uf
 from data.util import get_connection
 
 class CidadeRepo:

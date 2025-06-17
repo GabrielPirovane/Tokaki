@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 
+from data.agenda import agenda_repo
 from data.categoria import categoria_repo
 from data.categoria_musico import cm_repo
 from data.contratante import contratante_repo
@@ -57,6 +58,10 @@ oferta_servico_repo_instance.create_table()
 
 contratante_repo_instance = contratante_repo.ContratanteRepo("dados.db")
 contratante_repo_instance.create_table()
+
+agenda_repo_instance = agenda_repo.AgendaRepo("dados.db")
+agenda_repo_instance.create_table()
+
 
 @app.get("/")
 async def get_root():

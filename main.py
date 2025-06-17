@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 import uvicorn
 
 from data.agenda import agenda_repo
+from data.agendamento import agendamento_repo
 from data.categoria import categoria_repo
 from data.categoria_musico import cm_repo
 from data.contratante import contratante_repo
@@ -61,6 +62,10 @@ contratante_repo_instance.create_table()
 
 agenda_repo_instance = agenda_repo.AgendaRepo("dados.db")
 agenda_repo_instance.create_table()
+
+agendamento_repo_instance = agendamento_repo.AgendamentoRepo("dados.db")
+agendamento_repo_instance.create_table()
+
 
 
 @app.get("/")

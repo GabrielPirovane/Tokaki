@@ -18,3 +18,4 @@ Tokaki é uma plataforma que conecta o músico com o contratante.
 * Contratante
 * Agenda
 * Agendamento
+* Contratacao

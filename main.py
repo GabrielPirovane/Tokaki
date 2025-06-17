@@ -6,6 +6,7 @@ import uvicorn
 
 from data.categoria import categoria_repo
 from data.categoria_musico import cm_repo
+from data.contratante import contratante_repo
 from data.foto import foto_repo
 from data.galeria import galeria_repo
 from data.oferta_servico import os_repo
@@ -54,6 +55,8 @@ servico_repo_instance.create_table()
 oferta_servico_repo_instance = os_repo.OfertaServicoRepo("dados.db")
 oferta_servico_repo_instance.create_table()
 
+contratante_repo_instance = contratante_repo.ContratanteRepo("dados.db")
+contratante_repo_instance.create_table()
 
 @app.get("/")
 async def get_root():

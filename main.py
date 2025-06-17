@@ -6,6 +6,7 @@ import uvicorn
 
 from data.categoria import categoria_repo
 from data.categoria_musico import cm_repo
+from data.galeria import galeria_repo
 from data.uf import uf_repo
 from data.cidade import cidade_repo
 from data.usuario import usuario_repo
@@ -37,6 +38,9 @@ categoria_musico_repo_instance.create_table()
 
 musico_repo_instance = musico_repo.MusicoRepo("dados.db")
 musico_repo_instance.create_table()
+
+galeria_repo_instance = galeria_repo.GaleriaRepo("dados.db")
+galeria_repo_instance.create_table()
 
 @app.get("/")
 async def get_root():

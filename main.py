@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 
+from data.categoria import categoria_repo
 from data.uf import uf_repo
 from data.cidade import cidade_repo
 from data.usuario import usuario_repo
@@ -25,6 +26,9 @@ usuario_repo_instance.create_table()
 
 adm_repo_instance = adm_repo.admRepo("dados.db")
 adm_repo_instance.create_table()
+
+categoria_repo_instance = categoria_repo.CategoriaRepo("dados.db")
+categoria_repo_instance.create_table()
 
 @app.get("/")
 async def get_root():

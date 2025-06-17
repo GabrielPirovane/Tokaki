@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 import uvicorn
 
 from data.categoria import categoria_repo
+from data.categoria_musico import cm_repo
 from data.uf import uf_repo
 from data.cidade import cidade_repo
 from data.usuario import usuario_repo
@@ -30,6 +31,9 @@ adm_repo_instance.create_table()
 
 categoria_repo_instance = categoria_repo.CategoriaRepo("dados.db")
 categoria_repo_instance.create_table()
+
+categoria_musico_repo_instance = cm_repo.CategoriaMusicoRepo("dados.db")
+categoria_musico_repo_instance.create_table()
 
 musico_repo_instance = musico_repo.MusicoRepo("dados.db")
 musico_repo_instance.create_table()

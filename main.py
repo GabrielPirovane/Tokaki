@@ -8,6 +8,7 @@ from data.categoria import categoria_repo
 from data.categoria_musico import cm_repo
 from data.foto import foto_repo
 from data.galeria import galeria_repo
+from data.servico import servico_repo
 from data.uf import uf_repo
 from data.cidade import cidade_repo
 from data.usuario import usuario_repo
@@ -45,6 +46,9 @@ galeria_repo_instance.create_table()
 
 foto_repo_instance = foto_repo.FotoRepo("dados.db")
 foto_repo_instance.create_table()
+
+servico_repo_instance = servico_repo.ServicoRepo("dados.db")
+servico_repo_instance.create_table()
 
 @app.get("/")
 async def get_root():

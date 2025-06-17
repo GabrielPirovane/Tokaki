@@ -13,14 +13,14 @@ VALUES (?, ?);
 
 SQL_SELECT_RANGE_CATEGORIA = """
 SELECT id, nome, descricao
-FROM galeria
+FROM categoria
 ORDER BY id
 LIMIT ? OFFSET ?;
 """
 
 SQL_SELECT_RANGE_BUSCA_CATEGORIA = """
 SELECT id, nome, descricao
-FROM galeria 
+FROM categoria  
 WHERE nome LIKE ?
 ORDER BY nome
 LIMIT ? OFFSET ?;
@@ -28,27 +28,28 @@ LIMIT ? OFFSET ?;
 
 SQL_SELECT_CATEGORIA_BY_ID = """
 SELECT id, nome, descricao
-FROM galeria 
+FROM categoria
 WHERE id = ?;
 """
 
 SQL_SELECT_COUNT_CATEGORIA= """
-SELECT COUNT(*) FROM galeria;
+SELECT COUNT(*) FROM categoria;
 """
 
 SQL_SELECT_CATEGORIA = """
 SELECT id, nome, descricao
-FROM galeria
+FROM categoria
 ORDER BY nome;
 """
 
 SQL_UPDATE_CATEGORIA = """
-UPDATE galeria
+UPDATE categoria
+
 SET nome = ?, descricao = ?
 WHERE id = ?;
 """
 
 SQL_DELETE_CATEGORIA = """
-DELETE FROM galeria
+DELETE FROM categoria
 WHERE id = ?;
 """

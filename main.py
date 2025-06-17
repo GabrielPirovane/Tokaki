@@ -8,6 +8,7 @@ from data.agenda import agenda_repo
 from data.agendamento import agendamento_repo
 from data.categoria import categoria_repo
 from data.categoria_musico import cm_repo
+from data.contratacao import contratacao_repo
 from data.contratante import contratante_repo
 from data.foto import foto_repo
 from data.galeria import galeria_repo
@@ -65,6 +66,9 @@ agenda_repo_instance.create_table()
 
 agendamento_repo_instance = agendamento_repo.AgendamentoRepo("dados.db")
 agendamento_repo_instance.create_table()
+
+contratacao_repo_instance = contratacao_repo.ContratacaoRepo("dados.db")
+contratacao_repo_instance.create_table()
 
 
 

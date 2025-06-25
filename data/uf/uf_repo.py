@@ -10,15 +10,24 @@ class UfRepo:
         self.create_table()
     
     def create_table(self):
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_CREATE_TABLE_UF)
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_CREATE_TABLE_UF)
+                return True
+        except Exception as e:
+            print(f"Error ao criar tabela: {e}")
+            return False
     
     def insert(self, uf: Uf) -> Optional[int]:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_INSERT_UF, (uf.nome,))
-            return cursor.lastrowid
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_INSERT_UF, (uf.nome,))
+                return cursor.lastrowid
+        except sqlite3.IntegrityError as e:
+            print(f"Erro de integridade ao inserir UF: {e}")
+            return None
         
     def get_by_id(self, id: int) -> Optional[Uf]:
         with get_connection() as conn:

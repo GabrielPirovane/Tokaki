@@ -30,6 +30,10 @@ adm_repo_instance.create_table()
 async def get_root():
     response = templates.TemplateResponse("index.html", {"request": {}})
     return response
+@app.get("/cadastro")
+async def get_root():
+    response = templates.TemplateResponse("cadastro.html", {"request": {}})
+    return response
 
 
 if __name__ == "__main__":

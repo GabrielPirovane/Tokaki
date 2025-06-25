@@ -52,10 +52,14 @@ class UfRepo:
             return [Uf(id=row['id'], nome=row['nome']) for row in rows]
     
     def update(self, uf: Uf) -> bool:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_UPDATE_UF, (uf.nome, uf.id))
-            return cursor.rowcount > 0
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_UPDATE_UF, (uf.nome, uf.id))
+                return cursor.rowcount > 0
+        except sqlite3.IntegrityError as e:
+            print(f"Erro de integridade ao atualizar UF: {e}")
+            return None
     
     def delete(self, id: int) -> bool:
         with get_connection() as conn:

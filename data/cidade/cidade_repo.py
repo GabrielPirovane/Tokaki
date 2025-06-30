@@ -11,15 +11,24 @@ class CidadeRepo:
         self.create_table()
     
     def create_table(self):
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_CREATE_TABLE_CIDADE)
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_CREATE_TABLE_CIDADE)
+                return True
+        except Exception as e:
+            print(f"Erro ao criar tabela: {e}")
+            return False
     
     def insert(self, cidade: Cidade) -> Optional[int]:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_INSERT_CIDADE, (cidade.nome, cidade.id_uf.id))
-            return cursor.lastrowid
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_INSERT_CIDADE, (cidade.nome, cidade.id_uf.id))
+                return cursor.lastrowid
+        except sqlite3.IntegrityError as e:
+            print(f"Erro de integridade ao inserir cidade: {e}")
+            return None
         
     def get_by_id(self, id: int) -> Optional[Cidade]:
         with get_connection() as conn:
@@ -63,10 +72,14 @@ class CidadeRepo:
             return [Uf(id=row['id'], nome=row['nome']) for row in rows]
     
     def update(self, cidade: Cidade) -> bool:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_UPDATE_CIDADE, (cidade.id, cidade.nome, cidade.id_uf.id))
-            return cursor.rowcount > 0
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_UPDATE_CIDADE, (cidade.id, cidade.nome, cidade.id_uf.id))
+                return cursor.rowcount > 0
+        except sqlite3.IntegrityError as e:
+            print(f"Erro de integridade ao inserir cidade: {e}")
+            return None
     
     def delete(self, id: int) -> bool:
         with get_connection() as conn:

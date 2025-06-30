@@ -27,7 +27,14 @@ JOIN usuario u ON a.id = u.id
 ORDER BY nome_administrador;
 """
 
+SQL_UPDATE_ADMINISTRADOR = """
+UPDATE administrador
+SET nome = ?
+WHERE id = ?;
+"""
+
 SQL_DELETE_ADMINISTRADOR = """
 DELETE FROM administrador
 WHERE id = ?;
 """
+

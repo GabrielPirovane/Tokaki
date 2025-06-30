@@ -11,15 +11,24 @@ class ContratanteRepo:
         self.create_table()
     
     def create_table(self):
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_CREATE_TABLE_CONTRATANTE)
-    
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_CREATE_TABLE_CONTRATANTE)
+                return True
+        except Exception as e:
+            print(f"Erro ao criar tabela: {e}")
+            return False
+        
     def insert(self, contratante: Contratante) -> Optional[int]:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_INSERT_CONTRATANTE, (contratante.id.id, contratante.nota, contratante.numero_contratacoes))
-            return cursor.lastrowid
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_INSERT_CONTRATANTE, (contratante.id.id, contratante.nota, contratante.numero_contratacoes))
+                return cursor.lastrowid
+        except sqlite3.IntegrityError as e:
+            print(f"Erro de integridade ao inserir contratante: {e}")
+            return None
         
     def get_by_id(self, id: int) -> Optional[Contratante]:
         with get_connection() as conn:
@@ -63,10 +72,15 @@ class ContratanteRepo:
             return [Contratante(id=Usuario(id=row['id'], ), nota=row['nota'], numero_contratacoes=row['numero_contratacoes']) for row in rows]
     
     def update(self, contratante: Contratante) -> bool:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_UPDATE_CONTRATANTE, (contratante.id.id, contratante.nota, contratante.numero_contratacoes))
-            return cursor.rowcount > 0
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_UPDATE_CONTRATANTE, (contratante.id.id, contratante.nota, contratante.numero_contratacoes))
+                return cursor.rowcount > 0
+        except sqlite3.IntegrityError as e:
+            print(f"Erro de integridade ao inserir contratante: {e}")
+            return None
+        
     
     def delete(self, id: int) -> bool:
         with get_connection() as conn:

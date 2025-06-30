@@ -14,15 +14,24 @@ class AgendamentoRepo:
         self.create_table()
     
     def create_table(self):
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_CREATE_TABLE_AGENDAMENTO)
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_CREATE_TABLE_AGENDAMENTO)
+                return True
+        except Exception as e:
+            print(f"Erro ao criar tabela: {e}")
+            return False
     
     def insert(self, agendamento: Agendamento) -> Optional[int]:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_INSERT_AGENDAMENTO, (agendamento.id_musico.id, agendamento.id_contratante.id, agendamento.id_agenda.id, agendamento.tipo_servico, agendamento.descricao, agendamento.valor, agendamento.data_hora, agendamento.taxa_aprovacao, agendamento.aprovado))
-            return cursor.lastrowid
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_INSERT_AGENDAMENTO, (agendamento.id_musico.id, agendamento.id_contratante.id, agendamento.id_agenda.id, agendamento.tipo_servico, agendamento.descricao, agendamento.valor, agendamento.data_hora, agendamento.taxa_aprovacao, agendamento.aprovado))
+                return cursor.lastrowid
+        except sqlite3.IntegrityError as e:
+            print(f"Erro de integridade ao inserir agendamento: {e}")
+            return None
         
     def get_by_id(self, id: int) -> Optional[Agendamento]:
         with get_connection() as conn:
@@ -102,10 +111,14 @@ class AgendamentoRepo:
                                    aprovado=row['aprovado']) for row in rows]
     
     def update(self, agendamento: Agendamento) -> bool:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_UPDATE_AGENDAMENTO, (agendamento.id_musico.id, agendamento.id_contratante.id, agendamento.id_agenda.id, agendamento.tipo_servico, agendamento.descricao, agendamento.valor, agendamento.data_hora, agendamento.taxa_aprovacao, agendamento.aprovado))
-            return cursor.rowcount > 0
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_UPDATE_AGENDAMENTO, (agendamento.id_musico.id, agendamento.id_contratante.id, agendamento.id_agenda.id, agendamento.tipo_servico, agendamento.descricao, agendamento.valor, agendamento.data_hora, agendamento.taxa_aprovacao, agendamento.aprovado))
+                return cursor.rowcount > 0
+        except sqlite3.IntegrityError as e:
+            print(f"Erro de integridade ao inserir agendamento: {e}")
+            return None
     
     def delete(self, id: int) -> bool:
         with get_connection() as conn:

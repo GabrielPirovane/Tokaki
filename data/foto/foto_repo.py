@@ -11,15 +11,24 @@ class FotoRepo:
         self.create_table()
     
     def create_table(self):
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_CREATE_TABLE_FOTO)
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_CREATE_TABLE_FOTO)
+                return True
+        except Exception as e:
+            print(f"Erro ao criar tabela: {e}")
+            return False
     
     def insert(self, foto: Foto) -> Optional[int]:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_INSERT_FOTO, (foto.id_galeria.id, foto.url, foto.descricao))
-            return cursor.lastrowid
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_INSERT_FOTO, (foto.id_galeria.id, foto.url, foto.descricao))
+                return cursor.lastrowid
+        except sqlite3.IntegrityError as e:
+            print(f"Erro de integridade ao inserir foto: {e}")
+            return None
         
     def get_by_id(self, id: int) -> Optional[Foto]:
         with get_connection() as conn:

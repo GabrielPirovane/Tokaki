@@ -11,15 +11,24 @@ class UsuarioRepo:
         self.create_table()
     
     def create_table(self):
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_CREATE_TABLE_USUARIO)
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_CREATE_TABLE_USUARIO)
+                return True
+        except Exception as e:
+            print(f"Erro ao criar tabela: {e}")
+            return False
     
     def insert(self, usuario: Usuario) -> Optional[int]:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_INSERT_USUARIO, (usuario.id_cidade.id, usuario.nome, usuario.nome_usuario, usuario.senha, usuario.email, usuario.cpf, usuario.telefone, usuario.genero, usuario.logradouro, usuario.numero, usuario.bairro, usuario.complemento, usuario.cep))
-            return cursor.lastrowid
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_INSERT_USUARIO, (usuario.id_cidade.id, usuario.nome, usuario.nome_usuario, usuario.senha, usuario.email, usuario.cpf, usuario.telefone, usuario.genero, usuario.logradouro, usuario.numero, usuario.bairro, usuario.complemento, usuario.cep))
+                return cursor.lastrowid
+        except sqlite3.IntegrityError as e:
+            print(f"Erro de integridade ao inserir usuario: {e}")
+            return None
         
     def get_by_id(self, id: int) -> Optional[Usuario]:
         with get_connection() as conn:
@@ -115,10 +124,14 @@ class UsuarioRepo:
                                cep=row['cep']) for row in rows]
     
     def update(self, usuario: Usuario) -> bool:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_UPDATE_USUARIO, (usuario.id, usuario.id_cidade.id, usuario.nome, usuario.nome_usuario, usuario.senha, usuario.email, usuario.cpf, usuario.telefone, usuario.genero, usuario.logradouro, usuario.numero, usuario.bairro, usuario.complemento, usuario.cep))
-            return cursor.rowcount > 0
+        try: 
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_UPDATE_USUARIO, (usuario.id, usuario.id_cidade.id, usuario.nome, usuario.nome_usuario, usuario.senha, usuario.email, usuario.cpf, usuario.telefone, usuario.genero, usuario.logradouro, usuario.numero, usuario.bairro, usuario.complemento, usuario.cep))
+                return cursor.rowcount > 0
+        except sqlite3.IntegrityError as e:
+            print(f"Erro de integridade ao atualizar usuario: {e}")
+            return None
     
     def delete(self, id: int) -> bool:
         with get_connection() as conn:

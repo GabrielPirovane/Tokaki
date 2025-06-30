@@ -11,15 +11,24 @@ class GaleriaRepo:
         self.create_table()
     
     def create_table(self):
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_CREATE_TABLE_GALERIA)
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_CREATE_TABLE_GALERIA)
+                return True
+        except Exception as e:
+            print(f"Erro ao criar tabela: {e}")
+            return False
     
     def insert(self, galeria: Galeria) -> Optional[int]:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_INSERT_GALERIA, (galeria.id_musico.id, galeria.nome, galeria.descricao))
-            return cursor.lastrowid
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_INSERT_GALERIA, (galeria.id_musico.id, galeria.nome, galeria.descricao))
+                return cursor.lastrowid
+        except sqlite3.IntegrityError as e:
+            print(f"Erro de integridade ao inserir galeria: {e}")
+            return None
         
     def get_by_id(self, id: int) -> Optional[Galeria]:
         with get_connection() as conn:

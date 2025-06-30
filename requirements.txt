@@ -2,8 +2,3 @@
 fastapi[standard]
 uvicorn[standard]
 jinja2
-
-# Dependências de teste
-pytest
-pytest-asyncio
-pytest-cov

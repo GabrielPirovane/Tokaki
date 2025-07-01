@@ -36,7 +36,7 @@ SELECT COUNT(*) FROM servico;
 """
 
 SQL_SELECT_SERVICO = """
-SELECT id, nome, descricao
+SELECT id, nome
 FROM servico
 ORDER BY nome;
 """

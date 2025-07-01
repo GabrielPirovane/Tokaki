@@ -74,7 +74,7 @@ class ServicoRepo:
         try:
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_UPDATE_SERVICO, (servico.nome,))
+                cursor.execute(SQL_UPDATE_SERVICO, (servico.nome, servico.id))
                 return cursor.rowcount > 0
         except sqlite3.IntegrityError as e:
             print(f"Erro de integridade ao inserir servico: {e}")

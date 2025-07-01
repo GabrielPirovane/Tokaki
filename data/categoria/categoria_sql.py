@@ -44,7 +44,6 @@ ORDER BY nome;
 
 SQL_UPDATE_CATEGORIA = """
 UPDATE categoria
-
 SET nome = ?, descricao = ?
 WHERE id = ?;
 """

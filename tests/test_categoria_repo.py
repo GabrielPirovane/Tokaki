@@ -73,12 +73,12 @@ class TestCategoriaRepo:
         id_categoria_inserida = repo.insert(categoria_teste)
         categoria_inserida = repo.get_by_id(id_categoria_inserida)
         # Act
-        categoria_inserida.nome = "Updated categoria"
+        categoria_inserida.nome = "Updated Categoria"
         resultado = repo.update(categoria_inserida)
         # Assert
-        assert resultado == True, "Atualização da categoria deveria retornar True"
+        assert resultado == True, "Atualização da UF deveria retornar True"
         categoria_db = repo.get_by_id(id_categoria_inserida)
-        assert categoria_db.nome == "Updated categoria", "Nome da categoria atualizada deveria ser 'Updated categoria'"
+        assert categoria_db.nome == "Updated Categoria", "Nome da categoria atualizada deveria ser 'Updated Categoria"
     
     def test_delete_categoria(self, test_db):
         # Arrange

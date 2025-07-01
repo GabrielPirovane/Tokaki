@@ -74,7 +74,7 @@ class CategoriaRepo:
         try:
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_UPDATE_CATEGORIA, (categoria.id, categoria.nome, categoria.descricao))
+                cursor.execute(SQL_UPDATE_CATEGORIA, (categoria.nome, categoria.descricao, categoria.id))
                 return cursor.rowcount > 0
         except sqlite3.IntegrityError as e:
             print(f"Erro de integridade ao inserir categoria: {e}")

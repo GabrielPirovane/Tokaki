@@ -16,8 +16,11 @@ def test_db():
     # Configura a variável de ambiente para usar o banco de teste
     os.environ['TEST_DATABASE_PATH'] = db_path
     # Retorna o caminho do banco de dados temporário
-    yield db_path    
-    # Remove o arquivo temporário ao concluir o teste
+    yield db_path
+    # Aguarde um pouco para garantir que todas as conexões foram fechadas (opcional)
+    import time; time.sleep(0.1)
     os.close(db_fd)
-    if os.path.exists(db_path):
+    try:
         os.unlink(db_path)
+    except PermissionError:
+        print(f"Não foi possível remover {db_path}. Certifique-se de fechar todas as conexões.")

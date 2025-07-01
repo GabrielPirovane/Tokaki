@@ -25,9 +25,10 @@ SELECT COUNT(*) FROM foto;
 """
 
 SQL_SELECT_FOTO = """
-SELECT id, id_galeria, url, descricao
-FROM foto
-ORDER BY id;
+SELECT f.id, f.id_galeria, f.url, f.descricao, g.nome AS nome_galeria
+FROM foto f
+JOIN galeria g ON f.id_galeria = g.id
+ORDER BY f.id;
 """
 
 SQL_UPDATE_FOTO = """

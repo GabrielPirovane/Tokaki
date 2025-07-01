@@ -1,5 +1,3 @@
-import sys
-import os
 from data.oferta_servico.os_repo import *
 from data.servico.servico_repo import *
 from data.musico.musico_repo import *
@@ -33,7 +31,7 @@ class TestOfertaServicoRepo:
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
         musico = Musico(Usuario(id_usuario, cidade, "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia teste")
-        id_musico = repo_musico.insert(musico)
+        repo_musico.insert(musico)
 
         repo_servico = ServicoRepo(test_db)
         repo_servico.create_table()

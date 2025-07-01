@@ -1,5 +1,3 @@
-import sys
-import os
 from data.uf.uf_repo import *
 
 #Arrange
@@ -61,7 +59,7 @@ class TestUfRepo:
         # Assert
         uf_db = repo.get_by_id(id_uf_inserida)
         assert uf_db is not None, "UF não deveria ser None após inserção"
-        assert uf_db.id == 1, "ID da UF inserida deveria ser igual a 1"
+        assert uf_db.id == 1, "ID da UF inserida deveria ser igual a 1" #Autoincrement
         assert uf_db.nome == "Test UF", "Nome da UF inserida deveria ser 'Test UF'"
 
     def test_update_uf(self, test_db):

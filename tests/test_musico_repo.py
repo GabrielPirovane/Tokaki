@@ -1,5 +1,3 @@
-import sys
-import os
 from data.musico.musico_repo import *
 from data.usuario.usuario_repo import *
 from data.cidade.cidade_repo import *

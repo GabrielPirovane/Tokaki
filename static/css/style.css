@@ -162,4 +162,10 @@ footer {
     width: auto;
 }
 
+.imagem_fundo_cadastro {
+    background-image: url('/static/img/cad_fundo_claro.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
 

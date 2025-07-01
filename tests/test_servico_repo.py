@@ -1,11 +1,4 @@
-import sys
-import os
 from data.servico.servico_repo import *
-
-#Arrange
-#act
-#Assert
-
 class TestServicoRepo:
     def test_create_table_servico(self, test_db):
         repo = ServicoRepo(test_db)
@@ -22,7 +15,7 @@ class TestServicoRepo:
         # Assert
         servico_db = repo.get_by_id(id_servico_inserida)
         assert servico_db is not None, "servico não deveria ser None após inserção"
-        assert servico_db.id == 1, "ID da servico inserida deveria ser igual a 1"
+        assert servico_db.id == 1, "ID da servico inserida deveria ser igual a 1" #Autoincrement
         assert servico_db.nome == "Test Servico", "Nome da servico inserida deveria ser 'Test Servico'"
     
     

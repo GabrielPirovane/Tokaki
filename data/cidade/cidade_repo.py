@@ -40,23 +40,31 @@ class CidadeRepo:
             return None
         
     def get_all_paged(self, page_number: int=1, page_size: int=10) -> List[Cidade]:
-        limit = page_size
-        offset = (page_number - 1) * page_size
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_SELECT_RANGE_CIDADE, (limit, offset))
-            rows = cursor.fetchall()
-            return [Cidade(id=row['id'], nome=row['nome'], id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])) for row in rows]
+        try:
+            limit = page_size
+            offset = (page_number - 1) * page_size
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_SELECT_RANGE_CIDADE, (limit, offset))
+                rows = cursor.fetchall()
+                return [Cidade(id=row['id'], nome=row['nome'], id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])) for row in rows]
+            return True
+        except sqlite3.Error as e:
+            print(f"Erro ao buscar cidades: {e}")
+            return None
         
     def search_paged(self, termo: str, page_number: int=1, page_size: int=10, ) -> List[Cidade]:
-        limit = page_size
-        offset = (page_number - 1) * page_size
-        termo = f"%{termo}%"
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(SQL_SELECT_RANGE_BUSCA_CIDADE, (f'%{termo}%', limit, offset))
-            rows = cursor.fetchall()
+        try:
+            limit = page_size
+            offset = (page_number - 1) * page_size
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_SELECT_RANGE_BUSCA_CIDADE, (f"%{termo}%", limit, offset))
+                rows = cursor.fetchall()
             return [Cidade(id=row['id'], nome=row['nome'], id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])) for row in rows]
+        except sqlite3.Error as e:
+            print(f"Erro ao buscar cidades: {e}")
+            raise
         
     def count(self) -> int:
         with get_connection() as conn:
@@ -75,11 +83,11 @@ class CidadeRepo:
         try:
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_UPDATE_CIDADE, (cidade.id, cidade.nome, cidade.id_uf.id))
+                cursor.execute(SQL_UPDATE_CIDADE, (cidade.nome, cidade.id_uf.id, cidade.id))
                 return cursor.rowcount > 0
         except sqlite3.IntegrityError as e:
-            print(f"Erro de integridade ao inserir cidade: {e}")
-            return None
+            print(f"Erro ao atualizar cidade: {e}")
+            return False
     
     def delete(self, id: int) -> bool:
         with get_connection() as conn:

@@ -74,7 +74,7 @@ class TestCidadeRepo:
         # Act
         cidades = repo.search_paged(termo="Test", page_number=1, page_size=10)
         # Assert
-        assert len(cidades) == 2, "Deveria retornar duas Cidades ao buscar por 'Test'"
+        assert len(cidades) == 2, "Deveria retornar duas Cidades"
         assert cidades[0].nome == "Test Cidade 1", "Primeira Cidade deveria ser 'Test Cidade 1'"
         assert cidades[1].nome == "Test Cidade 2", "Segunda Cidade deveria ser 'Test Cidade 2'"
 
@@ -108,7 +108,7 @@ class TestCidadeRepo:
         repo.insert(cidade_teste1)
         repo.insert(cidade_teste2)
         # Act
-        cidades = repo.get_all_paged(page_number=1, page_size=10)
+        cidades = repo.get_all()
         # Assert
         assert len(cidades) == 2, "Deveria retornar duas Cidades"
         assert cidades[0].nome == "Test Cidade 1", "Primeira Cidade deveria ser 'Test Cidade 1'"
@@ -124,10 +124,28 @@ class TestCidadeRepo:
         repo.create_table()
         cidade_teste = Cidade(0, "Test Cidade", Uf(id_uf_inserida, "Test UF"))
         id_cidade_inserida = repo.insert(cidade_teste)
-        cidade_inserida = repo.get_by_id(id_cidade_inserida)
+        cidade_teste.nome = "Updated Cidade"
+        cidade_teste.id = id_cidade_inserida
         # Act
-        cidade_inserida.nome = "Updated Cidade"
-        repo.insert(cidade_inserida)
+        resultado = repo.update(cidade_teste)
         # Assert
-        cidade_atualizada = repo.get_by_id(id_cidade_inserida)
-        assert cidade_atualizada.nome == "Updated Cidade", "Nome da Cidade atualizada deveria ser 'Updated Cidade'"
+        assert resultado == True, "Atualização da Cidade deveria retornar True"
+        cidade_db = repo.get_by_id(id_cidade_inserida)
+        assert cidade_db.nome == "Updated Cidade", "Nome da Cidade atualizada deveria ser 'Updated Cidade'"
+    
+    def test_delete_cidade(self, test_db):
+        # Arrange
+        repo_uf = UfRepo(test_db)
+        repo_uf.create_table()
+        uf_teste = Uf(0, "Test UF")
+        id_uf_inserida = repo_uf.insert(uf_teste)
+        repo = CidadeRepo(test_db)
+        repo.create_table()
+        cidade_teste = Cidade(0, "Test Cidade", Uf(id_uf_inserida, "Test UF"))
+        id_cidade_inserida = repo.insert(cidade_teste)
+        # Act
+        resultado = repo.delete(id_cidade_inserida)
+        # Assert
+        assert resultado == True, "Deleção da Cidade deveria retornar True"
+        cidade_db = repo.get_by_id(id_cidade_inserida)
+        assert cidade_db is None, "Cidade não deveria existir após deleção"

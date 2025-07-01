@@ -13,10 +13,11 @@ VALUES (?, ?);
 """
 
 SQL_SELECT_RANGE_CIDADE = """
-SELECT c.id, c.nome, c.id_uf, u.nome AS nome_uf
+SELECT c.id, c.nome AS nome, c.id_uf, u.nome AS nome_uf
 FROM cidade c
-JOIN uf u ON c.id_uf = u.id
-ORDER BY c.id
+JOIN uf u ON u.id = c.id_uf
+WHERE c.nome LIKE ?
+ORDER BY c.nome
 LIMIT ? OFFSET ?;
 """
 
@@ -24,7 +25,7 @@ SQL_SELECT_RANGE_BUSCA_CIDADE = """
 SELECT c.id, c.nome, c.id_uf, u.nome AS nome_uf
 FROM cidade c
 JOIN uf u ON c.id_uf = u.id
-WHERE nome LIKE ?
+WHERE c.nome LIKE ?
 ORDER BY c.nome
 LIMIT ? OFFSET ?;
 """

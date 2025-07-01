@@ -14,25 +14,95 @@ VALUES (?, ?, ?);
 """
 
 SQL_SELECT_RANGE_GALERIA = """
-SELECT id, id_musico, nome, descricao
-FROM galeria
-ORDER BY id
+SELECT 
+    g.id, g.id_musico, g.nome, g.descricao,
+    m.experiencia,
+    u.id AS usuario_id,
+    u.id_cidade,
+    u.nome AS usuario_nome,
+    u.nome_usuario,
+    u.senha,
+    u.email,
+    u.cpf,
+    u.telefone,
+    u.genero,
+    u.logradouro,
+    u.numero,
+    u.bairro,
+    u.complemento,
+    u.cep,
+    c.id AS cidade_id,
+    c.nome AS nome_cidade,
+    uf.id AS uf_id,
+    uf.nome AS nome_uf
+FROM galeria g
+JOIN musico m ON g.id_musico = m.id
+JOIN usuario u ON m.id = u.id
+JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
+ORDER BY g.id
 LIMIT ? OFFSET ?;
 """
 
 SQL_SELECT_RANGE_BUSCA_GALERIA = """
-SELECT g.id, g.nome, g.id_musico, g.descricao, m.nome AS nome_musico
+SELECT 
+    g.id, g.id_musico, g.nome, g.descricao,
+    m.experiencia,
+    u.id AS usuario_id,
+    u.id_cidade,
+    u.nome AS usuario_nome,
+    u.nome_usuario,
+    u.senha,
+    u.email,
+    u.cpf,
+    u.telefone,
+    u.genero,
+    u.logradouro,
+    u.numero,
+    u.bairro,
+    u.complemento,
+    u.cep,
+    c.id AS cidade_id,
+    c.nome AS nome_cidade,
+    uf.id AS uf_id,
+    uf.nome AS nome_uf
 FROM galeria g
 JOIN musico m ON g.id_musico = m.id
+JOIN usuario u ON m.id = u.id
+JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
 WHERE g.nome LIKE ?
 ORDER BY g.nome
 LIMIT ? OFFSET ?;
 """
 
 SQL_SELECT_GALERIA_BY_ID = """
-SELECT g.id, g.nome, g.id_musico, g.descricao, m.nome AS nome_musico
+SELECT 
+    g.id, g.id_musico, g.nome, g.descricao,
+    m.experiencia,
+    u.id AS usuario_id,
+    u.id_cidade,
+    u.nome AS usuario_nome,
+    u.nome_usuario,
+    u.senha,
+    u.email,
+    u.cpf,
+    u.telefone,
+    u.genero,
+    u.logradouro,
+    u.numero,
+    u.bairro,
+    u.complemento,
+    u.cep,
+    c.id AS cidade_id,
+    c.nome AS nome_cidade,
+    uf.id AS uf_id,
+    uf.nome AS nome_uf
 FROM galeria g
 JOIN musico m ON g.id_musico = m.id
+JOIN usuario u ON m.id = u.id
+JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
 WHERE g.id = ?;
 """
 
@@ -41,9 +111,33 @@ SELECT COUNT(*) FROM galeria;
 """
 
 SQL_SELECT_GALERIA = """
-SELECT id, id_musico, nome, descricao
-FROM galeria
-ORDER BY nome;
+SELECT 
+    g.id, g.id_musico, g.nome, g.descricao,
+    m.experiencia,
+    u.id AS usuario_id,
+    u.id_cidade,
+    u.nome AS usuario_nome,
+    u.nome_usuario,
+    u.senha,
+    u.email,
+    u.cpf,
+    u.telefone,
+    u.genero,
+    u.logradouro,
+    u.numero,
+    u.bairro,
+    u.complemento,
+    u.cep,
+    c.id AS cidade_id,
+    c.nome AS nome_cidade,
+    uf.id AS uf_id,
+    uf.nome AS nome_uf
+FROM galeria g
+JOIN musico m ON g.id_musico = m.id
+JOIN usuario u ON m.id = u.id
+JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
+ORDER BY g.nome;
 """
 
 SQL_UPDATE_GALERIA = """

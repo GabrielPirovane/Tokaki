@@ -39,6 +39,7 @@ class TestGaleriaRepo:
         galeria = Galeria(id=None, id_musico=musico, nome="Galeria Teste", descricao="Descrição teste")
         id_galeria = repo.insert(galeria)
         assert id_galeria is not None, "ID da galeria inserida não deveria ser None"
+        assert galeria.id_musico.id == musico.id, "ID do músico na galeria inserida deveria ser igual ao ID do músico"
 
     def test_get_by_id(self, test_db):
         # Arrange
@@ -70,6 +71,7 @@ class TestGaleriaRepo:
         galeria_db = repo.get_by_id(id_galeria)
         # Assert
         assert galeria_db is not None, "Galeria não deveria ser None ao buscar por ID"
+        assert galeria.id_musico.id == musico.id, "ID do músico na galeria inserida deveria ser igual ao ID do músico"
         assert galeria_db.nome == "Galeria Teste"
         assert galeria_db.descricao == "Descrição teste"
         assert galeria_db.id_musico.id.nome == "Nome Musico"

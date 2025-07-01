@@ -24,7 +24,7 @@ class UsuarioRepo:
         try:
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_INSERT_USUARIO, (usuario.id_cidade.id, usuario.nome, usuario.nome_usuario, usuario.senha, usuario.email, usuario.cpf, usuario.telefone, usuario.genero, usuario.logradouro, usuario.numero, usuario.bairro, usuario.complemento, usuario.cep))
+                cursor.execute(SQL_INSERT_USUARIO, (usuario.id_cidade.id ,usuario.nome, usuario.nome_usuario, usuario.senha, usuario.email, usuario.cpf, usuario.telefone, usuario.genero, usuario.logradouro, usuario.numero, usuario.bairro, usuario.complemento, usuario.cep))
                 return cursor.lastrowid
         except sqlite3.IntegrityError as e:
             print(f"Erro de integridade ao inserir usuario: {e}")

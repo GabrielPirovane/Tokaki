@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS usuario (
 
 SQL_INSERT_USUARIO = """
 INSERT INTO usuario (id_cidade, nome, nome_usuario, senha, email, cpf, telefone, genero, logradouro, numero, bairro, complemento, cep) 
-VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);
 """
 
 SQL_SELECT_RANGE_USUARIO = """

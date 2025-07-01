@@ -38,7 +38,12 @@ class FotoRepo:
             if row:
                 return Foto(
                     id=row['id'],
-                    id_galeria=Galeria(id=row['id_galeria'], nome=row['nome_galeria']),
+                    id_galeria=Galeria(
+                        id=row['id_galeria'],
+                        id_musico=row['id_musico'],
+                        nome=row['nome_galeria'],
+                        descricao=row['descricao_galeria']
+                    ),
                     url=row['url'],
                     descricao=row['descricao']
                 )
@@ -58,7 +63,12 @@ class FotoRepo:
             return [
                 Foto(
                     id=row['id'],
-                    id_galeria=Galeria(id=row['id_galeria'], nome=row['nome_galeria']),
+                    id_galeria=Galeria(
+                        id=row['id_galeria'],
+                        id_musico=row['id_musico'],
+                        nome=row['nome_galeria'],
+                        descricao=row['descricao_galeria']
+                    ),
                     url=row['url'],
                     descricao=row['descricao']
                 )

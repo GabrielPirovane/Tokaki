@@ -5,7 +5,7 @@ from data.adm.adm_model import Administrador
 from data.usuario.usuario_model import Usuario
 from data.util import get_connection
 
-class admRepo:
+class AdmRepo:
     def __init__(self, db_path: str):
         self._db_path = db_path
         self.create_table()
@@ -25,6 +25,7 @@ class admRepo:
             with get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute(SQL_INSERT_ADMINISTRADOR, (adm.id,))
+                return adm.id
         except sqlite3.IntegrityError as e:
             print(f"Erro de integridade ao inserir adm: {e}")
             return None
@@ -51,14 +52,17 @@ class admRepo:
             rows = cursor.fetchall()
             return [Administrador(id=row['id']) for row in rows]
     
-    def update(self, adm: Administrador) -> bool:
+    def update(self, adm: Administrador, id_antigo: int = None) -> bool:
         try:
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_UPDATE_ADMINISTRADOR, (adm.id.id, adm.nome))
+                # Se id_antigo não for passado, não faz nada
+                if id_antigo is None:
+                    return False
+                cursor.execute(SQL_UPDATE_ADMINISTRADOR, (adm.id, id_antigo))
                 return cursor.rowcount > 0
         except sqlite3.IntegrityError as e:
-            print(f"Erro de integridade ao inserir agenda: {e}")
+            print(f"Erro de integridade ao atualizar administrador: {e}")
             return None
 
     def delete(self, id: int) -> bool:

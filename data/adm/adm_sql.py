@@ -1,12 +1,12 @@
 SQL_CREATE_TABLE_ADMINISTRADOR = """
 CREATE TABLE IF NOT EXISTS administrador (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     FOREIGN KEY (id) REFERENCES usuario(id)
 );
 """
 
 SQL_INSERT_ADMINISTRADOR = """
-INSERT INTO administrador DEFAULT VALUES;
+INSERT INTO administrador (id) VALUES (?);
 """
 
 SQL_SELECT_ADMINISTRADOR_BY_ID = """
@@ -29,7 +29,7 @@ ORDER BY nome_administrador;
 
 SQL_UPDATE_ADMINISTRADOR = """
 UPDATE administrador
-SET nome = ?
+SET id = ?
 WHERE id = ?;
 """
 

@@ -4,8 +4,8 @@ from data.agenda.agenda_model import Agenda
 from data.agendamento.agendamento_sql import *
 from data.contratante.contratante_model import Contratante
 from data.musico.musico_model import Musico
+from data.usuario.usuario_model import Usuario
 from data.agendamento.agendamento_model import Agendamento
-
 from data.util import get_connection
 
 class AgendamentoRepo:
@@ -22,35 +22,36 @@ class AgendamentoRepo:
         except Exception as e:
             print(f"Erro ao criar tabela: {e}")
             return False
-    
+
     def insert(self, agendamento: Agendamento) -> Optional[int]:
         try:
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_INSERT_AGENDAMENTO, (agendamento.id_musico.id, agendamento.id_contratante.id, agendamento.id_agenda.id, agendamento.tipo_servico, agendamento.descricao, agendamento.valor, agendamento.data_hora, agendamento.taxa_aprovacao, agendamento.aprovado))
+                cursor.execute(SQL_INSERT_AGENDAMENTO, (
+                    agendamento.id_musico.id.id,
+                    agendamento.id_contratante.id.id,
+                    agendamento.id_agenda.id,
+                    agendamento.tipo_servico,
+                    agendamento.descricao,
+                    agendamento.valor,
+                    agendamento.data_hora,
+                    agendamento.taxa_aprovacao,
+                    agendamento.aprovado
+                ))
                 return cursor.lastrowid
         except sqlite3.IntegrityError as e:
             print(f"Erro de integridade ao inserir agendamento: {e}")
             return None
-        
+
     def get_by_id(self, id: int) -> Optional[Agendamento]:
         with get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(SQL_SELECT_AGENDAMENTO_BY_ID, (id,))
-            row = cursor.fetchone() 
+            row = cursor.fetchone()
             if row:
-                return Agendamento(id=row['id'],
-                                   id_musico=Musico(id=row['id_musico']),
-                                   id_contratante=Contratante(id=row['id_contratante']),
-                                   id_agenda=Agenda(id=row['id_agenda']),
-                                   tipo_servico=row['tipo_servico'],
-                                   descricao=row['descricao'],
-                                   valor=row['valor'],
-                                   data_hora=row['data_hora'],
-                                   taxa_aprovacao=row['taxa_aprovacao'],
-                                   aprovado=row['aprovado'])
+                return self._monta_agendamento(row)
             return None
-        
+
     def get_all_paged(self, page_number: int=1, page_size: int=10) -> List[Agendamento]:
         limit = page_size
         offset = (page_number - 1) * page_size
@@ -58,71 +59,84 @@ class AgendamentoRepo:
             cursor = conn.cursor()
             cursor.execute(SQL_SELECT_RANGE_AGENDAMENTO, (limit, offset))
             rows = cursor.fetchall()
-            return [Agendamento(id=row['id'],
-                                   id_musico=Musico(id=row['id_musico']),
-                                   id_contratante=Contratante(id=row['id_contratante']),
-                                   id_agenda=Agenda(id=row['id_agenda']),
-                                   tipo_servico=row['tipo_servico'],
-                                   descricao=row['descricao'],
-                                   valor=row['valor'],
-                                   data_hora=row['data_hora'],
-                                   taxa_aprovacao=row['taxa_aprovacao'],
-                                   aprovado=row['aprovado']) for row in rows]
-        
-    def search_paged(self, termo: str, page_number: int=1, page_size: int=10, ) -> List[Agendamento]:
+            return [self._monta_agendamento(row) for row in rows]
+
+    def search_paged(self, termo: str, page_number: int=1, page_size: int=10) -> List[Agendamento]:
         limit = page_size
         offset = (page_number - 1) * page_size
         termo = f"%{termo}%"
         with get_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute(SQL_SELECT_RANGE_BUSCA_AGENDAMENTO, (f'%{termo}%', limit, offset))
+            cursor.execute(SQL_SELECT_RANGE_BUSCA_AGENDAMENTO, (termo, limit, offset))
             rows = cursor.fetchall()
-            return [Agendamento(id=row['id'],
-                                   id_musico=Musico(id=row['id_musico']),
-                                   id_contratante=Contratante(id=row['id_contratante']),
-                                   id_agenda=Agenda(id=row['id_agenda']),
-                                   tipo_servico=row['tipo_servico'],
-                                   descricao=row['descricao'],
-                                   valor=row['valor'],
-                                   data_hora=row['data_hora'],
-                                   taxa_aprovacao=row['taxa_aprovacao'],
-                                   aprovado=row['aprovado']) for row in rows]
-        
+            return [self._monta_agendamento(row) for row in rows]
+
     def count(self) -> int:
         with get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(SQL_SELECT_COUNT_AGENDAMENTO)
             return cursor.fetchone()[0]
-        
-    def get_all(self) -> List[Musico]:
+
+    def get_all(self) -> List[Agendamento]:
         with get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(SQL_SELECT_AGENDAMENTO)
             rows = cursor.fetchall()
-            return [Agendamento(id=row['id'],
-                                   id_musico=Musico(id=row['id_musico']),
-                                   id_contratante=Contratante(id=row['id_contratante']),
-                                   id_agenda=Agenda(id=row['id_agenda']),
-                                   tipo_servico=row['tipo_servico'],
-                                   descricao=row['descricao'],
-                                   valor=row['valor'],
-                                   data_hora=row['data_hora'],
-                                   taxa_aprovacao=row['taxa_aprovacao'],
-                                   aprovado=row['aprovado']) for row in rows]
-    
+            return [self._monta_agendamento(row) for row in rows]
+
     def update(self, agendamento: Agendamento) -> bool:
         try:
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_UPDATE_AGENDAMENTO, (agendamento.id_musico.id, agendamento.id_contratante.id, agendamento.id_agenda.id, agendamento.tipo_servico, agendamento.descricao, agendamento.valor, agendamento.data_hora, agendamento.taxa_aprovacao, agendamento.aprovado))
+                cursor.execute(SQL_UPDATE_AGENDAMENTO, (
+                    agendamento.id_musico.id.id,
+                    agendamento.id_contratante.id.id,
+                    agendamento.id_agenda.id,
+                    agendamento.tipo_servico,
+                    agendamento.descricao,
+                    agendamento.valor,
+                    agendamento.data_hora,
+                    agendamento.taxa_aprovacao,
+                    agendamento.aprovado,
+                    agendamento.id
+                ))
                 return cursor.rowcount > 0
         except sqlite3.IntegrityError as e:
-            print(f"Erro de integridade ao inserir agendamento: {e}")
-            return None
-    
+            print(f"Erro de integridade ao atualizar agendamento: {e}")
+            return False
+
     def delete(self, id: int) -> bool:
         with get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(SQL_DELETE_AGENDAMENTO, (id,))
             return cursor.rowcount > 0
+
+    def _monta_agendamento(self, row) -> Agendamento:
+        # Aqui você pode expandir para buscar os dados completos de Usuario, Contratante, Musico e Agenda se o SQL trouxer esses dados
+        musico = Musico(
+            id=Usuario(id=row['id_musico'], nome=None, nome_usuario=None, senha=None, email=None, cpf=None, telefone=None, genero=None, logradouro=None, numero=None, bairro=None, complemento=None, cep=None, id_cidade=None),
+            experiencia=None
+        )
+        contratante = Contratante(
+            id=Usuario(id=row['id_contratante'], nome=None, nome_usuario=None, senha=None, email=None, cpf=None, telefone=None, genero=None, logradouro=None, numero=None, bairro=None, complemento=None, cep=None, id_cidade=None),
+            nota=None,
+            numero_contratacoes=None
+        )
+        agenda = Agenda(
+            id=row['id_agenda'],
+            data_hora=None,
+            disponivel=None
+        )
+        return Agendamento(
+            id=row['id'],
+            id_musico=musico,
+            id_contratante=contratante,
+            id_agenda=agenda,
+            tipo_servico=row['tipo_servico'],
+            descricao=row['descricao'],
+            valor=row['valor'],
+            data_hora=row['data_hora'],
+            taxa_aprovacao=row['taxa_aprovacao'],
+            aprovado=row['aprovado']
+        )
 

@@ -17,41 +17,36 @@ INSERT INTO contratacao (id_agendamento, data_hora, valor, status_pagamento, not
 VALUES (?, ?, ?, ?, ?, ?, ?);
 """
 
-SQL_SELECT_RANGE_CONTRATACAO = """
-SELECT c.id, c.id_agendamento, c.data_hora, c.valor, c.status_pagamento, c.nota, c.comentario, c.autor, u1.nome AS nome_contratante, u2.nome AS nome_musico
+SQL_SELECT_CONTRATACAO_BY_ID = """
+SELECT c.id, c.id_agendamento, c.data_hora, c.valor, c.status_pagamento, c.nota, c.comentario, c.autor,
+       ag.id AS agendamento_id, ag.id_musico, ag.id_contratante, ag.id_agenda, ag.tipo_servico, ag.descricao,
+       ag.valor AS agendamento_valor, ag.data_hora AS agendamento_data_hora, ag.taxa_aprovacao, ag.aprovado
 FROM contratacao c
 JOIN agendamento ag ON c.id_agendamento = ag.id
-JOIN contratante ct ON ag.id_contratante = ct.id
-JOIN usuario u1 ON ct.id = u1.id
-JOIN musico m ON ag.id_musico = m.id
-JOIN usuario u2 ON m.id = u2.id
-WHERE c.id = ?
-ORDER BY u2.nome_musico
+WHERE c.id = ?;
+"""
+
+SQL_SELECT_RANGE_CONTRATACAO = """
+SELECT c.id, c.id_agendamento, c.data_hora, c.valor, c.status_pagamento, c.nota, c.comentario, c.autor,
+       ag.id AS agendamento_id, ag.id_musico, ag.id_contratante, ag.id_agenda, ag.tipo_servico, ag.descricao,
+       ag.valor AS agendamento_valor, ag.data_hora AS agendamento_data_hora, ag.taxa_aprovacao, ag.aprovado
+FROM contratacao c
+JOIN agendamento ag ON c.id_agendamento = ag.id
+ORDER BY c.id
 LIMIT ? OFFSET ?;
 """
 
 SQL_SELECT_RANGE_BUSCA_CONTRATACAO = """
-SELECT c.id, c.id_agendamento, c.data_hora, c.valor, c.status_pagamento, c.nota, c.comentario, c.autor, u1.nome AS nome_contratante, u2.nome AS nome_musico
+SELECT c.id, c.id_agendamento, c.data_hora, c.valor, c.status_pagamento, c.nota, c.comentario, c.autor,
+       ag.id AS agendamento_id, ag.id_musico, ag.id_contratante, ag.id_agenda, ag.tipo_servico, ag.descricao,
+       ag.valor AS agendamento_valor, ag.data_hora AS agendamento_data_hora, ag.taxa_aprovacao, ag.aprovado
 FROM contratacao c
 JOIN agendamento ag ON c.id_agendamento = ag.id
-JOIN contratante ct ON ag.id_contratante = ct.id
-JOIN usuario u1 ON ct.id = u1.id
 JOIN musico m ON ag.id_musico = m.id
-JOIN usuario u2 ON m.id = u2.id
-WHERE nome_musico LIKE ?
-ORDER BY nome_musico
+JOIN usuario u ON m.id = u.id
+WHERE u.nome LIKE ?
+ORDER BY u.nome
 LIMIT ? OFFSET ?;
-"""
-
-SQL_SELECT_CONTRATACAO_BY_ID = """
-SELECT c.id, c.id_agendamento, c.data_hora, c.valor, c.status_pagamento, c.nota, c.comentario, c.autor, u1.nome AS nome_contratante, u2.nome AS nome_musico
-FROM contratacao c
-JOIN agendamento ag ON c.id_agendamento = ag.id
-JOIN contratante ct ON ag.id_contratante = ct.id
-JOIN usuario u1 ON ct.id = u1.id
-JOIN musico m ON ag.id_musico = m.id
-JOIN usuario u2 ON m.id = u2.id
-WHERE c.id = ?;
 """
 
 SQL_SELECT_COUNT_CONTRATACAO = """
@@ -59,14 +54,12 @@ SELECT COUNT(*) FROM contratacao;
 """
 
 SQL_SELECT_CONTRATACAO = """
-SELECT c.id, c.id_agendamento, c.data_hora, c.valor, c.status_pagamento, c.nota, c.comentario, c.autor, u1.nome AS nome_contratante, u2.nome AS nome_musico
+SELECT c.id, c.id_agendamento, c.data_hora, c.valor, c.status_pagamento, c.nota, c.comentario, c.autor,
+       ag.id AS agendamento_id, ag.id_musico, ag.id_contratante, ag.id_agenda, ag.tipo_servico, ag.descricao,
+       ag.valor AS agendamento_valor, ag.data_hora AS agendamento_data_hora, ag.taxa_aprovacao, ag.aprovado
 FROM contratacao c
 JOIN agendamento ag ON c.id_agendamento = ag.id
-JOIN contratante ct ON ag.id_contratante = ct.id
-JOIN usuario u1 ON ct.id = u1.id
-JOIN musico m ON ag.id_musico = m.id
-JOIN usuario u2 ON m.id = u2.id
-ORDER BY nome_musico;
+ORDER BY c.id;
 """
 
 SQL_UPDATE_CONTRATACAO = """

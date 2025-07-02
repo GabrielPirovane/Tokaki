@@ -34,7 +34,7 @@ cidade_repo_instance.create_table()
 usuario_repo_instance = usuario_repo.UsuarioRepo("dados.db")
 usuario_repo_instance.create_table()
 
-adm_repo_instance = adm_repo.admRepo("dados.db")
+adm_repo_instance = adm_repo.AdmRepo("dados.db")
 adm_repo_instance.create_table()
 
 categoria_repo_instance = categoria_repo.CategoriaRepo("dados.db")
@@ -77,6 +77,30 @@ async def get_root():
     response = templates.TemplateResponse("index.html", {"request": {}})
     return response
 
+@app.get("/cadastro")
+async def get_cadastro():
+    response = templates.TemplateResponse("cadastro.html", {"request": {}})
+    return response
+
+@app.get("/login")
+async def get_login():
+    response = templates.TemplateResponse("login.html", {"request": {}})
+    return response
+
+@app.get("/visitante")
+async def get_visitante():
+    response = templates.TemplateResponse("perfil_visitante.html", {"request": {}})
+    return response
+
+@app.get("/musico")
+async def get_musico():
+    response = templates.TemplateResponse("perfil_musico.html", {"request": {}})
+    return response
+
+@app.get("/user")
+async def get_user():
+    response = templates.TemplateResponse("perfil_usuario.html", {"request": {}})
+    return response
 
 if __name__ == "__main__":
     uvicorn.run(app="main:app", host="127.0.0.1", port=8000, reload=True)

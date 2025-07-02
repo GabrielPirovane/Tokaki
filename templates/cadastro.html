@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="static/img/logo_colorida.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet">
+    <!--  -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>Tokaki</title>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+  </head>
+</head>
+<body class="imagem_fundo_cadastro d-flex align-items-center justify-content-center vh-100">
+  <div class="container">
+    <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                <h2 class="text-center mb-4">Cadastro</h2>
+                <form method="POST" action="/cadastro">
+                    <div class="mb-3">
+                        <label for="tipo_usuario" class="form-label">Tipo de Usuário</label>
+                        <select class="form-select" id="tipo_usuario" name="tipo_usuario" required>
+                            <option value="" disabled selected>Selecione o tipo de usuário</option>
+                            <option value="cliente">Contratante de Serviços Musicais</option>
+                            <option value="profissional">Músico</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome Completo</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome de Usuário</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">CPF</label>
+                        <input type="text" class="form-control" id="cpf" name="cpf" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefone" class="form-label">Telefone</label>
+                        <input type="text" class="form-control" id="telefone" name="telefone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="data_nascimento" class="form-label">Data de Nascimento</label>
+                        <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" required>
+                    <div class="mb-3">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="senha" name="senha" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="senha" class="form-label">Confirmar Senha</label>
+                        <input type="password" class="form-control" id="confirmação_senha" name="senha" required>
+                    </div>
+                    <div class="mb-3">
+                        <center>
+                          <label for="recaptcha" class="form-label"></label>
+                          <div class="g-recaptcha" data-sitekey="6LfGoG0rAAAAAJo_Yr9NdQiRFHT3vtAzajB8sC1N"></div>  
+                        </center>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>

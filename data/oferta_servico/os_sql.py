@@ -13,29 +13,101 @@ VALUES (?, ?);
 """
 
 SQL_SELECT_RANGE_OFERTA_SERVICO = """
-SELECT os.id_servico, os.id_musico, s.nome AS nome_categoria, m.nome AS nome_musico
+SELECT 
+    os.id_servico, os.id_musico,
+    s.nome AS nome_servico,
+    m.experiencia,
+    u.id AS usuario_id,
+    u.id_cidade,
+    u.nome AS usuario_nome,
+    u.nome_usuario,
+    u.senha,
+    u.email,
+    u.cpf,
+    u.telefone,
+    u.genero,
+    u.logradouro,
+    u.numero,
+    u.bairro,
+    u.complemento,
+    u.cep,
+    c.id AS cidade_id,
+    c.nome AS nome_cidade,
+    uf.id AS uf_id,
+    uf.nome AS nome_uf
 FROM oferta_servico os
 JOIN servico s ON os.id_servico = s.id
 JOIN musico m ON os.id_musico = m.id
+JOIN usuario u ON m.id = u.id
+JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
 ORDER BY os.id_servico
 LIMIT ? OFFSET ?;
 """
 
 SQL_SELECT_RANGE_BUSCA_OFERTA_SERVICO = """
-SELECT os.id_servico, os.id_musico, s.nome AS nome_categoria, m.nome AS nome_musico
+SELECT 
+    os.id_servico, os.id_musico,
+    s.nome AS nome_servico,
+    m.experiencia,
+    u.id AS usuario_id,
+    u.id_cidade,
+    u.nome AS usuario_nome,
+    u.nome_usuario,
+    u.senha,
+    u.email,
+    u.cpf,
+    u.telefone,
+    u.genero,
+    u.logradouro,
+    u.numero,
+    u.bairro,
+    u.complemento,
+    u.cep,
+    c.id AS cidade_id,
+    c.nome AS nome_cidade,
+    uf.id AS uf_id,
+    uf.nome AS nome_uf
 FROM oferta_servico os
 JOIN servico s ON os.id_servico = s.id
 JOIN musico m ON os.id_musico = m.id
-WHERE nome_musico LIKE ?
-ORDER BY nome_musico
+JOIN usuario u ON m.id = u.id
+JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
+WHERE s.nome LIKE ?
+ORDER BY s.nome
 LIMIT ? OFFSET ?;
 """
 
 SQL_SELECT_OFERTA_SERVICO_BY_ID = """
-SELECT os.id_servico, os.id_musico, s.nome AS nome_categoria, m.nome AS nome_musico
+SELECT 
+    os.id_servico, os.id_musico,
+    s.nome AS nome_servico,
+    m.experiencia,
+    u.id AS usuario_id,
+    u.id_cidade,
+    u.nome AS usuario_nome,
+    u.nome_usuario,
+    u.senha,
+    u.email,
+    u.cpf,
+    u.telefone,
+    u.genero,
+    u.logradouro,
+    u.numero,
+    u.bairro,
+    u.complemento,
+    u.cep,
+    c.id AS cidade_id,
+    c.nome AS nome_cidade,
+    uf.id AS uf_id,
+    uf.nome AS nome_uf
 FROM oferta_servico os
 JOIN servico s ON os.id_servico = s.id
 JOIN musico m ON os.id_musico = m.id
+JOIN usuario u ON m.id = u.id
+JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
 WHERE os.id_servico = ?;
 """
 
@@ -44,9 +116,35 @@ SELECT COUNT(*) FROM oferta_servico;
 """
 
 SQL_SELECT_OFERTA_SERVICO = """
-SELECT id_servico, id_musico
-FROM oferta_servico
-ORDER BY nome;
+SELECT 
+    os.id_servico, os.id_musico,
+    s.nome AS nome_servico,
+    m.experiencia,
+    u.id AS usuario_id,
+    u.id_cidade,
+    u.nome AS usuario_nome,
+    u.nome_usuario,
+    u.senha,
+    u.email,
+    u.cpf,
+    u.telefone,
+    u.genero,
+    u.logradouro,
+    u.numero,
+    u.bairro,
+    u.complemento,
+    u.cep,
+    c.id AS cidade_id,
+    c.nome AS nome_cidade,
+    uf.id AS uf_id,
+    uf.nome AS nome_uf
+FROM oferta_servico os
+JOIN servico s ON os.id_servico = s.id
+JOIN musico m ON os.id_musico = m.id
+JOIN usuario u ON m.id = u.id
+JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
+ORDER BY s.nome;
 """
 
 SQL_UPDATE_OFERTA_SERVICO = """

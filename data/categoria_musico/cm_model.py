@@ -4,5 +4,5 @@ from data.categoria.categoria_model import Categoria
 
 @dataclass
 class CategoriaMusico:
-    id_Categoria: Categoria
-    id_Musico: Musico
+    id_categoria: Categoria
+    id_musico: Musico

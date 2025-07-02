@@ -20,23 +20,27 @@ CREATE TABLE IF NOT EXISTS usuario (
 
 SQL_INSERT_USUARIO = """
 INSERT INTO usuario (id_cidade, nome, nome_usuario, senha, email, cpf, telefone, genero, logradouro, numero, bairro, complemento, cep) 
-VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);
 """
 
 SQL_SELECT_RANGE_USUARIO = """
 SELECT u.id, u.id_cidade, u.nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
-u.logradouro, u.numero, u.bairro, u.complemento, u.cep, c.nome AS nome_cidade
+u.logradouro, u.numero, u.bairro, u.complemento, u.cep,
+c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
 JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
 ORDER BY u.id
 LIMIT ? OFFSET ?;
 """
 
 SQL_SELECT_RANGE_BUSCA_USUARIO = """
 SELECT u.id, u.id_cidade, u.nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
-u.logradouro, u.numero, u.bairro, u.complemento, u.cep, c.nome AS nome_cidade
+u.logradouro, u.numero, u.bairro, u.complemento, u.cep,
+c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
 JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
 WHERE u.nome LIKE ?
 ORDER BY u.nome
 LIMIT ? OFFSET ?;
@@ -44,9 +48,11 @@ LIMIT ? OFFSET ?;
 
 SQL_SELECT_USUARIO_BY_ID = """
 SELECT u.id, u.id_cidade, u.nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
-u.logradouro, u.numero, u.bairro, u.complemento, u.cep, c.nome AS nome_cidade
+u.logradouro, u.numero, u.bairro, u.complemento, u.cep,
+c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
 JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
 WHERE u.id = ?;
 """
 
@@ -55,15 +61,18 @@ SELECT COUNT(*) FROM usuario;
 """
 
 SQL_SELECT_USUARIO = """
-SELECT id, id_cidade, nome, nome_usuario, email, cpf, telefone, genero, logradouro, numero, bairro, complemento, cep
-FROM usuario
-ORDER BY nome;
+SELECT u.id, u.id_cidade, u.nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
+u.logradouro, u.numero, u.bairro, u.complemento, u.cep,
+c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
+FROM usuario u
+JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
+ORDER BY u.nome;
 """
 
 SQL_UPDATE_USUARIO = """
 UPDATE usuario
-SET id_cidade = ?, nome = ?, nome_usuario = ?, senha = ?, email = ?, cpf = ?, telefone = ?, genero = ?,
-    logradouro = ?, numero = ?, bairro = ?, complemento = ?, cep = ?
+SET id_cidade = ?, nome = ?, nome_usuario = ?, senha = ?, email = ?, cpf = ?, telefone = ?, genero = ?, logradouro = ?, numero = ?, bairro = ?, complemento = ?, cep = ?
 WHERE id = ?;
 """
 

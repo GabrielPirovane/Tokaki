@@ -14,7 +14,8 @@ VALUES (?, ?, ?);
 """
 
 SQL_SELECT_FOTO_BY_ID = """
-SELECT f.id, f.id_galeria, f.url, f.descricao, g.nome AS nome_galeria
+SELECT f.id, f.id_galeria, f.url, f.descricao,
+       g.id AS id_galeria, g.id_musico, g.nome AS nome_galeria, g.descricao AS descricao_galeria
 FROM foto f
 JOIN galeria g ON f.id_galeria = g.id
 WHERE f.id = ?;
@@ -25,9 +26,11 @@ SELECT COUNT(*) FROM foto;
 """
 
 SQL_SELECT_FOTO = """
-SELECT id, id_galeria, url, descricao
-FROM foto
-ORDER BY id;
+SELECT f.id, f.id_galeria, f.url, f.descricao,
+       g.id AS id_galeria, g.id_musico, g.nome AS nome_galeria, g.descricao AS descricao_galeria
+FROM foto f
+JOIN galeria g ON f.id_galeria = g.id
+ORDER BY f.id;
 """
 
 SQL_UPDATE_FOTO = """

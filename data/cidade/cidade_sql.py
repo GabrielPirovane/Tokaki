@@ -41,9 +41,10 @@ SELECT COUNT(*) FROM cidade;
 """
 
 SQL_SELECT_CIDADE = """
-SELECT id, nome, id_uf
-FROM cidade
-ORDER BY nome;
+SELECT c.id, c.nome, c.id_uf, u.nome AS nome_uf
+FROM cidade c
+JOIN uf u ON c.id_uf = u.id
+ORDER BY c.id;
 """
 
 SQL_UPDATE_CIDADE = """

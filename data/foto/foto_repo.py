@@ -36,9 +36,18 @@ class FotoRepo:
             cursor.execute(SQL_SELECT_FOTO_BY_ID, (id,))
             row = cursor.fetchone() 
             if row:
-                return Foto(id=row['id'], id_galeria=Galeria(id=row['id_galeria'], nome=row['nome_galeria']), descricao=row['descricao'])
+                return Foto(
+                    id=row['id'],
+                    id_galeria=Galeria(
+                        id=row['id_galeria'],
+                        id_musico=row['id_musico'],
+                        nome=row['nome_galeria'],
+                        descricao=row['descricao_galeria']
+                    ),
+                    url=row['url'],
+                    descricao=row['descricao']
+                )
             return None
-        
         
     def count(self) -> int:
         with get_connection() as conn:
@@ -51,12 +60,25 @@ class FotoRepo:
             cursor = conn.cursor()
             cursor.execute(SQL_SELECT_FOTO)
             rows = cursor.fetchall()
-            return [Foto(id=row['id'], id_galeria=Galeria(id=row['id_galeria'], nome=row['nome_galeria']), descricao=row['descricao']) for row in rows]
+            return [
+                Foto(
+                    id=row['id'],
+                    id_galeria=Galeria(
+                        id=row['id_galeria'],
+                        id_musico=row['id_musico'],
+                        nome=row['nome_galeria'],
+                        descricao=row['descricao_galeria']
+                    ),
+                    url=row['url'],
+                    descricao=row['descricao']
+                )
+                for row in rows
+            ]
     
     def update(self, foto: Foto) -> bool:
         with get_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute(SQL_UPDATE_FOTO, (foto.id_galeria.id, foto.url, foto.descricao))
+            cursor.execute(SQL_UPDATE_FOTO, (foto.id_galeria.id, foto.url, foto.descricao, foto.id))
             return cursor.rowcount > 0
     
     def delete(self, id: int) -> bool:

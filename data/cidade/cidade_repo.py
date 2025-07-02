@@ -75,7 +75,7 @@ class CidadeRepo:
         try:
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_UPDATE_CIDADE, (cidade.id, cidade.nome, cidade.id_uf.id))
+                cursor.execute(SQL_UPDATE_CIDADE, (cidade.nome, cidade.id_uf.id, cidade.id))
                 return cursor.rowcount > 0
         except sqlite3.IntegrityError as e:
             print(f"Erro de integridade ao inserir cidade: {e}")

@@ -134,11 +134,13 @@ class TestContratacaoRepo:
         # Assert
         contratacao_db = repo_contratacao.get_by_id(id_contratacao)
         assert contratacao_db is not None, "Contratação não deveria ser None ao inserir"
-        assert contratacao_db.valor == 1000.0, "Valor deveria ser 1000.0"
-        assert contratacao_db.status_pagamento == "Pago"
-        assert contratacao_db.nota == 5.0
-        assert contratacao_db.comentario == "Ótimo serviço"
-        assert contratacao_db.autor == "Cliente"
+        assert contratacao_db.id == id_contratacao, "ID da contratação deveria ser igual ao ID inserido"
+        assert contratacao_db.id_agendamento.id == agendamento.id, "ID do agendamento deveria ser igual ao ID inserido"
+        assert contratacao_db.valor == contratacao.valor, "Valor deveria ser 1000.0"
+        assert contratacao_db.status_pagamento == contratacao.status_pagamento, "Status de pagamento deveria ser 'Pago'"
+        assert contratacao_db.nota == contratacao.nota, "Nota deveria ser 5.0"
+        assert contratacao_db.comentario == contratacao.comentario, "Comentário deveria ser 'Ótimo serviço'"
+        assert contratacao_db.autor == contratacao.autor, "Autor deveria ser 'Cliente'"
 
     def test_get_by_id(self, test_db):
         # Arrange
@@ -252,12 +254,14 @@ class TestContratacaoRepo:
         # Act
         contratacao_db = repo_contratacao.get_by_id(id_contratacao)
         # Assert
-        assert contratacao_db is not None, "Contratação não deveria ser None ao buscar por ID"
-        assert contratacao_db.valor == 1000.0
-        assert contratacao_db.status_pagamento == "Pago"
-        assert contratacao_db.nota == 5.0
-        assert contratacao_db.comentario == "Ótimo serviço"
-        assert contratacao_db.autor == "Cliente"
+        assert contratacao_db is not None, "Contratação não deveria ser None ao inserir"
+        assert contratacao_db.id == id_contratacao, "ID da contratação deveria ser igual ao ID inserido"
+        assert contratacao_db.id_agendamento.id == agendamento.id, "ID do agendamento deveria ser igual ao ID inserido"
+        assert contratacao_db.valor == contratacao.valor, "Valor deveria ser 1000.0"
+        assert contratacao_db.status_pagamento == contratacao.status_pagamento, "Status de pagamento deveria ser 'Pago'"
+        assert contratacao_db.nota == contratacao.nota, "Nota deveria ser 5.0"
+        assert contratacao_db.comentario == contratacao.comentario, "Comentário deveria ser 'Ótimo serviço'"
+        assert contratacao_db.autor == contratacao.autor, "Autor deveria ser 'Cliente'"
 
     def test_count_contratacao(self, test_db):
         # Arrange
@@ -541,8 +545,20 @@ class TestContratacaoRepo:
         contratacoes = repo_contratacao.get_all()
         # Assert
         assert len(contratacoes) == 2, "Deveria retornar duas contratações"
-        assert contratacoes[0].valor == 1000.0
-        assert contratacoes[1].valor == 2000.0
+        assert contratacoes[0].id == id_contratacao1, "ID da primeira contratação deveria ser igual ao ID inserido"
+        assert contratacoes[0].data_hora == contratacao1.data_hora, "Data e hora da primeira contratação deveria ser '2024-07-01 10:00:00'"
+        assert contratacoes[0].valor == contratacao1.valor, "Valor da primeira contratação deveria ser 1000.0"
+        assert contratacoes[0].status_pagamento == contratacao1.status_pagamento, "Status de pagamento da primeira contratação deveria ser 'Pago'"
+        assert contratacoes[0].nota == contratacao1.nota, "Nota da primeira contratação deveria ser 5.0"
+        assert contratacoes[0].comentario == contratacao1.comentario, "Comentário da primeira contratação deveria ser 'Ótimo serviço'"
+        assert contratacoes[0].autor == contratacao1.autor, "Autor da primeira contratação deveria ser 'Cliente'"
+        assert contratacoes[1].id == id_contratacao2, "ID da segunda contratação deveria ser igual ao ID inserido"
+        assert contratacoes[1].data_hora == contratacao2.data_hora, "Data e hora da segunda contratação deveria ser '2024-07-02 15:00:00'"
+        assert contratacoes[1].valor == contratacao2.valor, "Valor da segunda contratação deveria ser 2000.0"
+        assert contratacoes[1].status_pagamento == contratacao2.status_pagamento, "Status de pagamento da segunda contratação deveria ser 'Pendente'"
+        assert contratacoes[1].nota == contratacao2.nota, "Nota da segunda contratação deveria ser 4.0"
+        assert contratacoes[1].comentario == contratacao2.comentario, "Comentário da segunda contratação deveria ser 'Bom serviço'"
+        assert contratacoes[1].autor == contratacao2.autor, "Autor da segunda contratação deveria ser 'Cliente'"
 
     def test_update_contratacao(self, test_db):
         # Arrange

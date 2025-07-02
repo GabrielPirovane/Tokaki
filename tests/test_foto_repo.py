@@ -130,14 +130,16 @@ class TestFotoRepo:
         repo.create_table()
         foto1 = Foto(id=0, id_galeria=galeria, url="http://url.com/foto1.jpg", descricao="Foto 1")
         foto2 = Foto(id=0, id_galeria=galeria, url="http://url.com/foto2.jpg", descricao="Foto 2")
-        repo.insert(foto1)
-        repo.insert(foto2)
+        foto1_id = repo.insert(foto1)
+        foto2_id = repo.insert(foto2)
         # Act
         fotos = repo.get_all()
         # Assert
         assert len(fotos) == 2, "Deveria retornar duas fotos"
-        assert fotos[0].url == "http://url.com/foto1.jpg"
-        assert fotos[1].url == "http://url.com/foto2.jpg"
+        assert fotos[0].id == foto1_id, "ID da primeira foto deveria ser igual ao ID inserido"
+        assert fotos[0].url == "http://url.com/foto1.jpg", "URL da primeira foto deveria ser igual ao URL inserido"
+        assert fotos[1].url == "http://url.com/foto2.jpg", "URL da segunda foto deveria ser igual ao URL inserido"
+        assert fotos[1].id == foto2_id, "ID da segunda foto deveria ser igual ao ID inserido"
 
     def test_count(self, test_db):
         # Arrange

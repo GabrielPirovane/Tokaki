@@ -50,11 +50,12 @@ class TestAgendamentoRepo:
             cep="29000000"
         )
         id_usuario_musico = repo_usuario.insert(usuario_musico)
+        usuario_musico.id = id_usuario_musico
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
         musico = Musico(
-            id=Usuario(id_usuario_musico, usuario_musico.id_cidade, usuario_musico.nome, usuario_musico.nome_usuario, usuario_musico.senha, usuario_musico.email, usuario_musico.cpf, usuario_musico.telefone, usuario_musico.genero, usuario_musico.logradouro, usuario_musico.numero, usuario_musico.bairro, usuario_musico.complemento, usuario_musico.cep),
+            id=usuario_musico,
             experiencia="Experiência Teste"
         )
         repo_musico.insert(musico)
@@ -76,11 +77,12 @@ class TestAgendamentoRepo:
             cep="29000001"
         )
         id_usuario_contratante = repo_usuario.insert(usuario_contratante)
+        usuario_contratante.id = id_usuario_contratante
 
         repo_contratante = ContratanteRepo(test_db)
         repo_contratante.create_table()
         contratante = Contratante(
-            id=Usuario(id_usuario_contratante, usuario_contratante.id_cidade, usuario_contratante.nome, usuario_contratante.nome_usuario, usuario_contratante.senha, usuario_contratante.email, usuario_contratante.cpf, usuario_contratante.telefone, usuario_contratante.genero, usuario_contratante.logradouro, usuario_contratante.numero, usuario_contratante.bairro, usuario_contratante.complemento, usuario_contratante.cep),
+            id=usuario_contratante,
             nota=4.5,
             numero_contratacoes=2
         )
@@ -115,9 +117,15 @@ class TestAgendamentoRepo:
         # Assert
         agendamento_db = repo_agendamento.get_by_id(id_agendamento)
         assert agendamento_db is not None, "Agendamento não deveria ser None ao inserir"
-        assert agendamento_db.tipo_servico == "Show", "Tipo de serviço deveria ser 'Show'"
-        assert agendamento_db.valor == 1000.0, "Valor deveria ser 1000.0"
-        assert agendamento_db.aprovado == True, "Aprovado deveria ser True"
+        assert agendamento_db.id == id_agendamento, "ID do agendamento inserido deveria ser igual ao retornado"
+        assert agendamento_db.id_musico.id.id == musico.id.id, "ID do usuário do músico inserido deveria ser igual ao retornado"
+        assert agendamento_db.id_contratante.id.id == contratante.id.id, "ID do usuário do contratante inserido deveria ser igual ao retornado"
+        assert agendamento_db.id_agenda.id == agenda.id, "ID da agenda inserido deveria ser igual ao retornado"
+        assert agendamento_db.tipo_servico == agendamento.tipo_servico, "Tipo de serviço deveria ser 'Show'"
+        assert agendamento_db.valor == agendamento.valor, "Valor deveria ser 1000.0"
+        assert agendamento_db.data_hora == agendamento.data_hora, "Data e hora deveria ser '2024-07-01 10:00:00'"
+        assert agendamento_db.taxa_aprovacao == agendamento.taxa_aprovacao, "Taxa de aprovação deveria ser 0.1"
+        assert agendamento_db.aprovado == agendamento.aprovado, "Aprovado deveria ser True"
 
     def test_get_by_id(self, test_db):
         # Arrange
@@ -150,11 +158,12 @@ class TestAgendamentoRepo:
             cep="29000000"
         )
         id_usuario_musico = repo_usuario.insert(usuario_musico)
+        usuario_musico.id = id_usuario_musico
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
         musico = Musico(
-            id=Usuario(id_usuario_musico, usuario_musico.id_cidade, usuario_musico.nome, usuario_musico.nome_usuario, usuario_musico.senha, usuario_musico.email, usuario_musico.cpf, usuario_musico.telefone, usuario_musico.genero, usuario_musico.logradouro, usuario_musico.numero, usuario_musico.bairro, usuario_musico.complemento, usuario_musico.cep),
+            id=usuario_musico,
             experiencia="Experiência Teste"
         )
         repo_musico.insert(musico)
@@ -176,11 +185,12 @@ class TestAgendamentoRepo:
             cep="29000001"
         )
         id_usuario_contratante = repo_usuario.insert(usuario_contratante)
+        usuario_contratante.id = id_usuario_contratante
 
         repo_contratante = ContratanteRepo(test_db)
         repo_contratante.create_table()
         contratante = Contratante(
-            id=Usuario(id_usuario_contratante, usuario_contratante.id_cidade, usuario_contratante.nome, usuario_contratante.nome_usuario, usuario_contratante.senha, usuario_contratante.email, usuario_contratante.cpf, usuario_contratante.telefone, usuario_contratante.genero, usuario_contratante.logradouro, usuario_contratante.numero, usuario_contratante.bairro, usuario_contratante.complemento, usuario_contratante.cep),
+            id=usuario_contratante,
             nota=4.5,
             numero_contratacoes=2
         )
@@ -214,10 +224,19 @@ class TestAgendamentoRepo:
         # Act
         agendamento_db = repo_agendamento.get_by_id(id_agendamento)
         # Assert
-        assert agendamento_db is not None, "Agendamento não deveria ser None ao buscar por ID"
-        assert agendamento_db.tipo_servico == "Show"
-        assert agendamento_db.valor == 1000.0
-        assert agendamento_db.aprovado == True
+        assert agendamento_db is not None, "Agendamento não deveria ser None ao inserir"
+        assert agendamento_db.id == id_agendamento, "ID do agendamento inserido deveria ser igual ao retornado"
+        assert agendamento_db.id_musico.id.id == musico.id.id, "ID do usuário do músico inserido deveria ser igual ao retornado"
+        assert agendamento_db.id_contratante.id.id == contratante.id.id, "ID do usuário do contratante inserido deveria ser igual ao retornado"
+        assert agendamento_db.id_agenda.id == agenda.id, "ID da agenda inserido deveria ser igual ao retornado"
+        assert agendamento_db.tipo_servico == agendamento.tipo_servico, "Tipo de serviço deveria ser 'Show'"
+        assert agendamento_db.valor == agendamento.valor, "Valor deveria ser 1000.0"
+        assert agendamento_db.data_hora == agendamento.data_hora, "Data e hora deveria ser '2024-07-01 10:00:00'"
+        assert agendamento_db.taxa_aprovacao == agendamento.taxa_aprovacao, "Taxa de aprovação deveria ser 0.1"
+        assert agendamento_db.aprovado == agendamento.aprovado, "Aprovado deveria ser True"
+
+    # Os demais métodos (test_count_agendamento, test_get_all_agendamento, test_update_agendamento, test_delete_agendamento)
+    # não precisam de alteração para comparação de IDs, pois não fazem comparação direta de objetos
 
     def test_count_agendamento(self, test_db):
         # Arrange
@@ -250,11 +269,12 @@ class TestAgendamentoRepo:
             cep="29000000"
         )
         id_usuario_musico = repo_usuario.insert(usuario_musico)
+        usuario_musico.id = id_usuario_musico
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
         musico = Musico(
-            id=Usuario(id_usuario_musico, usuario_musico.id_cidade, usuario_musico.nome, usuario_musico.nome_usuario, usuario_musico.senha, usuario_musico.email, usuario_musico.cpf, usuario_musico.telefone, usuario_musico.genero, usuario_musico.logradouro, usuario_musico.numero, usuario_musico.bairro, usuario_musico.complemento, usuario_musico.cep),
+            id=usuario_musico,
             experiencia="Experiência Teste"
         )
         repo_musico.insert(musico)
@@ -276,11 +296,12 @@ class TestAgendamentoRepo:
             cep="29000001"
         )
         id_usuario_contratante = repo_usuario.insert(usuario_contratante)
+        usuario_contratante.id = id_usuario_contratante
 
         repo_contratante = ContratanteRepo(test_db)
         repo_contratante.create_table()
         contratante = Contratante(
-            id=Usuario(id_usuario_contratante, usuario_contratante.id_cidade, usuario_contratante.nome, usuario_contratante.nome_usuario, usuario_contratante.senha, usuario_contratante.email, usuario_contratante.cpf, usuario_contratante.telefone, usuario_contratante.genero, usuario_contratante.logradouro, usuario_contratante.numero, usuario_contratante.bairro, usuario_contratante.complemento, usuario_contratante.cep),
+            id=usuario_contratante,
             nota=4.5,
             numero_contratacoes=2
         )
@@ -322,8 +343,8 @@ class TestAgendamentoRepo:
             taxa_aprovacao=0.2,
             aprovado=False
         )
-        repo_agendamento.insert(agendamento1)
-        repo_agendamento.insert(agendamento2)
+        id_agendamento1 = repo_agendamento.insert(agendamento1)
+        id_agendamento2 = repo_agendamento.insert(agendamento2)
         # Act
         count = repo_agendamento.count()
         # Assert
@@ -360,11 +381,12 @@ class TestAgendamentoRepo:
             cep="29000000"
         )
         id_usuario_musico = repo_usuario.insert(usuario_musico)
+        usuario_musico.id = id_usuario_musico
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
         musico = Musico(
-            id=Usuario(id_usuario_musico, usuario_musico.id_cidade, usuario_musico.nome, usuario_musico.nome_usuario, usuario_musico.senha, usuario_musico.email, usuario_musico.cpf, usuario_musico.telefone, usuario_musico.genero, usuario_musico.logradouro, usuario_musico.numero, usuario_musico.bairro, usuario_musico.complemento, usuario_musico.cep),
+            id=usuario_musico,
             experiencia="Experiência Teste"
         )
         repo_musico.insert(musico)
@@ -386,11 +408,12 @@ class TestAgendamentoRepo:
             cep="29000001"
         )
         id_usuario_contratante = repo_usuario.insert(usuario_contratante)
+        usuario_contratante.id = id_usuario_contratante
 
         repo_contratante = ContratanteRepo(test_db)
         repo_contratante.create_table()
         contratante = Contratante(
-            id=Usuario(id_usuario_contratante, usuario_contratante.id_cidade, usuario_contratante.nome, usuario_contratante.nome_usuario, usuario_contratante.senha, usuario_contratante.email, usuario_contratante.cpf, usuario_contratante.telefone, usuario_contratante.genero, usuario_contratante.logradouro, usuario_contratante.numero, usuario_contratante.bairro, usuario_contratante.complemento, usuario_contratante.cep),
+            id=usuario_contratante,
             nota=4.5,
             numero_contratacoes=2
         )
@@ -432,14 +455,16 @@ class TestAgendamentoRepo:
             taxa_aprovacao=0.2,
             aprovado=False
         )
-        repo_agendamento.insert(agendamento1)
-        repo_agendamento.insert(agendamento2)
+        id_agendamento1 = repo_agendamento.insert(agendamento1)
+        id_agendamento2 = repo_agendamento.insert(agendamento2)
         # Act
         agendamentos = repo_agendamento.get_all()
         # Assert
         assert len(agendamentos) == 2, "Deveria retornar dois agendamentos"
-        assert agendamentos[0].tipo_servico == "Show"
-        assert agendamentos[1].tipo_servico == "Evento"
+        assert agendamentos[0].tipo_servico == agendamento1.tipo_servico, "Tipo de serviço do primeiro agendamento deveria ser 'Show'"
+        assert agendamentos[0].id == id_agendamento1, "ID do primeiro agendamento deveria ser igual ao esperado"
+        assert agendamentos[1].tipo_servico == agendamento2.tipo_servico, "Tipo de serviço do segundo agendamento deveria ser 'Evento'"
+        assert agendamentos[1].id == id_agendamento2, "ID do segundo agendamento deveria ser igual ao esperado"
 
     def test_update_agendamento(self, test_db):
         # Arrange
@@ -472,11 +497,12 @@ class TestAgendamentoRepo:
             cep="29000000"
         )
         id_usuario_musico = repo_usuario.insert(usuario_musico)
+        usuario_musico.id = id_usuario_musico
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
         musico = Musico(
-            id=Usuario(id_usuario_musico, usuario_musico.id_cidade, usuario_musico.nome, usuario_musico.nome_usuario, usuario_musico.senha, usuario_musico.email, usuario_musico.cpf, usuario_musico.telefone, usuario_musico.genero, usuario_musico.logradouro, usuario_musico.numero, usuario_musico.bairro, usuario_musico.complemento, usuario_musico.cep),
+            id=usuario_musico,
             experiencia="Experiência Teste"
         )
         repo_musico.insert(musico)
@@ -498,11 +524,12 @@ class TestAgendamentoRepo:
             cep="29000001"
         )
         id_usuario_contratante = repo_usuario.insert(usuario_contratante)
+        usuario_contratante.id = id_usuario_contratante
 
         repo_contratante = ContratanteRepo(test_db)
         repo_contratante.create_table()
         contratante = Contratante(
-            id=Usuario(id_usuario_contratante, usuario_contratante.id_cidade, usuario_contratante.nome, usuario_contratante.nome_usuario, usuario_contratante.senha, usuario_contratante.email, usuario_contratante.cpf, usuario_contratante.telefone, usuario_contratante.genero, usuario_contratante.logradouro, usuario_contratante.numero, usuario_contratante.bairro, usuario_contratante.complemento, usuario_contratante.cep),
+            id=usuario_contratante,
             nota=4.5,
             numero_contratacoes=2
         )
@@ -575,11 +602,12 @@ class TestAgendamentoRepo:
             cep="29000000"
         )
         id_usuario_musico = repo_usuario.insert(usuario_musico)
+        usuario_musico.id = id_usuario_musico
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
         musico = Musico(
-            id=Usuario(id_usuario_musico, usuario_musico.id_cidade, usuario_musico.nome, usuario_musico.nome_usuario, usuario_musico.senha, usuario_musico.email, usuario_musico.cpf, usuario_musico.telefone, usuario_musico.genero, usuario_musico.logradouro, usuario_musico.numero, usuario_musico.bairro, usuario_musico.complemento, usuario_musico.cep),
+            id=usuario_musico,
             experiencia="Experiência Teste"
         )
         repo_musico.insert(musico)
@@ -601,11 +629,12 @@ class TestAgendamentoRepo:
             cep="29000001"
         )
         id_usuario_contratante = repo_usuario.insert(usuario_contratante)
+        usuario_contratante.id = id_usuario_contratante
 
         repo_contratante = ContratanteRepo(test_db)
         repo_contratante.create_table()
         contratante = Contratante(
-            id=Usuario(id_usuario_contratante, usuario_contratante.id_cidade, usuario_contratante.nome, usuario_contratante.nome_usuario, usuario_contratante.senha, usuario_contratante.email, usuario_contratante.cpf, usuario_contratante.telefone, usuario_contratante.genero, usuario_contratante.logradouro, usuario_contratante.numero, usuario_contratante.bairro, usuario_contratante.complemento, usuario_contratante.cep),
+            id=usuario_contratante,
             nota=4.5,
             numero_contratacoes=2
         )
@@ -641,4 +670,4 @@ class TestAgendamentoRepo:
         # Assert
         assert resultado == True, "Deleção do agendamento deveria retornar True"
         agendamento_db = repo_agendamento.get_by_id(id_agendamento)
-        assert agendamento_db is None, "Agendamento deveria ser None após deleção"
+        assert agendamento_db is None, "Agendamento deveria ser None após a deleção"

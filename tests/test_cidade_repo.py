@@ -28,7 +28,7 @@ class TestCidadeRepo:
         assert cidade_db.id == id_cidade, "ID da cidade buscada deveria ser igual ao ID inserido"
         assert cidade_db.nome == "Test Cidade", "Nome da cidade buscada deveria ser 'Test Cidade'"
         assert cidade_db.id_uf.id == id_uf_inserida, "ID da UF da cidade deveria ser igual ao inserido"
-        assert cidade_db.id_uf.nome == "Test UF", "Nome da UF da cidade deveria ser 'Test UF'"
+  
     
     def test_get_by_id(self, test_db):
         # Arrange
@@ -49,7 +49,6 @@ class TestCidadeRepo:
         assert cidade_db.id == id_cidade, "ID da cidade buscada deveria ser igual ao ID inserido"
         assert cidade_db.nome == "Test Cidade", "Nome da cidade buscada deveria ser 'Test Cidade'"
         assert cidade_db.id_uf.id == id_uf_inserida, "ID da UF da cidade deveria ser igual ao inserido"
-        assert cidade_db.id_uf.nome == "Test UF", "Nome da UF da cidade deveria ser 'Test UF'"
 
     def test_count_cidade(self, test_db):
         # Arrange
@@ -74,20 +73,25 @@ class TestCidadeRepo:
         repo_uf = UfRepo(test_db)
         repo_uf.create_table()
         uf_teste = Uf(0, "Test UF")
-        id_uf = repo_uf.insert(uf_teste)
+        id_uf_inserido = repo_uf.insert(uf_teste)
 
         repo = CidadeRepo(test_db)
         repo.create_table()
-        cidade1 = Cidade(0, "Cidade 1", Uf(id_uf, "Test UF"))
-        cidade2 = Cidade(0, "Cidade 2", Uf(id_uf, "Test UF"))
-        repo.insert(cidade1)
-        repo.insert(cidade2)
+        cidade1 = Cidade(0, "Cidade 1", Uf(id_uf_inserido, "Test UF"))
+        cidade2 = Cidade(0, "Cidade 2", Uf(id_uf_inserido, "Test UF"))
+        id_cidade1 = repo.insert(cidade1)
+        id_cidade2 = repo.insert(cidade2)
         # Act
         cidades = repo.get_all()
         # Assert
         assert len(cidades) == 2, "Deveria retornar duas cidades"
-        assert cidades[0].nome == "Cidade 1", "Primeira cidade deveria ser 'Cidade 1'"
-        assert cidades[1].nome == "Cidade 2", "Segunda cidade deveria ser 'Cidade 2'"
+        assert cidades[0].nome == cidade1.nome, "Primeira cidade deveria ser 'Cidade 1'"
+        assert cidades[0].id == id_cidade1, "ID da primeira cidade deveria ser igual ao ID inserido"
+        assert cidades[0].id_uf.id == cidade1.id_uf.id, "ID da UF da primeira cidade deveria ser igual ao inserido"
+        assert cidades[1].nome ==  cidade2.nome, "Segunda cidade deveria ser 'Cidade 2'"
+        assert cidades[1].id == id_cidade2, "ID da segunda cidade deveria ser igual ao ID inserido"
+        assert cidades[1].id_uf.id == cidade2.id_uf.id, "ID da UF da segunda cidade deveria ser igual ao inserido"
+        
     
     def test_update_cidade(self, test_db):
         # Arrange

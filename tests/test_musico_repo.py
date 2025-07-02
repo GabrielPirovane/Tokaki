@@ -28,13 +28,26 @@ class TestMusicoRepo:
         
         repo = MusicoRepo(test_db)
         repo.create_table()
-        musico_teste = Musico(Usuario(id_usuario_inserido, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome teste", "nome usuario teste", "senha teste", "email teste", "cpf teste", "289999999999", "m",  "logradouro teste", "43", "bairro teste", "complemento teste", "29454425"), "experiencia teste")
+        musico_teste = Musico(Usuario(id_usuario_inserido, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome teste", "nome usuario teste", "senha teste", "email teste", "cpf teste", "289999999999", "m",  "logradouro teste", 43, "bairro teste", "complemento teste", "29454425"), "experiencia teste")
         
         # Act
         id_musico_inserido = repo.insert(musico_teste)
         # Assert
         assert id_musico_inserido is not None, "ID do Musico inserido não deveria ser None"
         assert musico_teste.id.id == id_usuario_inserido, "ID da Musico inserida deveria ser igual ao ID do usuário inserido"
+        assert musico_teste.id.id_cidade.id == id_cidade_inserida, "ID da Cidade do Musico inserido deveria ser igual ao ID da cidade inserida"
+        assert musico_teste.id.nome == "Nome teste", "Nome do Musico inserido deveria ser 'Nome teste'"
+        assert musico_teste.id.nome_usuario == "nome usuario teste", "Nome de usuário do Musico inserido deveria ser 'nome usuario teste'"
+        assert musico_teste.id.senha == "senha teste", "Senha do Musico inserido deveria ser 'senha teste'"
+        assert musico_teste.id.email == "email teste", "Email do Musico inserido deveria ser 'email teste'"
+        assert musico_teste.id.cpf == "cpf teste", "CPF do Musico inserido deveria ser 'cpf teste'"
+        assert musico_teste.id.telefone == "289999999999", "Telefone do Musico inserido deveria ser '289999999999'"
+        assert musico_teste.id.genero == "m", "Gênero do Musico inserido deveria ser 'm'"
+        assert musico_teste.id.logradouro == "logradouro teste", "Logradouro do Musico inserido deveria ser 'logradouro teste'"
+        assert musico_teste.id.numero == 43, "Número do Musico inserido deveria ser '43'"
+        assert musico_teste.id.bairro == "bairro teste", "Bairro do Musico inserido deveria ser 'bairro teste'"
+        assert musico_teste.id.complemento == "complemento teste", "Complemento do Musico inserido deveria ser 'complemento teste'"
+        assert musico_teste.id.cep == "29454425", "CEP do Musico inserido deveria ser '29454425'"
         assert musico_teste.experiencia == "experiencia teste", "Experiência do Musico inserido deveria ser 'experiencia teste'"
 
     def test_get_by_id(self, test_db):
@@ -56,7 +69,7 @@ class TestMusicoRepo:
         
         repo = MusicoRepo(test_db)
         repo.create_table()
-        musico_teste = Musico(Usuario(id_usuario_inserido, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome teste", "nome usuario teste", "senha teste", "email teste", "cpf teste", "289999999999", "m",  "logradouro teste", "43", "bairro teste", "complemento teste", "29454425"), "experiencia teste")
+        musico_teste = Musico(Usuario(id_usuario_inserido, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome teste", "nome usuario teste", "senha teste", "email teste", "cpf teste", "289999999999", "m",  "logradouro teste", 43, "bairro teste", "complemento teste", "29454425"), "experiencia teste")
         id
         id_musico_inserido = repo.insert(musico_teste)
         
@@ -64,8 +77,21 @@ class TestMusicoRepo:
         # Act
         musico_db = repo.get_by_id(id_musico_inserido)
         # Assert
-        assert musico_db is not None, "Musico não deveria ser None ao buscar por ID"
+        assert id_musico_inserido is not None, "ID do Musico inserido não deveria ser None"
         assert musico_teste.id.id == id_usuario_inserido, "ID da Musico inserida deveria ser igual ao ID do usuário inserido"
+        assert musico_teste.id.id_cidade.id == id_cidade_inserida, "ID da Cidade do Musico inserido deveria ser igual ao ID da cidade inserida"
+        assert musico_teste.id.nome == "Nome teste", "Nome do Musico inserido deveria ser 'Nome teste'"
+        assert musico_teste.id.nome_usuario == "nome usuario teste", "Nome de usuário do Musico inserido deveria ser 'nome usuario teste'"
+        assert musico_teste.id.senha == "senha teste", "Senha do Musico inserido deveria ser 'senha teste'"
+        assert musico_teste.id.email == "email teste", "Email do Musico inserido deveria ser 'email teste'"
+        assert musico_teste.id.cpf == "cpf teste", "CPF do Musico inserido deveria ser 'cpf teste'"
+        assert musico_teste.id.telefone == "289999999999", "Telefone do Musico inserido deveria ser '289999999999'"
+        assert musico_teste.id.genero == "m", "Gênero do Musico inserido deveria ser 'm'"
+        assert musico_teste.id.logradouro == "logradouro teste", "Logradouro do Musico inserido deveria ser 'logradouro teste'"
+        assert musico_teste.id.numero == 43, "Número do Musico inserido deveria ser '43'"
+        assert musico_teste.id.bairro == "bairro teste", "Bairro do Musico inserido deveria ser 'bairro teste'"
+        assert musico_teste.id.complemento == "complemento teste", "Complemento do Musico inserido deveria ser 'complemento teste'"
+        assert musico_teste.id.cep == "29454425", "CEP do Musico inserido deveria ser '29454425'"
         assert musico_teste.experiencia == "experiencia teste", "Experiência do Musico inserido deveria ser 'experiencia teste'"
     
     def test_get_all_paged(self, test_db):
@@ -97,8 +123,10 @@ class TestMusicoRepo:
         musicos = repo.get_all_paged(page_number=1, page_size=10)
         # Assert
         assert len(musicos) == 2, "Deveria retornar duas Musicos"
-        assert musicos[0].id.nome == "Test Musico 1", "Primeira Musico deveria ser 'Test Musico 1'"
-        assert musicos[1].id.nome == "Test Musico 2", "Segunda Musico deveria ser 'Test Musico 2'"
+        assert musicos[0].experiencia == "experiencia 1", "Experiência da primeira Musico deveria ser 'experiencia 1'"
+        assert musicos[0].id.id == id_usuario_inserido1, "ID do usuário da primeira Musico deveria ser igual ao ID do usuário inserido"
+        assert musicos[1].experiencia == "experiencia 2", "Experiência da segunda Musico deveria ser 'experiencia 2'"
+        assert musicos[1].id.id == id_usuario_inserido2, "ID do usuário da segunda Musico deveria ser igual ao ID do usuário inserido"
 
     def test_search_paged(self, test_db):
         # Arrange
@@ -129,8 +157,10 @@ class TestMusicoRepo:
         musicos = repo.search_paged(termo="Test", page_number=1, page_size=10)
         # Assert
         assert len(musicos) == 2, "Deveria retornar duas Musicos"
-        assert musicos[0].id.nome == "Test Musico 1", "Primeira Musico deveria ser 'Test Musico 1'"
-        assert musicos[1].id.nome == "Test Musico 2", "Segunda Musico deveria ser 'Test Musico 2'"
+        assert musicos[0].experiencia == "experiencia 1", "Experiência da primeira Musico deveria ser 'experiencia 1'"
+        assert musicos[0].id.id == id_usuario_inserido1, "ID do usuário da primeira Musico deveria ser igual ao ID do usuário inserido"
+        assert musicos[1].experiencia == "experiencia 2", "Experiência da segunda Musico deveria ser 'experiencia 2'"
+        assert musicos[1].id.id == id_usuario_inserido2, "ID do usuário da segunda Musico deveria ser igual ao ID do usuário inserido"
 
     def test_count(self, test_db):
         # Arrange
@@ -218,9 +248,10 @@ class TestMusicoRepo:
         musico_teste.experiencia = "Updated experiencia"
         # Act
         resultado = repo.update(musico_teste)
+        musico_db = repo.get_by_id(id_musico_inserido)
         # Assert
         assert resultado == True, "Atualização da Musico deveria retornar True"
-        musico_db = repo.get_by_id(id_musico_inserido)
+        assert musico_db.id.id == id_usuario_inserido, "ID do usuário da Musico atualizada deveria ser igual ao ID do usuário inserido"
         assert musico_db.experiencia == "Updated experiencia", "Experiência da Musico atualizada deveria ser 'Updated experiencia'"
     
     def test_delete_musico(self, test_db):

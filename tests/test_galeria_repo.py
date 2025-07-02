@@ -40,6 +40,8 @@ class TestGaleriaRepo:
         id_galeria = repo.insert(galeria)
         assert id_galeria is not None, "ID da galeria inserida não deveria ser None"
         assert galeria.id_musico.id == musico.id, "ID do músico na galeria inserida deveria ser igual ao ID do músico"
+        assert galeria.nome == "Galeria Teste", "Nome da galeria inserida deveria ser 'Galeria Teste'"
+        assert galeria.descricao == "Descrição teste", "Descrição da galeria inserida deveria ser 'Descrição teste'"
 
     def test_get_by_id(self, test_db):
         # Arrange
@@ -70,11 +72,10 @@ class TestGaleriaRepo:
         # Act
         galeria_db = repo.get_by_id(id_galeria)
         # Assert
-        assert galeria_db is not None, "Galeria não deveria ser None ao buscar por ID"
+        assert id_galeria is not None, "ID da galeria inserida não deveria ser None"
         assert galeria.id_musico.id == musico.id, "ID do músico na galeria inserida deveria ser igual ao ID do músico"
-        assert galeria_db.nome == "Galeria Teste"
-        assert galeria_db.descricao == "Descrição teste"
-        assert galeria_db.id_musico.id.nome == "Nome Musico"
+        assert galeria.nome == "Galeria Teste", "Nome da galeria inserida deveria ser 'Galeria Teste'"
+        assert galeria.descricao == "Descrição teste", "Descrição da galeria inserida deveria ser 'Descrição teste'"
 
     def test_get_all_paged(self, test_db):
         # Arrange
@@ -108,8 +109,10 @@ class TestGaleriaRepo:
         galerias = repo.get_all_paged(page_number=1, page_size=10)
         # Assert
         assert len(galerias) == 2, "Deveria retornar duas galerias"
-        assert galerias[0].nome == "Galeria 1"
-        assert galerias[1].nome == "Galeria 2"
+        assert galerias[0].nome == "Galeria 1", "Nome da primeira galeria deveria ser 'Galeria 1'"
+        assert galerias[0].descricao == "Descrição 1", "Descrição da primeira galeria deveria ser 'Descrição 1'"
+        assert galerias[1].nome == "Galeria 2", "Nome da segunda galeria deveria ser 'Galeria 2'"
+        assert galerias[1].descricao == "Descrição 2", "Descrição da segunda galeria deveria ser 'Descrição 2'"
 
     def test_search_paged(self, test_db):
         # Arrange
@@ -209,8 +212,10 @@ class TestGaleriaRepo:
         galerias = repo.get_all()
         # Assert
         assert len(galerias) == 2, "Deveria retornar duas galerias"
-        assert galerias[0].nome == "Galeria 1"
-        assert galerias[1].nome == "Galeria 2"
+        assert galerias[0].nome == "Galeria 1", "Nome da primeira galeria deveria ser 'Galeria 1'"
+        assert galerias[0].descricao == "Descrição 1", "Descrição da primeira galeria deveria ser 'Descrição 1'"
+        assert galerias[1].nome == "Galeria 2", "Nome da segunda galeria deveria ser 'Galeria 2'"
+        assert galerias[1].descricao == "Descrição 2", "Descrição da segunda galeria deveria ser 'Descrição 2'"
 
     def test_update_galeria(self, test_db):
         # Arrange

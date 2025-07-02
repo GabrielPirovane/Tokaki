@@ -136,8 +136,10 @@ class TestCategoriaMusicoRepo:
         cms = repo.get_all_paged(page_number=1, page_size=10)
         # Assert
         assert len(cms) == 2, "Deveria retornar duas categorias_musico"
-        assert cms[0].id_categoria.nome == "Categoria 1"
-        assert cms[1].id_categoria.nome == "Categoria 2"
+        assert cms[0].id_categoria.nome == categoria1.nome, "Nome deveria ser 'Categoria 1'"
+        assert cms[0].id_categoria.id == id_categoria1, "Id de categoria1 deveria ser 1"
+        assert cms[1].id_categoria.nome == categoria2.nome, "Nome deveria ser 'Categoria 2'"
+        assert cms[1].id_categoria.id == id_categoria2, "Id de categoria2 deveria ser 2"
 
     def test_search_paged(self, test_db):
         # Arrange
@@ -267,8 +269,10 @@ class TestCategoriaMusicoRepo:
         cms = repo.get_all()
         # Assert
         assert len(cms) == 2, "Deveria retornar duas categorias_musico"
-        assert cms[0].id_categoria.nome == "Categoria 1"
-        assert cms[1].id_categoria.nome == "Categoria 2"
+        assert cms[0].id_categoria.nome == categoria1.nome, "Nome deveria ser 'Categoria 1'"
+        assert cms[0].id_categoria.id == id_categoria1, "Id de categoria1 deveria ser 1"
+        assert cms[1].id_categoria.nome == categoria2.nome, "Nome deveria ser 'Categoria 2'"
+        assert cms[1].id_categoria.id == id_categoria2, "Id de categoria2 deveria ser 2"
 
     def test_update_categoria_musico(self, test_db):
         # Arrange

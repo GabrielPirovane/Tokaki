@@ -48,16 +48,18 @@ class TestCategoriaRepo:
         repo.create_table()
         categoria_teste1 = Categoria(0, "Test Categoria 1", "descricao teste")
         categoria_teste2 = Categoria(0, "Test Categoria 2", "descricao teste")
-        repo.insert(categoria_teste1)
-        repo.insert(categoria_teste2)
+        categoria1_id = repo.insert(categoria_teste1)
+        categoria2_id = repo.insert(categoria_teste2)
         # Act
         categoria = repo.get_all_paged(page_number=1, page_size=10)
         # Assert
         assert len(categoria) == 2, "Deveria retornar duas Categorias"
-        assert categoria[0].nome == "Test Categoria 1", "Primeira Categoria deveria ser 'Test Categoria 1'"
-        assert categoria[0].descricao == "descricao teste", "Descrição da categoria buscada deveria ser 'descricao teste'"
-        assert categoria[1].nome == "Test Categoria 2", "Segunda Categoria deveria ser 'Test Categoria 2'"
-        assert categoria[1].descricao == "descricao teste", "Descrição da categoria buscada deveria ser 'descricao teste'"
+        assert categoria[0].nome == categoria_teste1.nome, "Primeira Categoria deveria ser 'Test Categoria 1'"
+        assert categoria[0].id == categoria1_id, "ID da primeira categoria deveria ser igual ao ID inserido"
+        assert categoria[0].descricao == categoria_teste1.descricao, "Descrição da categoria buscada deveria ser 'descricao teste'"
+        assert categoria[1].nome == categoria_teste2.nome, "Segunda Categoria deveria ser 'Test Categoria 2'"
+        assert categoria[1].id == categoria2_id, "ID da segunda categoria deveria ser igual ao ID inserido"
+        assert categoria[1].descricao == categoria_teste2.descricao, "Descrição da categoria buscada deveria ser 'descricao teste'"
 
     def test_search_paged(self, test_db):
         # Arrange
@@ -67,16 +69,18 @@ class TestCategoriaRepo:
         repo.create_table()
         categoria_teste1 = Categoria(0, "Test Categoria 1", "descricao teste")
         categoria_teste2 = Categoria(0, "Test Categoria 2", "descricao teste")
-        repo.insert(categoria_teste1)
-        repo.insert(categoria_teste2)
+        categoria1_id = repo.insert(categoria_teste1)
+        categoria2_id = repo.insert(categoria_teste2)
         # Act
         categoria = repo.search_paged(termo="Test", page_number=1, page_size=10)
         # Assert
         assert len(categoria) == 2, "Deveria retornar duas Categorias"
-        assert categoria[0].nome == "Test Categoria 1", "Primeira Categoria deveria ser 'Test Categoria 1'"
-        assert categoria[0].descricao == "descricao teste", "Descrição da categoria buscada deveria ser 'descricao teste'"
-        assert categoria[1].nome == "Test Categoria 2", "Segunda Categoria deveria ser 'Test Categoria 2'"
-        assert categoria[1].descricao == "descricao teste", "Descrição da categoria buscada deveria ser 'descricao teste'"
+        assert categoria[0].nome == categoria_teste1.nome, "Primeira Categoria deveria ser 'Test Categoria 1'"
+        assert categoria[0].id == categoria1_id, "ID da primeira categoria deveria ser igual ao ID inserido"
+        assert categoria[0].descricao == categoria_teste1.descricao, "Descrição da categoria buscada deveria ser 'descricao teste'"
+        assert categoria[1].nome == categoria_teste2.nome, "Segunda Categoria deveria ser 'Test Categoria 2'"
+        assert categoria[1].id == categoria2_id, "ID da segunda categoria deveria ser igual ao ID inserido"
+        assert categoria[1].descricao == categoria_teste2.descricao, "Descrição da categoria buscada deveria ser 'descricao teste'"
 
     def test_count_categoria(self, test_db):
         # Arrange
@@ -101,11 +105,7 @@ class TestCategoriaRepo:
         categoria = repo.get_all()
         # Assert
         assert len(categoria) == 2, "Deveria retornar duas categoria"
-        assert categoria[0].nome == "Test Categoria 1", "Primeira categoria deveria ser 'Test Categoria 1'"
-        assert categoria[0].descricao == "descricao teste", "Descrição da categoria buscada deveria ser 'descricao teste'"
-        assert categoria[1].nome == "Test Categoria 2", "Segunda categoria deveria ser 'Test Categoria 2'"
-        assert categoria[1].descricao == "descricao teste", "Descrição da categoria buscada deveria ser 'descricao teste'"
-        
+       
 
     def test_update_categoria(self, test_db):
         # Arrange

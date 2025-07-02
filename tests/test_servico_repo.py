@@ -48,7 +48,9 @@ class TestServicoRepo:
         # Assert
         assert len(servico) == 2, "Deveria retornar duas Servicos"
         assert servico[0].nome == "Test Servico 1", "Primeira Servico deveria ser 'Test Servico 1'"
+        assert servico[0].id == 1, "ID da primeira Servico deveria ser 1"
         assert servico[1].nome == "Test Servico 2", "Segunda Servico deveria ser 'Test Servico 2'"
+        assert servico[1].id == 2, "ID da segunda Servico deveria ser 2"
     
 
     def test_search_paged(self, test_db):

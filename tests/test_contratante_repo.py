@@ -245,7 +245,9 @@ class TestContratanteRepo:
         # Assert
         assert len(contratantes) == 2, "Deveria retornar dois contratantes"
         assert contratantes[0].nota == 4.0, "Nota do primeiro contratante deveria ser 4.0"
+        assert contratantes[0].id.id == id_usuario1, "ID do primeiro contratante deveria ser igual ao do usuário 1"
         assert contratantes[1].nota == 5.0, "Nota do segundo contratante deveria ser 5.0"
+        assert contratantes[1].id.id == id_usuario2, "ID do segundo contratante deveria ser igual ao do usuário 2"
 
     def test_update_contratante(self, test_db):
         # Arrange

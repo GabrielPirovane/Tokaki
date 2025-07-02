@@ -69,7 +69,7 @@ class CidadeRepo:
             cursor = conn.cursor()
             cursor.execute(SQL_SELECT_CIDADE)
             rows = cursor.fetchall()
-            return [Uf(id=row['id'], nome=row['nome']) for row in rows]
+            return [Cidade(id=row['id'], nome=row['nome'], id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])) for row in rows]
     
     def update(self, cidade: Cidade) -> bool:
         try:
@@ -86,5 +86,4 @@ class CidadeRepo:
             cursor = conn.cursor()
             cursor.execute(SQL_DELETE_CIDADE, (id,))
             return cursor.rowcount > 0
-            
-    
+

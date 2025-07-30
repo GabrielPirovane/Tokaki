@@ -1,0 +1,15 @@
+:root {
+    --fonte-base: 'Open Sans', sans-serif;
+    --fonte-destaque: 'Bebas Neue', sans-serif;
+    --cor-1: #b08968;
+    --cor-2: #7f5539;
+    --cor-3: #3d291b;
+    --cor-4: #e6ccb2;
+}
+
+.imagem_fundo_cadastro {
+    background-image: url('/static/img/cad_fundo_claro.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}

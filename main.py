@@ -74,7 +74,7 @@ contratacao_repo_instance.create_table()
 
 @app.get("/")
 async def get_root():
-    response = templates.TemplateResponse("index.html", {"request": {}})
+    response = templates.TemplateResponse("home.html", {"request": {}})
     return response
 
 @app.get("/cadastro")

@@ -12,12 +12,20 @@ body {
     font-family: var(--fonte-base);
 }
 
-/* Navbar */
+
 nav {
     height: 5em;
     font-family: var(--fonte-destaque);
     background-color: var(--cor-1) !important;
 }
+
+footer {
+    height: 7em;
+    font-family: var(--fonte-destaque);
+    background-color: var(--cor-1);
+    color:#3d291b;
+}
+
 
 .navbar-nav .nav-link {
     font-size: 2rem;
@@ -27,14 +35,6 @@ nav {
    
 }
 
-/* Footer */
-footer {
-    height: 7em;
-    font-family: var(--fonte-destaque);
-    background-color: var(--cor-1);
-}
-
-/* Placeholder (caso haja input com class="placeholder") */
 .placeholder {
     color: var(--cor-2);
 }
@@ -43,8 +43,6 @@ footer {
     height: 50em;
 }
 
-
-/* Barra de pesquisa */
 #barra-pesquisa {
     width: 50em;
     border-radius: 1em;
@@ -60,7 +58,6 @@ footer {
     opacity: 80%;
 }
 
-/* Ícone de perfil */
 #icone-perfil {
     font-size: 1.8em;
     margin-bottom: 2em;
@@ -71,7 +68,6 @@ footer {
     color: var(--cor-3);
 }
 
-/* Carrossel principal */
 .carousel,
 .carousel-inner,
 .carousel-item {
@@ -83,13 +79,11 @@ footer {
     padding: 2rem 0;
 }
 
-/* Garante que todos os cards fiquem com altura igual no slide */
 .carousel-item .row {
     display: flex;
     align-items: stretch;
 }
 
-/* Imagens do carrossel (principal ou interno) */
 .carousel-item img {
     width: 100%;
     height: auto;
@@ -97,7 +91,6 @@ footer {
     display: block;
 }
 
-/* Controles do carrossel de cards */
 #carouselCards .carousel-control-prev,
 #carouselCards .carousel-control-next {
     top: 50%;
@@ -122,7 +115,6 @@ footer {
     opacity: 90%;
 }
 
-/* Card dos músicos no carrossel */
 .card-carousel {
     background: var(--cor-4);
     border-radius: 2em;
@@ -132,10 +124,9 @@ footer {
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
-    height: 370px; /* altura padronizada */
+    height: 370px; 
 }
 
-/* Imagem no topo do card */
 .card-img-top {
     width: 100%;
     height: 250px;
@@ -144,7 +135,6 @@ footer {
     display: block;
 }
 
-/* Conteúdo do card */
 .card-body {
     background: transparent;
     padding: 1.2em 1em 0.8em 1em;
@@ -159,6 +149,7 @@ footer {
 .card-fixo {
     background-color: var(--cor-4);
     border: 0 !important;
+    border-radius: 2rem;
     width: auto;
 }
 

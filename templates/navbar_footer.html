@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="static/img/logo_colorida.png" type="image/x-icon">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- Fontes -->
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+            rel="stylesheet">
+        <!--  -->
+
+        <link rel="stylesheet" href="static/css/style_home.css">
+        <title>Tokaki</title>
+    </head>
+
+</head>
+
+<body>
+    <main>
+        <header>
+            <nav class="navbar navbar-expand-lg fixed-top">
+                <div class="container-fluid g-20">
+
+
+                    <img src="static/img/logo_colorida.png" alt="Bootstrap" width="4%" height="4%"
+                        class="img-fluid me-3">
+
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+
+                            <li class="nav-item ms-auto align-items-center">
+                                <form class="d-flex" role="search" id="barra-pesquisa">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-search"></i>
+                                        </span>
+                                        <input class="form-control" type="search" placeholder="Pesquisar"
+                                            aria-label="Search" />
+
+                                        <button class="btn btn-outline-success" type="submit">
+                                            Buscar
+                                        </button>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+
+                        <div class="collapse navbar-collapse mt-3">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item ms-2 ">
+                                    <a class="nav-link active" href="#" id="secao-nav">
+                                        <p class="nav-item-secao">INÍCIO</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#" id="secao-nav">
+                                        <p class="nav-item-secao">AULAS AGENDADAS</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#" id="secao-nav">
+                                        <p class="nav-item-secao">MINHAS CONTRATAÇÕES</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#" id="secao-nav">
+                                        <p class="nav-item-secao">CHAT</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#" id="secao-nav">
+                                        <i class="bi bi-bell"></i>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#" id="secao-nav">
+                                        <i class="bi bi-person-circle"></i>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+
+
+
+                    </div>
+            </nav>
+        </header>
+        <article>
+            {% block conteudo %}
+            {% endblock %}
+        </article>
+
+        <footer class="position-relative p-3 text-center " style="color:  #3d291b;">
+            <p class="mt-2"><strong> &copy; 2025 Tokaki. Todos os direitos reservados </strong></p>
+            <i class="bi bi-facebook"></i>
+            <i class="bi bi-instagram"></i>
+            <i class="bi bi-whatsapp"></i>
+            <i class="bi bi-twitter-x"></i>
+        </footer>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

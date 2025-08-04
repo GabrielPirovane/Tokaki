@@ -7,6 +7,26 @@
     --cor-4: #e6ccb2;
 }
 
+body {
+    overflow-y: scroll;
+    font-family: var(--fonte-base);
+}
+
+
+nav {
+    height: 5em;
+    font-family: var(--fonte-destaque);
+    background-color: var(--cor-1) !important;
+}
+
+footer {
+    height: 7em;
+    font-family: var(--fonte-destaque);
+    background-color: var(--cor-1);
+    color:#3d291b;
+}
+
+
 .navbar-nav .nav-link {
     font-size: 2rem;
     font-family: var(--fonte-destaque);

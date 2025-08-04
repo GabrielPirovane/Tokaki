@@ -1,8 +1,10 @@
 from fastapi import APIRouter
+from fastapi.templating import Jinja2Templates
 
 from data.categoria import categoria_repo
 
 router = APIRouter()
+templates = Jinja2Templates(directory="templates")
 
 @router.get("/admin/categorias")
 async def get_categorias():

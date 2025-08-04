@@ -26,16 +26,6 @@ footer {
     color:#3d291b;
 }
 
-
-:root {
-    --fonte-base: 'Open Sans', sans-serif;
-    --fonte-destaque: 'Bebas Neue', sans-serif;
-    --cor-1: #b08968;
-    --cor-2: #7f5539;
-    --cor-3: #3d291b;
-    --cor-4: #e6ccb2;
-}
-
 body {
     overflow-y: scroll;
     font-family: var(--fonte-base);

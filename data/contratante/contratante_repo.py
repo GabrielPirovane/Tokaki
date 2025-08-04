@@ -3,6 +3,8 @@ from typing import List, Optional
 from data.contratante.contratante_model import Contratante
 from data.contratante.contratante_sql import *
 from data.usuario.usuario_model import Usuario
+from data.cidade.cidade_model import Cidade
+from data.uf.uf_model import Uf
 from data.util import get_connection
 
 class ContratanteRepo:
@@ -36,7 +38,30 @@ class ContratanteRepo:
             cursor.execute(SQL_SELECT_CONTRATANTE_BY_ID, (id,))
             row = cursor.fetchone() 
             if row:
-                return Contratante(id=Usuario(id=row['id'], ), nota=row['nota'], numero_contratacoes=row['numero_contratacoes'])
+                return Contratante(
+                    id=Usuario(
+                        id=row['id'],
+                        id_cidade=Cidade(
+                            id=row['id_cidade'],
+                            nome=row['nome_cidade'],
+                            id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
+                        ),
+                        nome=row['nome_usuario'],
+                        nome_usuario=row['login_usuario'],
+                        senha=row['senha'],
+                        email=row['email'],
+                        cpf=row['cpf'],
+                        telefone=row['telefone'],
+                        genero=row['genero'],
+                        logradouro=row['logradouro'],
+                        numero=row['numero_endereco'],
+                        bairro=row['bairro'],
+                        complemento=row['complemento'],
+                        cep=row['cep']
+                    ),
+                    nota=row['nota'],
+                    numero_contratacoes=row['numero_contratacoes']
+                )
             return None
         
     def get_all_paged(self, page_number: int=1, page_size: int=10) -> List[Contratante]:
@@ -46,17 +71,63 @@ class ContratanteRepo:
             cursor = conn.cursor()
             cursor.execute(SQL_SELECT_RANGE_CONTRATANTE, (limit, offset))
             rows = cursor.fetchall()
-            return [Contratante(id=Usuario(id=row['id'], ), nota=row['nota'], numero_contratacoes=row['numero_contratacoes']) for row in rows]
+            return [Contratante(
+                id=Usuario(
+                    id=row['id'],
+                    id_cidade=Cidade(
+                        id=row['id_cidade'],
+                        nome=row['nome_cidade'],
+                        id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
+                    ),
+                    nome=row['nome_usuario'],
+                    nome_usuario=row['login_usuario'],
+                    senha=row['senha'],
+                    email=row['email'],
+                    cpf=row['cpf'],
+                    telefone=row['telefone'],
+                    genero=row['genero'],
+                    logradouro=row['logradouro'],
+                    numero=row['numero_endereco'],
+                    bairro=row['bairro'],
+                    complemento=row['complemento'],
+                    cep=row['cep']
+                ),
+                nota=row['nota'],
+                numero_contratacoes=row['numero_contratacoes']
+            ) for row in rows]
         
-    def search_paged(self, termo: str, page_number: int=1, page_size: int=10, ) -> List[Contratante]:
+    def search_paged(self, termo: str, page_number: int=1, page_size: int=10) -> List[Contratante]:
         limit = page_size
         offset = (page_number - 1) * page_size
         termo = f"%{termo}%"
         with get_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute(SQL_SELECT_RANGE_BUSCA_CONTRATANTE, (f'%{termo}%', limit, offset))
+            cursor.execute(SQL_SELECT_RANGE_BUSCA_CONTRATANTE, (termo, limit, offset))
             rows = cursor.fetchall()
-            return [Contratante(id=Usuario(id=row['id'], ), nota=row['nota'], numero_contratacoes=row['numero_contratacoes']) for row in rows]
+            return [Contratante(
+                id=Usuario(
+                    id=row['id'],
+                    id_cidade=Cidade(
+                        id=row['id_cidade'],
+                        nome=row['nome_cidade'],
+                        id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
+                    ),
+                    nome=row['nome_usuario'],
+                    nome_usuario=row['login_usuario'],
+                    senha=row['senha'],
+                    email=row['email'],
+                    cpf=row['cpf'],
+                    telefone=row['telefone'],
+                    genero=row['genero'],
+                    logradouro=row['logradouro'],
+                    numero=row['numero_endereco'],
+                    bairro=row['bairro'],
+                    complemento=row['complemento'],
+                    cep=row['cep']
+                ),
+                nota=row['nota'],
+                numero_contratacoes=row['numero_contratacoes']
+            ) for row in rows]
         
     def count(self) -> int:
         with get_connection() as conn:
@@ -69,19 +140,45 @@ class ContratanteRepo:
             cursor = conn.cursor()
             cursor.execute(SQL_SELECT_CONTRATANTE)
             rows = cursor.fetchall()
-            return [Contratante(id=Usuario(id=row['id'], ), nota=row['nota'], numero_contratacoes=row['numero_contratacoes']) for row in rows]
+            return [Contratante(
+                id=Usuario(
+                    id=row['id'],
+                    id_cidade=Cidade(
+                        id=row['id_cidade'],
+                        nome=row['nome_cidade'],
+                        id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
+                    ),
+                    nome=row['nome_usuario'],
+                    nome_usuario=row['login_usuario'],
+                    senha=row['senha'],
+                    email=row['email'],
+                    cpf=row['cpf'],
+                    telefone=row['telefone'],
+                    genero=row['genero'],
+                    logradouro=row['logradouro'],
+                    numero=row['numero_endereco'],
+                    bairro=row['bairro'],
+                    complemento=row['complemento'],
+                    cep=row['cep']
+                ),
+                nota=row['nota'],
+                numero_contratacoes=row['numero_contratacoes']
+            ) for row in rows]
     
     def update(self, contratante: Contratante) -> bool:
         try:
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_UPDATE_CONTRATANTE, (contratante.id.id, contratante.nota, contratante.numero_contratacoes))
+                cursor.execute(SQL_UPDATE_CONTRATANTE, (
+                    contratante.nota,
+                    contratante.numero_contratacoes,
+                    contratante.id.id
+                ))
                 return cursor.rowcount > 0
         except sqlite3.IntegrityError as e:
-            print(f"Erro de integridade ao inserir contratante: {e}")
-            return None
+            print(f"Erro de integridade ao atualizar contratante: {e}")
+            return False
         
-    
     def delete(self, id: int) -> bool:
         with get_connection() as conn:
             cursor = conn.cursor()

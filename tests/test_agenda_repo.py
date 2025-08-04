@@ -117,8 +117,8 @@ class TestAgendaRepo:
         agendas = repo.get_all_paged(page_number=1, page_size=10)
         # Assert
         assert len(agendas) == 2, "Deveria retornar duas agendas"
-        assert agendas[0].id.id.nome == "Musico 1"
-        assert agendas[1].id.id.nome == "Musico 2"
+        assert agendas[0].id.id.id == id_usuario1, "ID do usuário do musico na primeira agenda deveria ser igual ao esperado"
+        assert agendas[1].id.id.id == id_usuario2, "ID do usuário do musico na segunda agenda deveria ser igual ao esperado"
 
     def test_search_paged(self, test_db):
         # Arrange
@@ -156,8 +156,8 @@ class TestAgendaRepo:
         agendas = repo.search_paged(termo="Musico", page_number=1, page_size=10)
         # Assert
         assert len(agendas) == 2, "Deveria retornar duas agendas"
-        assert agendas[0].id.id.nome == "Musico 1"
-        assert agendas[1].id.id.nome == "Musico 2"
+        assert agendas[0].id.id.id == id_usuario1, "ID do usuário do musico na primeira agenda deveria ser igual ao esperado"
+        assert agendas[1].id.id.id == id_usuario2, "ID do usuário do musico na segunda agenda deveria ser igual ao esperado"
 
     def test_count(self, test_db):
         # Arrange
@@ -232,8 +232,8 @@ class TestAgendaRepo:
         agendas = repo.get_all()
         # Assert
         assert len(agendas) == 2, "Deveria retornar duas agendas"
-        assert agendas[0].id.id.nome == "Musico 1"
-        assert agendas[1].id.id.nome == "Musico 2"
+        assert agendas[0].id.id.id == id_usuario1, "ID do usuário do musico na primeira agenda deveria ser igual ao esperado"
+        assert agendas[1].id.id.id == id_usuario2, "ID do usuário do musico na segunda agenda deveria ser igual ao esperado"
 
     def test_update_agenda(self, test_db):
         # Arrange

@@ -135,7 +135,11 @@ class TestOfertaServicoRepo:
         # Assert
         assert len(oss) == 2, "Deveria retornar duas ofertas_servico"
         assert oss[0].id_servico.nome == "Servico 1"
+        assert oss[0].id_servico.id == id_servico1, "O id do serviço na primeira oferta_servico deve ser igual ao id do serviço criado"
+        assert oss[0].id_musico.id.id == id_usuario, "ID do músico na primeira oferta_servico deve ser igual ao ID do usuário criado"
         assert oss[1].id_servico.nome == "Servico 2"
+        assert oss[1].id_servico.id == id_servico2, "O id do serviço na segunda oferta_servico deve ser igual ao id do serviço criado"
+        assert oss[1].id_musico.id.id == id_usuario, "ID do músico na segunda oferta_servico deve ser igual ao ID do usuário criado"
 
     def test_search_paged(self, test_db):
         # Arrange

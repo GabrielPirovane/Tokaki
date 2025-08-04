@@ -25,7 +25,7 @@ class FotoRepo:
             with get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute(SQL_INSERT_FOTO, (foto.id_galeria.id, foto.url, foto.descricao))
-                return cursor.rowcount > 0
+                return cursor.lastrowid
         except sqlite3.IntegrityError as e:
             print(f"Erro de integridade ao inserir foto: {e}")
             return None

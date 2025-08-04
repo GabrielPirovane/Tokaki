@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS agendamento (
     tipo_servico TEXT NOT NULL,
     descricao TEXT NOT NULL,
     valor REAL NOT NULL,
-    data_hora DATETIME NOT NULL,
+    data_hora TEXT NOT NULL,
     taxa_aprovacao REAL NOT NULL,
     aprovado BOOLEAN NOT NULL,
     FOREIGN KEY (id_musico) REFERENCES musico(id),
@@ -21,40 +21,27 @@ INSERT INTO agendamento (id_musico, id_contratante, id_agenda, tipo_servico, des
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
 """
 
-SQL_SELECT_RANGE_AGENDAMENTO = """
-SELECT ag.id, ag.id_musico, ag.id_contratante, ag.id_agenda, ag.tipo_servico, ag.descricao, ag.valor, ag.data_hora, ag.taxa_aprovacao, ag.aprovado, u.nome AS nome_contratante, u2.nome AS nome_musico
+SQL_SELECT_AGENDAMENTO_BY_ID = """
+SELECT ag.id, ag.id_musico, ag.id_contratante, ag.id_agenda, ag.tipo_servico, ag.descricao, ag.valor, ag.data_hora, ag.taxa_aprovacao, ag.aprovado
 FROM agendamento ag
-JOIN contratante c ON ag.id_contratante = c.id
-JOIN usuario u ON c.id = u.id
-JOIN musico m ON ag.id_musico = m.id
-JOIN usuario u2 ON m.id = u2.id
-JOIN agenda a ON ag.id_agenda = a.id
+WHERE ag.id = ?;
+"""
+
+SQL_SELECT_RANGE_AGENDAMENTO = """
+SELECT ag.id, ag.id_musico, ag.id_contratante, ag.id_agenda, ag.tipo_servico, ag.descricao, ag.valor, ag.data_hora, ag.taxa_aprovacao, ag.aprovado
+FROM agendamento ag
 ORDER BY ag.id
 LIMIT ? OFFSET ?;
 """
 
 SQL_SELECT_RANGE_BUSCA_AGENDAMENTO = """
-SELECT ag.id, ag.id_musico, ag.id_contratante, ag.id_agenda, ag.tipo_servico, ag.descricao, ag.valor, ag.data_hora, ag.taxa_aprovacao, ag.aprovado, u.nome AS nome_contratante, u2.nome AS nome_musico
+SELECT ag.id, ag.id_musico, ag.id_contratante, ag.id_agenda, ag.tipo_servico, ag.descricao, ag.valor, ag.data_hora, ag.taxa_aprovacao, ag.aprovado
 FROM agendamento ag
-JOIN contratante c ON ag.id_contratante = c.id
-JOIN usuario u ON c.id = u.id
 JOIN musico m ON ag.id_musico = m.id
-JOIN usuario u2 ON m.id = u2.id
-JOIN agenda a ON ag.id_agenda = a.id
-WHERE nome_musico LIKE ?
-ORDER BY nome_musico
+JOIN usuario u ON m.id = u.id
+WHERE u.nome LIKE ?
+ORDER BY u.nome
 LIMIT ? OFFSET ?;
-"""
-
-SQL_SELECT_AGENDAMENTO_BY_ID = """
-SELECT ag.id, ag.id_musico, ag.id_contratante, ag.id_agenda, ag.tipo_servico, ag.descricao, ag.valor, ag.data_hora, ag.taxa_aprovacao, ag.aprovado, u.nome AS nome_contratante, u2.nome AS nome_musico
-FROM agendamento ag
-JOIN contratante c ON ag.id_contratante = c.id
-JOIN usuario u ON c.id = u.id
-JOIN musico m ON ag.id_musico = m.id
-JOIN usuario u2 ON m.id = u2.id
-JOIN agenda a ON ag.id_agenda = a.id
-WHERE ag.id = ?;
 """
 
 SQL_SELECT_COUNT_AGENDAMENTO = """
@@ -62,14 +49,9 @@ SELECT COUNT(*) FROM agendamento;
 """
 
 SQL_SELECT_AGENDAMENTO = """
-SELECT ag.id, ag.id_musico, ag.id_contratante, ag.id_agenda, ag.tipo_servico, ag.descricao, ag.valor, ag.data_hora, ag.taxa_aprovacao, ag.aprovado, u.nome AS nome_contratante, u2.nome AS nome_musico
+SELECT ag.id, ag.id_musico, ag.id_contratante, ag.id_agenda, ag.tipo_servico, ag.descricao, ag.valor, ag.data_hora, ag.taxa_aprovacao, ag.aprovado
 FROM agendamento ag
-JOIN contratante c ON ag.id_contratante = c.id
-JOIN usuario u ON c.id = u.id
-JOIN musico m ON ag.id_musico = m.id
-JOIN usuario u2 ON m.id = u2.id
-JOIN agenda a ON ag.id_agenda = a.id
-ORDER BY nome_musico;
+ORDER BY ag.id;
 """
 
 SQL_UPDATE_AGENDAMENTO = """

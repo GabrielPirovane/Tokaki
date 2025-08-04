@@ -23,7 +23,7 @@ footer {
     height: 7em;
     font-family: var(--fonte-destaque);
     background-color: var(--cor-1);
-    color:#3d291b;
+    color: var(--cor-3);
 }
 
 body {
@@ -42,7 +42,7 @@ footer {
     height: 7em;
     font-family: var(--fonte-destaque);
     background-color: var(--cor-1);
-    color:#3d291b;
+    color: var(--cor-3);
 }
 
 
@@ -178,4 +178,3 @@ footer {
     background-position: center;
     height: 100vh;
 }
-

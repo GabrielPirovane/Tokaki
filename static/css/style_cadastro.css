@@ -54,3 +54,13 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+.rodape{
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 50px;
+  bottom: 0;
+  width: 100%;
+  font-family: var(--fonte-base);
+  font-size: 14px;
+}

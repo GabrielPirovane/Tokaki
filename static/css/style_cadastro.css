@@ -1,0 +1,56 @@
+:root {
+    --fonte-base: 'Open Sans', sans-serif;
+    --fonte-destaque: 'Bebas Neue', sans-serif;
+    --cor-1: #b08968;
+    --cor-2: #7f5539;
+    --cor-3: #3d291b;
+    --cor-4: #e6ccb2;
+}
+.body_cadastro {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--cor-3);
+  display: flex;
+}
+
+/* Container do fundo */
+.fundo {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Mosaico */
+.mosaico {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 10px;
+  width: 120%;
+  height: 120%;
+  animation: mover 30s linear infinite alternate;
+  filter: blur(2px) brightness(0.95);
+}
+
+/* Imagens */
+.mosaico img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  transform: rotate(-5deg);
+}
+
+/* Movimento suave */
+@keyframes mover {
+  0%   { transform: translate(-5%, -5%); }
+  100% { transform: translate(-10%, -10%); }
+}
+
+.formulario {
+  background-color: var(--cor-4);
+  font: var(--fonte-base);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

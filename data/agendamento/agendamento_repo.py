@@ -114,11 +114,43 @@ class AgendamentoRepo:
     def _monta_agendamento(self, row) -> Agendamento:
         # Aqui você pode expandir para buscar os dados completos de Usuario, Contratante, Musico e Agenda se o SQL trouxer esses dados
         musico = Musico(
-            id=Usuario(id=row['id_musico'], nome=None, nome_usuario=None, senha=None, email=None, cpf=None, telefone=None, genero=None, logradouro=None, numero=None, bairro=None, complemento=None, cep=None, id_cidade=None),
+            id=Usuario(
+                id=row['id_musico'],
+                nome=None,
+                nome_usuario=None,
+                senha=None,
+                email=None,
+                cpf=None,
+                telefone=None,
+                genero=None,
+                logradouro=None,
+                numero=None,
+                bairro=None,
+                complemento=None,
+                cep=None,
+                id_cidade=None,
+                data_nascimento=None  # Adicionado campo data_nascimento
+            ),
             experiencia=None
         )
         contratante = Contratante(
-            id=Usuario(id=row['id_contratante'], nome=None, nome_usuario=None, senha=None, email=None, cpf=None, telefone=None, genero=None, logradouro=None, numero=None, bairro=None, complemento=None, cep=None, id_cidade=None),
+            id=Usuario(
+                id=row['id_contratante'],
+                nome=None,
+                nome_usuario=None,
+                senha=None,
+                email=None,
+                cpf=None,
+                telefone=None,
+                genero=None,
+                logradouro=None,
+                numero=None,
+                bairro=None,
+                complemento=None,
+                cep=None,
+                id_cidade=None,
+                data_nascimento=None  # Adicionado campo data_nascimento
+            ),
             nota=None,
             numero_contratacoes=None
         )

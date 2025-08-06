@@ -55,7 +55,8 @@ class ContratacaoRepo:
                         id=Usuario(
                             id=row['id_musico'],
                             nome=None, nome_usuario=None, senha=None, email=None, cpf=None, telefone=None, genero=None,
-                            logradouro=None, numero=None, bairro=None, complemento=None, cep=None, id_cidade=None
+                            logradouro=None, numero=None, bairro=None, complemento=None, cep=None, id_cidade=None,
+                            data_nascimento=None  # Adicionado campo data_nascimento
                         ),
                         experiencia=None
                     ),
@@ -63,7 +64,8 @@ class ContratacaoRepo:
                         id=Usuario(
                             id=row['id_contratante'],
                             nome=None, nome_usuario=None, senha=None, email=None, cpf=None, telefone=None, genero=None,
-                            logradouro=None, numero=None, bairro=None, complemento=None, cep=None, id_cidade=None
+                            logradouro=None, numero=None, bairro=None, complemento=None, cep=None, id_cidade=None,
+                            data_nascimento=None  # Adicionado campo data_nascimento
                         ),
                         nota=None,
                         numero_contratacoes=None
@@ -160,7 +162,8 @@ class ContratacaoRepo:
                 id=Usuario(
                     id=row['id_musico'],
                     nome=None, nome_usuario=None, senha=None, email=None, cpf=None, telefone=None, genero=None,
-                    logradouro=None, numero=None, bairro=None, complemento=None, cep=None, id_cidade=None
+                    logradouro=None, numero=None, bairro=None, complemento=None, cep=None, id_cidade=None,
+                    data_nascimento=None  # Adicionado campo data_nascimento
                 ),
                 experiencia=None
             ),
@@ -168,7 +171,8 @@ class ContratacaoRepo:
                 id=Usuario(
                     id=row['id_contratante'],
                     nome=None, nome_usuario=None, senha=None, email=None, cpf=None, telefone=None, genero=None,
-                    logradouro=None, numero=None, bairro=None, complemento=None, cep=None, id_cidade=None
+                    logradouro=None, numero=None, bairro=None, complemento=None, cep=None, id_cidade=None,
+                    data_nascimento=None  # Adicionado campo data_nascimento
                 ),
                 nota=None,
                 numero_contratacoes=None

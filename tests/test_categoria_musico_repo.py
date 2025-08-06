@@ -27,12 +27,47 @@ class TestCategoriaMusicoRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425")
+        usuario = Usuario(
+            0,
+            Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+            "Nome Musico",
+            "nome usuario",
+            "senha",
+            "email",
+            "cpf",
+            "289999999999",
+            "m",
+            "logradouro",
+            "43",
+            "bairro",
+            "complemento",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario = repo_usuario.insert(usuario)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico = Musico(Usuario(id_usuario, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia teste")
+        musico = Musico(
+            Usuario(
+                id_usuario,
+                Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+                "Nome Musico",
+                "nome usuario",
+                "senha",
+                "email",
+                "cpf",
+                "289999999999",
+                "m",
+                "logradouro",
+                "43",
+                "bairro",
+                "complemento",
+                "29454425",
+                data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia teste"
+        )
         id_musico = repo_musico.insert(musico)
 
         repo_categoria = CategoriaRepo(test_db)
@@ -68,12 +103,47 @@ class TestCategoriaMusicoRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425")
+        usuario = Usuario(
+            0,
+            Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+            "Nome Musico",
+            "nome usuario",
+            "senha",
+            "email",
+            "cpf",
+            "289999999999",
+            "m",
+            "logradouro",
+            "43",
+            "bairro",
+            "complemento",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario = repo_usuario.insert(usuario)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico = Musico(Usuario(id_usuario, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia teste")
+        musico = Musico(
+            Usuario(
+                id_usuario,
+                Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+                "Nome Musico",
+                "nome usuario",
+                "senha",
+                "email",
+                "cpf",
+                "289999999999",
+                "m",
+                "logradouro",
+                "43",
+                "bairro",
+                "complemento",
+                "29454425",
+                data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia teste"
+        )
         id_musico = repo_musico.insert(musico)
 
         repo_categoria = CategoriaRepo(test_db)
@@ -108,12 +178,47 @@ class TestCategoriaMusicoRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425")
+        usuario = Usuario(
+            0,
+            Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+            "Nome Musico",
+            "nome usuario",
+            "senha",
+            "email",
+            "cpf",
+            "289999999999",
+            "m",
+            "logradouro",
+            "43",
+            "bairro",
+            "complemento",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario = repo_usuario.insert(usuario)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico = Musico(Usuario(id_usuario, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia teste")
+        musico = Musico(
+            Usuario(
+                id_usuario,
+                Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+                "Nome Musico",
+                "nome usuario",
+                "senha",
+                "email",
+                "cpf",
+                "289999999999",
+                "m",
+                "logradouro",
+                "43",
+                "bairro",
+                "complemento",
+                "29454425",
+                data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia teste"
+        )
         repo_musico.insert(musico)
 
         repo_categoria = CategoriaRepo(test_db)
@@ -155,12 +260,47 @@ class TestCategoriaMusicoRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425")
+        usuario = Usuario(
+            0,
+            Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+            "Nome Musico",
+            "nome usuario",
+            "senha",
+            "email",
+            "cpf",
+            "289999999999",
+            "m",
+            "logradouro",
+            "43",
+            "bairro",
+            "complemento",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario = repo_usuario.insert(usuario)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico = Musico(Usuario(id_usuario, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia teste")
+        musico = Musico(
+            Usuario(
+                id_usuario,
+                Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+                "Nome Musico",
+                "nome usuario",
+                "senha",
+                "email",
+                "cpf",
+                "289999999999",
+                "m",
+                "logradouro",
+                "43",
+                "bairro",
+                "complemento",
+                "29454425",
+                data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia teste"
+        )
         repo_musico.insert(musico)
 
         repo_categoria = CategoriaRepo(test_db)
@@ -198,12 +338,47 @@ class TestCategoriaMusicoRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425")
+        usuario = Usuario(
+            0,
+            Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+            "Nome Musico",
+            "nome usuario",
+            "senha",
+            "email",
+            "cpf",
+            "289999999999",
+            "m",
+            "logradouro",
+            "43",
+            "bairro",
+            "complemento",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario = repo_usuario.insert(usuario)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico = Musico(Usuario(id_usuario, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia teste")
+        musico = Musico(
+            Usuario(
+                id_usuario,
+                Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+                "Nome Musico",
+                "nome usuario",
+                "senha",
+                "email",
+                "cpf",
+                "289999999999",
+                "m",
+                "logradouro",
+                "43",
+                "bairro",
+                "complemento",
+                "29454425",
+                data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia teste"
+        )
         repo_musico.insert(musico)
 
         repo_categoria = CategoriaRepo(test_db)
@@ -241,12 +416,47 @@ class TestCategoriaMusicoRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425")
+        usuario = Usuario(
+            0,
+            Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+            "Nome Musico",
+            "nome usuario",
+            "senha",
+            "email",
+            "cpf",
+            "289999999999",
+            "m",
+            "logradouro",
+            "43",
+            "bairro",
+            "complemento",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario = repo_usuario.insert(usuario)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico = Musico(Usuario(id_usuario, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia teste")
+        musico = Musico(
+            Usuario(
+                id_usuario,
+                Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+                "Nome Musico",
+                "nome usuario",
+                "senha",
+                "email",
+                "cpf",
+                "289999999999",
+                "m",
+                "logradouro",
+                "43",
+                "bairro",
+                "complemento",
+                "29454425",
+                data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia teste"
+        )
         repo_musico.insert(musico)
 
         repo_categoria = CategoriaRepo(test_db)
@@ -288,16 +498,86 @@ class TestCategoriaMusicoRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario1 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425")
+        usuario1 = Usuario(
+            0,
+            Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+            "Musico 1",
+            "usuario1",
+            "senha",
+            "email1",
+            "cpf1",
+            "289999999999",
+            "m",
+            "logradouro",
+            "43",
+            "bairro",
+            "complemento",
+            "29454425",
+            data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario1 = repo_usuario.insert(usuario1)
-        usuario2 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999998", "f", "logradouro", "44", "bairro", "complemento", "29454426")
+        usuario2 = Usuario(
+            0,
+            Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+            "Musico 2",
+            "usuario2",
+            "senha",
+            "email2",
+            "cpf2",
+            "289999999998",
+            "f",
+            "logradouro",
+            "44",
+            "bairro",
+            "complemento",
+            "29454426",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
+        )
         id_usuario2 = repo_usuario.insert(usuario2)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico1 = Musico(Usuario(id_usuario1, cidade, "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia 1")
+        musico1 = Musico(
+            Usuario(
+                id_usuario1,
+                cidade,
+                "Musico 1",
+                "usuario1",
+                "senha",
+                "email1",
+                "cpf1",
+                "289999999999",
+                "m",
+                "logradouro",
+                "43",
+                "bairro",
+                "complemento",
+                "29454425",
+                data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia 1"
+        )
         id_musico1 = repo_musico.insert(musico1)
-        musico2 = Musico(Usuario(id_usuario2, cidade, "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999998", "f", "logradouro", "44", "bairro", "complemento", "29454426"), "experiencia 2")
+        musico2 = Musico(
+            Usuario(
+                id_usuario2,
+                cidade,
+                "Musico 2",
+                "usuario2",
+                "senha",
+                "email2",
+                "cpf2",
+                "289999999998",
+                "f",
+                "logradouro",
+                "44",
+                "bairro",
+                "complemento",
+                "29454426",
+                data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
+            ),
+            "experiencia 2"
+        )
         id_musico2 = repo_musico.insert(musico2)
 
         repo_categoria = CategoriaRepo(test_db)
@@ -327,6 +607,7 @@ class TestCategoriaMusicoRepo:
         assert cm_db is not None, "CategoriaMusico atualizado deveria existir"
         assert cm_db.id_categoria.id == id_categoria2, "ID da categoria em CategoriaMusico deveria ser atualizado"
         assert cm_db.id_musico.id.id == id_usuario2, "ID do músico em CategoriaMusico deveria ser atualizado"
+        assert cm_db.id_musico.id.data_nascimento == "1992-02-02", "Data de nascimento do músico atualizado deveria ser '1992-02-02'"
 
     def test_delete_categoria_musico(self, test_db):
         # Arrange
@@ -342,12 +623,47 @@ class TestCategoriaMusicoRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425")
+        usuario = Usuario(
+            0,
+            Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+            "Nome Musico",
+            "nome usuario",
+            "senha",
+            "email",
+            "cpf",
+            "289999999999",
+            "m",
+            "logradouro",
+            "43",
+            "bairro",
+            "complemento",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario = repo_usuario.insert(usuario)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico = Musico(Usuario(id_usuario, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia teste")
+        musico = Musico(
+            Usuario(
+                id_usuario,
+                Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")),
+                "Nome Musico",
+                "nome usuario",
+                "senha",
+                "email",
+                "cpf",
+                "289999999999",
+                "m",
+                "logradouro",
+                "43",
+                "bairro",
+                "complemento",
+                "29454425",
+                data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia teste"
+        )
         id_musico = repo_musico.insert(musico)
 
         repo_categoria = CategoriaRepo(test_db)

@@ -103,7 +103,8 @@ class AgendaRepo:
             numero=row['numero'],
             bairro=row['bairro'],
             complemento=row['complemento'],
-            cep=row['cep']
+            cep=row['cep'],
+            data_nascimento=row['data_nascimento'] 
         )
         musico = Musico(id=usuario, experiencia=row['experiencia'])
         return Agenda(id=musico, data_hora=row['data_hora'], disponivel=row['disponivel'])

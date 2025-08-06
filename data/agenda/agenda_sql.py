@@ -15,7 +15,7 @@ VALUES (?, ?, ?);
 SQL_SELECT_RANGE_AGENDA = """
 SELECT a.id, a.data_hora, a.disponivel,
        m.experiencia,
-       u.id AS usuario_id, u.id_cidade, u.nome AS usuario_nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero, u.logradouro, u.numero, u.bairro, u.complemento, u.cep
+       u.id AS usuario_id, u.id_cidade, u.nome AS usuario_nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero, u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento
 FROM agenda a
 JOIN musico m ON a.id = m.id
 JOIN usuario u ON m.id = u.id
@@ -26,7 +26,7 @@ LIMIT ? OFFSET ?;
 SQL_SELECT_RANGE_BUSCA_AGENDA = """
 SELECT a.id, a.data_hora, a.disponivel,
        m.experiencia,
-       u.id AS usuario_id, u.id_cidade, u.nome AS usuario_nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero, u.logradouro, u.numero, u.bairro, u.complemento, u.cep
+       u.id AS usuario_id, u.id_cidade, u.nome AS usuario_nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero, u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento
 FROM agenda a
 JOIN musico m ON a.id = m.id
 JOIN usuario u ON m.id = u.id
@@ -38,7 +38,7 @@ LIMIT ? OFFSET ?;
 SQL_SELECT_AGENDA_BY_ID = """
 SELECT a.id, a.data_hora, a.disponivel,
        m.experiencia,
-       u.id AS usuario_id, u.id_cidade, u.nome AS usuario_nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero, u.logradouro, u.numero, u.bairro, u.complemento, u.cep
+       u.id AS usuario_id, u.id_cidade, u.nome AS usuario_nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero, u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento
 FROM agenda a
 JOIN musico m ON a.id = m.id
 JOIN usuario u ON m.id = u.id
@@ -52,7 +52,7 @@ SELECT COUNT(*) FROM agenda;
 SQL_SELECT_AGENDA = """
 SELECT a.id, a.data_hora, a.disponivel,
        m.experiencia,
-       u.id AS usuario_id, u.id_cidade, u.nome AS usuario_nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero, u.logradouro, u.numero, u.bairro, u.complemento, u.cep
+       u.id AS usuario_id, u.id_cidade, u.nome AS usuario_nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero, u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento
 FROM agenda a
 JOIN musico m ON a.id = m.id
 JOIN usuario u ON m.id = u.id

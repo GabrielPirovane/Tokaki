@@ -107,7 +107,8 @@ class GaleriaRepo:
             numero=row['numero'],
             bairro=row['bairro'],
             complemento=row['complemento'],
-            cep=row['cep']
+            cep=row['cep'],
+            data_nascimento=row['data_nascimento']  
         )
         return Musico(id=usuario, experiencia=row['experiencia'])
 

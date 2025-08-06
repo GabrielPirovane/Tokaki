@@ -25,7 +25,22 @@ class UsuarioRepo:
         try:
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_INSERT_USUARIO, (usuario.id_cidade.id ,usuario.nome, usuario.nome_usuario, usuario.senha, usuario.email, usuario.cpf, usuario.telefone, usuario.genero, usuario.logradouro, usuario.numero, usuario.bairro, usuario.complemento, usuario.cep))
+                cursor.execute(SQL_INSERT_USUARIO, (
+                    usuario.id_cidade.id,
+                    usuario.nome,
+                    usuario.nome_usuario,
+                    usuario.senha,
+                    usuario.email,
+                    usuario.cpf,
+                    usuario.telefone,
+                    usuario.genero,
+                    usuario.logradouro,
+                    usuario.numero,
+                    usuario.bairro,
+                    usuario.complemento,
+                    usuario.cep,
+                    usuario.data_nascimento
+                ))
                 return cursor.lastrowid
         except sqlite3.IntegrityError as e:
             print(f"Erro de integridade ao inserir usuario: {e}")
@@ -37,24 +52,27 @@ class UsuarioRepo:
             cursor.execute(SQL_SELECT_USUARIO_BY_ID, (id,))
             row = cursor.fetchone() 
             if row:
-                return Usuario(id=row['id'],
-                               id_cidade=Cidade(
-                                   id=row['id_cidade'],
-                                   nome=row['nome_cidade'],
-                                   id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
-                               ),
-                               nome=row['nome'],
-                               nome_usuario=row['nome_usuario'],
-                               senha=row['senha'],
-                               email=row['email'],
-                               cpf=row['cpf'],
-                               telefone=row['telefone'],
-                               genero=row['genero'],
-                               logradouro=row['logradouro'],
-                               numero=row['numero'],
-                               bairro=row['bairro'],
-                               complemento=row['complemento'],
-                               cep=row['cep'])
+                return Usuario(
+                    id=row['id'],
+                    id_cidade=Cidade(
+                        id=row['id_cidade'],
+                        nome=row['nome_cidade'],
+                        id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
+                    ),
+                    nome=row['nome'],
+                    nome_usuario=row['nome_usuario'],
+                    senha=row['senha'],
+                    email=row['email'],
+                    cpf=row['cpf'],
+                    telefone=row['telefone'],
+                    genero=row['genero'],
+                    logradouro=row['logradouro'],
+                    numero=row['numero'],
+                    bairro=row['bairro'],
+                    complemento=row['complemento'],
+                    cep=row['cep'],
+                    data_nascimento=row['data_nascimento']
+                )
             return None
         
     def get_all_paged(self, page_number: int=1, page_size: int=10) -> List[Usuario]:
@@ -64,26 +82,31 @@ class UsuarioRepo:
             cursor = conn.cursor()
             cursor.execute(SQL_SELECT_RANGE_USUARIO, (limit, offset))
             rows = cursor.fetchall()
-            return [Usuario(id=row['id'],
-                               id_cidade=Cidade(
-                                   id=row['id_cidade'],
-                                   nome=row['nome_cidade'],
-                                   id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
-                               ),
-                               nome=row['nome'],
-                               nome_usuario=row['nome_usuario'],
-                               senha=row['senha'],
-                               email=row['email'],
-                               cpf=row['cpf'],
-                               telefone=row['telefone'],
-                               genero=row['genero'],
-                               logradouro=row['logradouro'],
-                               numero=row['numero'],
-                               bairro=row['bairro'],
-                               complemento=row['complemento'],
-                               cep=row['cep']) for row in rows]
+            return [
+                Usuario(
+                    id=row['id'],
+                    id_cidade=Cidade(
+                        id=row['id_cidade'],
+                        nome=row['nome_cidade'],
+                        id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
+                    ),
+                    nome=row['nome'],
+                    nome_usuario=row['nome_usuario'],
+                    senha=row['senha'],
+                    email=row['email'],
+                    cpf=row['cpf'],
+                    telefone=row['telefone'],
+                    genero=row['genero'],
+                    logradouro=row['logradouro'],
+                    numero=row['numero'],
+                    bairro=row['bairro'],
+                    complemento=row['complemento'],
+                    cep=row['cep'],
+                    data_nascimento=row['data_nascimento']
+                ) for row in rows
+            ]
         
-    def search_paged(self, termo: str, page_number: int=1, page_size: int=10, ) -> List[Usuario]:
+    def search_paged(self, termo: str, page_number: int=1, page_size: int=10) -> List[Usuario]:
         limit = page_size
         offset = (page_number - 1) * page_size
         termo = f"%{termo}%"
@@ -91,24 +114,29 @@ class UsuarioRepo:
             cursor = conn.cursor()
             cursor.execute(SQL_SELECT_RANGE_BUSCA_USUARIO, (f'%{termo}%', limit, offset))
             rows = cursor.fetchall()
-            return [Usuario(id=row['id'],
-                               id_cidade=Cidade(
-                                   id=row['id_cidade'],
-                                   nome=row['nome_cidade'],
-                                   id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
-                               ),
-                               nome=row['nome'],
-                               nome_usuario=row['nome_usuario'],
-                               senha=row['senha'],
-                               email=row['email'],
-                               cpf=row['cpf'],
-                               telefone=row['telefone'],
-                               genero=row['genero'],
-                               logradouro=row['logradouro'],
-                               numero=row['numero'],
-                               bairro=row['bairro'],
-                               complemento=row['complemento'],
-                               cep=row['cep']) for row in rows]
+            return [
+                Usuario(
+                    id=row['id'],
+                    id_cidade=Cidade(
+                        id=row['id_cidade'],
+                        nome=row['nome_cidade'],
+                        id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
+                    ),
+                    nome=row['nome'],
+                    nome_usuario=row['nome_usuario'],
+                    senha=row['senha'],
+                    email=row['email'],
+                    cpf=row['cpf'],
+                    telefone=row['telefone'],
+                    genero=row['genero'],
+                    logradouro=row['logradouro'],
+                    numero=row['numero'],
+                    bairro=row['bairro'],
+                    complemento=row['complemento'],
+                    cep=row['cep'],
+                    data_nascimento=row['data_nascimento']
+                ) for row in rows
+            ]
         
     def count(self) -> int:
         with get_connection() as conn:
@@ -121,30 +149,51 @@ class UsuarioRepo:
             cursor = conn.cursor()
             cursor.execute(SQL_SELECT_USUARIO)
             rows = cursor.fetchall()
-            return [Usuario(id=row['id'],
-                               id_cidade=Cidade(
-                                   id=row['id_cidade'],
-                                   nome=row['nome_cidade'],
-                                   id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
-                               ),
-                               nome=row['nome'],
-                               nome_usuario=row['nome_usuario'],
-                               senha=row['senha'],
-                               email=row['email'],
-                               cpf=row['cpf'],
-                               telefone=row['telefone'],
-                               genero=row['genero'],
-                               logradouro=row['logradouro'],
-                               numero=row['numero'],
-                               bairro=row['bairro'],
-                               complemento=row['complemento'],
-                               cep=row['cep']) for row in rows]
+            return [
+                Usuario(
+                    id=row['id'],
+                    id_cidade=Cidade(
+                        id=row['id_cidade'],
+                        nome=row['nome_cidade'],
+                        id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
+                    ),
+                    nome=row['nome'],
+                    nome_usuario=row['nome_usuario'],
+                    senha=row['senha'],
+                    email=row['email'],
+                    cpf=row['cpf'],
+                    telefone=row['telefone'],
+                    genero=row['genero'],
+                    logradouro=row['logradouro'],
+                    numero=row['numero'],
+                    bairro=row['bairro'],
+                    complemento=row['complemento'],
+                    cep=row['cep'],
+                    data_nascimento=row['data_nascimento']
+                ) for row in rows
+            ]
     
     def update(self, usuario: Usuario) -> bool:
         try: 
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_UPDATE_USUARIO, (usuario.id_cidade.id, usuario.nome, usuario.nome_usuario, usuario.senha, usuario.email, usuario.cpf, usuario.telefone, usuario.genero, usuario.logradouro, usuario.numero, usuario.bairro, usuario.complemento, usuario.cep, usuario.id))
+                cursor.execute(SQL_UPDATE_USUARIO, (
+                    usuario.id_cidade.id,
+                    usuario.nome,
+                    usuario.nome_usuario,
+                    usuario.senha,
+                    usuario.email,
+                    usuario.cpf,
+                    usuario.telefone,
+                    usuario.genero,
+                    usuario.logradouro,
+                    usuario.numero,
+                    usuario.bairro,
+                    usuario.complemento,
+                    usuario.cep,
+                    usuario.data_nascimento,
+                    usuario.id
+                ))
                 return cursor.rowcount > 0
         except sqlite3.IntegrityError as e:
             print(f"Erro de integridade ao atualizar usuario: {e}")

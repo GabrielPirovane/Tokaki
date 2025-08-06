@@ -26,12 +26,12 @@ class TestAgendaRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425")
+        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425", data_nascimento="2000-01-01")  # Adicionado campo data_nascimento
         id_usuario = repo_usuario.insert(usuario)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico = Musico(Usuario(id_usuario, cidade, "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia teste")
+        musico = Musico(Usuario(id_usuario, cidade, "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425", data_nascimento="2000-01-01"), "experiencia teste")  # Adicionado campo data_nascimento
         id_musico = repo_musico.insert(musico)
 
         repo = AgendaRepo(test_db)
@@ -61,12 +61,12 @@ class TestAgendaRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425")
+        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425", data_nascimento="2000-01-01")  # Adicionado campo data_nascimento
         id_usuario = repo_usuario.insert(usuario)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico = Musico(Usuario(id_usuario, cidade, "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia teste")
+        musico = Musico(Usuario(id_usuario, cidade, "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425", data_nascimento="2000-01-01"), "experiencia teste")  # Adicionado campo data_nascimento
         id_musico = repo_musico.insert(musico)
 
         repo = AgendaRepo(test_db)
@@ -95,15 +95,15 @@ class TestAgendaRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario1 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421")
+        usuario1 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421", data_nascimento="1990-01-01")  # Adicionado campo data_nascimento
         id_usuario1 = repo_usuario.insert(usuario1)
-        usuario2 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422")
+        usuario2 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422", data_nascimento="1992-02-02")  # Adicionado campo data_nascimento
         id_usuario2 = repo_usuario.insert(usuario2)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico1 = Musico(Usuario(id_usuario1, cidade, "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421"), "experiencia 1")
-        musico2 = Musico(Usuario(id_usuario2, cidade, "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422"), "experiencia 2")
+        musico1 = Musico(Usuario(id_usuario1, cidade, "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421", data_nascimento="1990-01-01"), "experiencia 1")  # Adicionado campo data_nascimento
+        musico2 = Musico(Usuario(id_usuario2, cidade, "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422", data_nascimento="1992-02-02"), "experiencia 2")  # Adicionado campo data_nascimento
         id_musico1 = repo_musico.insert(musico1)
         id_musico2 = repo_musico.insert(musico2)
 
@@ -134,15 +134,15 @@ class TestAgendaRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario1 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421")
+        usuario1 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421", data_nascimento="1990-01-01")  # Adicionado campo data_nascimento
         id_usuario1 = repo_usuario.insert(usuario1)
-        usuario2 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422")
+        usuario2 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422", data_nascimento="1992-02-02")  # Adicionado campo data_nascimento
         id_usuario2 = repo_usuario.insert(usuario2)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico1 = Musico(Usuario(id_usuario1, cidade, "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421"), "experiencia 1")
-        musico2 = Musico(Usuario(id_usuario2, cidade, "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422"), "experiencia 2")
+        musico1 = Musico(Usuario(id_usuario1, cidade, "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421", data_nascimento="1990-01-01"), "experiencia 1")  # Adicionado campo data_nascimento
+        musico2 = Musico(Usuario(id_usuario2, cidade, "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422", data_nascimento="1992-02-02"), "experiencia 2")  # Adicionado campo data_nascimento
         id_musico1 = repo_musico.insert(musico1)
         id_musico2 = repo_musico.insert(musico2)
 
@@ -173,15 +173,15 @@ class TestAgendaRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario1 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421")
+        usuario1 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421", data_nascimento="1990-01-01")  # Adicionado campo data_nascimento
         id_usuario1 = repo_usuario.insert(usuario1)
-        usuario2 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422")
+        usuario2 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422", data_nascimento="1992-02-02")  # Adicionado campo data_nascimento
         id_usuario2 = repo_usuario.insert(usuario2)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico1 = Musico(Usuario(id_usuario1, cidade, "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421"), "experiencia 1")
-        musico2 = Musico(Usuario(id_usuario2, cidade, "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422"), "experiencia 2")
+        musico1 = Musico(Usuario(id_usuario1, cidade, "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421", data_nascimento="1990-01-01"), "experiencia 1")  # Adicionado campo data_nascimento
+        musico2 = Musico(Usuario(id_usuario2, cidade, "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422", data_nascimento="1992-02-02"), "experiencia 2")  # Adicionado campo data_nascimento
         id_musico1 = repo_musico.insert(musico1)
         id_musico2 = repo_musico.insert(musico2)
 
@@ -210,15 +210,15 @@ class TestAgendaRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario1 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421")
+        usuario1 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421", data_nascimento="1990-01-01")  # Adicionado campo data_nascimento
         id_usuario1 = repo_usuario.insert(usuario1)
-        usuario2 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422")
+        usuario2 = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422", data_nascimento="1992-02-02")  # Adicionado campo data_nascimento
         id_usuario2 = repo_usuario.insert(usuario2)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico1 = Musico(Usuario(id_usuario1, cidade, "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421"), "experiencia 1")
-        musico2 = Musico(Usuario(id_usuario2, cidade, "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422"), "experiencia 2")
+        musico1 = Musico(Usuario(id_usuario1, cidade, "Musico 1", "usuario1", "senha", "email1", "cpf1", "289999999991", "m", "logradouro1", "41", "bairro1", "complemento1", "29454421", data_nascimento="1990-01-01"), "experiencia 1")  # Adicionado campo data_nascimento
+        musico2 = Musico(Usuario(id_usuario2, cidade, "Musico 2", "usuario2", "senha", "email2", "cpf2", "289999999992", "f", "logradouro2", "42", "bairro2", "complemento2", "29454422", data_nascimento="1992-02-02"), "experiencia 2")  # Adicionado campo data_nascimento
         id_musico1 = repo_musico.insert(musico1)
         id_musico2 = repo_musico.insert(musico2)
 
@@ -249,12 +249,12 @@ class TestAgendaRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425")
+        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425", data_nascimento="2000-01-01")  # Adicionado campo data_nascimento
         id_usuario = repo_usuario.insert(usuario)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico = Musico(Usuario(id_usuario, cidade, "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia teste")
+        musico = Musico(Usuario(id_usuario, cidade, "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425", data_nascimento="2000-01-01"), "experiencia teste")  # Adicionado campo data_nascimento
         id_musico = repo_musico.insert(musico)
 
         repo = AgendaRepo(test_db)
@@ -285,12 +285,12 @@ class TestAgendaRepo:
 
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425")
+        usuario = Usuario(0, Cidade(id_cidade, "Test Cidade", Uf(id_uf, "Test UF")), "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425", data_nascimento="2000-01-01")  # Adicionado campo data_nascimento
         id_usuario = repo_usuario.insert(usuario)
 
         repo_musico = MusicoRepo(test_db)
         repo_musico.create_table()
-        musico = Musico(Usuario(id_usuario, cidade, "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425"), "experiencia teste")
+        musico = Musico(Usuario(id_usuario, cidade, "Nome Musico", "nome usuario", "senha", "email", "cpf", "289999999999", "m", "logradouro", "43", "bairro", "complemento", "29454425", data_nascimento="2000-01-01"), "experiencia teste")  # Adicionado campo data_nascimento
         id_musico = repo_musico.insert(musico)
 
         repo = AgendaRepo(test_db)

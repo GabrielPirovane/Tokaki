@@ -80,7 +80,7 @@ async def get_root():
 @app.get("/cadastro")
 async def get_cadastro():
     response = templates.TemplateResponse("cadastro.html", {"request": {}})
-    return response
+    return response 
 
 @app.get("/login")
 async def get_login():
@@ -100,6 +100,11 @@ async def get_musico():
 @app.get("/user")
 async def get_user():
     response = templates.TemplateResponse("perfil_usuario.html", {"request": {}})
+    return response
+
+@app.get("/adm")
+async def get_adm():
+    response = templates.TemplateResponse("perfil_adm.html", {"request": {}})
     return response
 
 if __name__ == "__main__":

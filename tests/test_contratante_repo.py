@@ -41,14 +41,15 @@ class TestContratanteRepo:
             numero="123",
             bairro="Centro",
             complemento="Apto 1",
-            cep="29000000"
+            cep="29000000",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
         )
         id_usuario = repo_usuario.insert(usuario_teste)
 
         repo_contratante = ContratanteRepo(test_db)
         repo_contratante.create_table()
         contratante_teste = Contratante(
-            id=Usuario(id_usuario, usuario_teste.id_cidade, usuario_teste.nome, usuario_teste.nome_usuario, usuario_teste.senha, usuario_teste.email, usuario_teste.cpf, usuario_teste.telefone, usuario_teste.genero, usuario_teste.logradouro, usuario_teste.numero, usuario_teste.bairro, usuario_teste.complemento, usuario_teste.cep),
+            id=Usuario(id_usuario, usuario_teste.id_cidade, usuario_teste.nome, usuario_teste.nome_usuario, usuario_teste.senha, usuario_teste.email, usuario_teste.cpf, usuario_teste.telefone, usuario_teste.genero, usuario_teste.logradouro, usuario_teste.numero, usuario_teste.bairro, usuario_teste.complemento, usuario_teste.cep, usuario_teste.data_nascimento),  # Adicionado campo data_nascimento
             nota=4.5,
             numero_contratacoes=2
         )
@@ -89,14 +90,15 @@ class TestContratanteRepo:
             numero="123",
             bairro="Centro",
             complemento="Apto 1",
-            cep="29000000"
+            cep="29000000",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
         )
         id_usuario = repo_usuario.insert(usuario_teste)
 
         repo_contratante = ContratanteRepo(test_db)
         repo_contratante.create_table()
         contratante_teste = Contratante(
-            id=Usuario(id_usuario, usuario_teste.id_cidade, usuario_teste.nome, usuario_teste.nome_usuario, usuario_teste.senha, usuario_teste.email, usuario_teste.cpf, usuario_teste.telefone, usuario_teste.genero, usuario_teste.logradouro, usuario_teste.numero, usuario_teste.bairro, usuario_teste.complemento, usuario_teste.cep),
+            id=Usuario(id_usuario, usuario_teste.id_cidade, usuario_teste.nome, usuario_teste.nome_usuario, usuario_teste.senha, usuario_teste.email, usuario_teste.cpf, usuario_teste.telefone, usuario_teste.genero, usuario_teste.logradouro, usuario_teste.numero, usuario_teste.bairro, usuario_teste.complemento, usuario_teste.cep, usuario_teste.data_nascimento),  # Adicionado campo data_nascimento
             nota=4.5,
             numero_contratacoes=2
         )
@@ -137,7 +139,8 @@ class TestContratanteRepo:
             numero="1",
             bairro="Bairro 1",
             complemento="Comp 1",
-            cep="29000001"
+            cep="29000001",
+            data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
         )
         usuario2 = Usuario(
             id=0,
@@ -153,7 +156,8 @@ class TestContratanteRepo:
             numero="2",
             bairro="Bairro 2",
             complemento="Comp 2",
-            cep="29000002"
+            cep="29000002",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
         )
         id_usuario1 = repo_usuario.insert(usuario1)
         id_usuario2 = repo_usuario.insert(usuario2)
@@ -161,12 +165,12 @@ class TestContratanteRepo:
         repo_contratante = ContratanteRepo(test_db)
         repo_contratante.create_table()
         contratante1 = Contratante(
-            id=Usuario(id_usuario1, usuario1.id_cidade, usuario1.nome, usuario1.nome_usuario, usuario1.senha, usuario1.email, usuario1.cpf, usuario1.telefone, usuario1.genero, usuario1.logradouro, usuario1.numero, usuario1.bairro, usuario1.complemento, usuario1.cep),
+            id=Usuario(id_usuario1, usuario1.id_cidade, usuario1.nome, usuario1.nome_usuario, usuario1.senha, usuario1.email, usuario1.cpf, usuario1.telefone, usuario1.genero, usuario1.logradouro, usuario1.numero, usuario1.bairro, usuario1.complemento, usuario1.cep, usuario1.data_nascimento),  # Adicionado campo data_nascimento
             nota=4.0,
             numero_contratacoes=1
         )
         contratante2 = Contratante(
-            id=Usuario(id_usuario2, usuario2.id_cidade, usuario2.nome, usuario2.nome_usuario, usuario2.senha, usuario2.email, usuario2.cpf, usuario2.telefone, usuario2.genero, usuario2.logradouro, usuario2.numero, usuario2.bairro, usuario2.complemento, usuario2.cep),
+            id=Usuario(id_usuario2, usuario2.id_cidade, usuario2.nome, usuario2.nome_usuario, usuario2.senha, usuario2.email, usuario2.cpf, usuario2.telefone, usuario2.genero, usuario2.logradouro, usuario2.numero, usuario2.bairro, usuario2.complemento, usuario2.cep, usuario2.data_nascimento),  # Adicionado campo data_nascimento
             nota=5.0,
             numero_contratacoes=3
         )
@@ -205,7 +209,8 @@ class TestContratanteRepo:
             numero="1",
             bairro="Bairro 1",
             complemento="Comp 1",
-            cep="29000001"
+            cep="29000001",
+            data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
         )
         usuario2 = Usuario(
             id=0,
@@ -221,7 +226,8 @@ class TestContratanteRepo:
             numero="2",
             bairro="Bairro 2",
             complemento="Comp 2",
-            cep="29000002"
+            cep="29000002",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
         )
         id_usuario1 = repo_usuario.insert(usuario1)
         id_usuario2 = repo_usuario.insert(usuario2)
@@ -229,12 +235,12 @@ class TestContratanteRepo:
         repo_contratante = ContratanteRepo(test_db)
         repo_contratante.create_table()
         contratante1 = Contratante(
-            id=Usuario(id_usuario1, usuario1.id_cidade, usuario1.nome, usuario1.nome_usuario, usuario1.senha, usuario1.email, usuario1.cpf, usuario1.telefone, usuario1.genero, usuario1.logradouro, usuario1.numero, usuario1.bairro, usuario1.complemento, usuario1.cep),
+            id=Usuario(id_usuario1, usuario1.id_cidade, usuario1.nome, usuario1.nome_usuario, usuario1.senha, usuario1.email, usuario1.cpf, usuario1.telefone, usuario1.genero, usuario1.logradouro, usuario1.numero, usuario1.bairro, usuario1.complemento, usuario1.cep, usuario1.data_nascimento),  # Adicionado campo data_nascimento
             nota=4.0,
             numero_contratacoes=1
         )
         contratante2 = Contratante(
-            id=Usuario(id_usuario2, usuario2.id_cidade, usuario2.nome, usuario2.nome_usuario, usuario2.senha, usuario2.email, usuario2.cpf, usuario2.telefone, usuario2.genero, usuario2.logradouro, usuario2.numero, usuario2.bairro, usuario2.complemento, usuario2.cep),
+            id=Usuario(id_usuario2, usuario2.id_cidade, usuario2.nome, usuario2.nome_usuario, usuario2.senha, usuario2.email, usuario2.cpf, usuario2.telefone, usuario2.genero, usuario2.logradouro, usuario2.numero, usuario2.bairro, usuario2.complemento, usuario2.cep, usuario2.data_nascimento),  # Adicionado campo data_nascimento
             nota=5.0,
             numero_contratacoes=3
         )
@@ -277,14 +283,15 @@ class TestContratanteRepo:
             numero="3",
             bairro="Bairro Antigo",
             complemento="Comp Antigo",
-            cep="29000003"
+            cep="29000003",
+            data_nascimento="1980-01-01"  # Adicionado campo data_nascimento
         )
         id_usuario = repo_usuario.insert(usuario)
 
         repo_contratante = ContratanteRepo(test_db)
         repo_contratante.create_table()
         contratante = Contratante(
-            id=Usuario(id_usuario, usuario.id_cidade, usuario.nome, usuario.nome_usuario, usuario.senha, usuario.email, usuario.cpf, usuario.telefone, usuario.genero, usuario.logradouro, usuario.numero, usuario.bairro, usuario.complemento, usuario.cep),
+            id=Usuario(id_usuario, usuario.id_cidade, usuario.nome, usuario.nome_usuario, usuario.senha, usuario.email, usuario.cpf, usuario.telefone, usuario.genero, usuario.logradouro, usuario.numero, usuario.bairro, usuario.complemento, usuario.cep, usuario.data_nascimento),  # Adicionado campo data_nascimento
             nota=3.0,
             numero_contratacoes=1
         )
@@ -328,14 +335,15 @@ class TestContratanteRepo:
             numero="4",
             bairro="Bairro Deletar",
             complemento="Comp Deletar",
-            cep="29000004"
+            cep="29000004",
+            data_nascimento="1970-01-01"  # Adicionado campo data_nascimento
         )
         id_usuario = repo_usuario.insert(usuario)
 
         repo_contratante = ContratanteRepo(test_db)
         repo_contratante.create_table()
         contratante = Contratante(
-            id=Usuario(id_usuario, usuario.id_cidade, usuario.nome, usuario.nome_usuario, usuario.senha, usuario.email, usuario.cpf, usuario.telefone, usuario.genero, usuario.logradouro, usuario.numero, usuario.bairro, usuario.complemento, usuario.cep),
+            id=Usuario(id_usuario, usuario.id_cidade, usuario.nome, usuario.nome_usuario, usuario.senha, usuario.email, usuario.cpf, usuario.telefone, usuario.genero, usuario.logradouro, usuario.numero, usuario.bairro, usuario.complemento, usuario.cep, usuario.data_nascimento),  # Adicionado campo data_nascimento
             nota=2.5,
             numero_contratacoes=1
         )

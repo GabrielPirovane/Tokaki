@@ -57,7 +57,8 @@ class ContratanteRepo:
                         numero=row['numero_endereco'],
                         bairro=row['bairro'],
                         complemento=row['complemento'],
-                        cep=row['cep']
+                        cep=row['cep'],
+                        data_nascimento=row['data_nascimento']  # Adicionado aqui
                     ),
                     nota=row['nota'],
                     numero_contratacoes=row['numero_contratacoes']
@@ -90,7 +91,8 @@ class ContratanteRepo:
                     numero=row['numero_endereco'],
                     bairro=row['bairro'],
                     complemento=row['complemento'],
-                    cep=row['cep']
+                    cep=row['cep'],
+                    data_nascimento=row['data_nascimento']  # Adicionado aqui
                 ),
                 nota=row['nota'],
                 numero_contratacoes=row['numero_contratacoes']
@@ -123,7 +125,8 @@ class ContratanteRepo:
                     numero=row['numero_endereco'],
                     bairro=row['bairro'],
                     complemento=row['complemento'],
-                    cep=row['cep']
+                    cep=row['cep'],
+                    data_nascimento=row['data_nascimento']  # Adicionado aqui
                 ),
                 nota=row['nota'],
                 numero_contratacoes=row['numero_contratacoes']
@@ -159,7 +162,8 @@ class ContratanteRepo:
                     numero=row['numero_endereco'],
                     bairro=row['bairro'],
                     complemento=row['complemento'],
-                    cep=row['cep']
+                    cep=row['cep'],
+                    data_nascimento=row['data_nascimento']  # Adicionado aqui
                 ),
                 nota=row['nota'],
                 numero_contratacoes=row['numero_contratacoes']

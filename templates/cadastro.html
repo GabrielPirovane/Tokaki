@@ -19,13 +19,37 @@
     <script src="https://www.google.com/recaptcha/api.js"></script>
   </head>
 </head>
-<body class="imagem_fundo_cadastro d-flex align-items-center justify-content-center vh-100">
-  <div class="container">
+<body class="body_cadastro">
+    <div class="fundo">
+        <div class="mosaico">
+            <img src="/static/img/mosaico/img15.jpg" alt="">
+            <img src="/static/img/mosaico/img17.jpg" alt="">
+            <img src="/static/img/mosaico/img21.jpg" alt="">
+            <img src="/static/img/mosaico/img22.jpg" alt="">
+            <img src="/static/img/mosaico/img23.jpg" alt="">
+            <img src="/static/img/mosaico/img24.jpg" alt="">
+            <img src="/static/img/mosaico/img25.jpg" alt="">
+            <img src="/static/img/mosaico/img26.jpg" alt="">
+            <img src="/static/img/mosaico/img27.jpg" alt="">
+            <img src="/static/img/mosaico/img28.jpg" alt="">
+            <img src="/static/img/mosaico/img29.jpg" alt="">
+            <img src="/static/img/mosaico/img30.jpg" alt="">
+            <img src="/static/img/mosaico/img31.jpg" alt="">
+            <img src="/static/img/mosaico/img15.jpg" alt="">
+            <img src="/static/img/mosaico/img17.jpg" alt="">
+        </div>
+    </div>
+    
+ <div class="container">
     <div class="row justify-content-center">
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
-            <div class="card">
+            <div class="card formulario">
                 <div class="card-body">
+                    <center>
+                       <img src="/static/img/logo_colorida.png" alt="" height="100px"> 
+                    </center>
+                    
                 <h2 class="text-center mb-4">Cadastro</h2>
                 <form method="POST" action="/cadastro">
                     <div class="mb-3">
@@ -59,6 +83,7 @@
                     <div class="mb-3">
                         <label for="data_nascimento" class="form-label">Data de Nascimento</label>
                         <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" required>
+                    </div>
                     <div class="mb-3">
                         <label for="senha" class="form-label">Senha</label>
                         <input type="password" class="form-control" id="senha" name="senha" required>
@@ -71,7 +96,7 @@
                         <center>
                           <label for="recaptcha" class="form-label"></label>
                           <div class="g-recaptcha" data-sitekey="6LfGoG0rAAAAAJo_Yr9NdQiRFHT3vtAzajB8sC1N"></div>  
-                        </center>
+                        </center> <br>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
                 </form>
@@ -79,5 +104,9 @@
             </div>
             </div>
         </div>
-    </div>
+  </div>
 </body>
+<footer>
+    <div class="container text-center mt-5 text">
+        <p class="text-muted ">© 2023 Tokaki. Todos os direitos reservados.</p>
+</footer>

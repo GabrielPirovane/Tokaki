@@ -55,12 +55,16 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.rodape{
-  color: rgb(255, 255, 255);
-  text-align: center;
-  padding: 50px;
-  bottom: 0;
-  width: 100%;
+.rodape_fundo{
+  background-color: var(--cor-3);
+  color: #ffffff;
+  position: relative;
+  width: 1vh;
   font-family: var(--fonte-base);
-  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
 }

@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from fastapi.templating import Jinja2Templates
+from data.uf import uf_repo
 
 
 router = APIRouter()
@@ -13,7 +14,8 @@ async def get_root():
 
 @router.get("/cadastro")
 async def get_cadastro():
-    response = templates.TemplateResponse("cadastro.html", {"request": {}})
+    uf = uf_repo.UfRepo("dados.db").get_all()
+    response = templates.TemplateResponse("cadastro.html", {"request": {}, "uf":uf})
     return response
 
 @router.get("/login")

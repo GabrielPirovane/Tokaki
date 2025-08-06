@@ -1,16 +1,28 @@
 :root {
-    --fonte-base: 'Open Sans', sans-serif;
-    --fonte-destaque: 'Bebas Neue', sans-serif;
-    --cor-1: #b08968;
-    --cor-2: #7f5539;
-    --cor-3: #3d291b;
-    --cor-4: #e6ccb2;
+  --fonte-base: 'Open Sans', sans-serif;
+  --fonte-destaque: 'Bebas Neue', sans-serif;
+  --cor-1: #b08968;
+  --cor-2: #7f5539;
+  --cor-3: #3d291b;
+  --cor-4: #e6ccb2;
+  --cor-5: #212529;
 }
 
 body {
   font-family: var(--fonte-destaque);
 }
 
+select {
+  font-family: var(--fonte-base);
+}
+
+a {
+  color: var(--cor-5);
+}
+
+a:hover {
+  opacity: 0.8;
+}
 
 .body_cadastro {
   margin: 0;
@@ -48,8 +60,13 @@ body {
 
 /* Movimento suave */
 @keyframes mover {
-  0%   { transform: translate(-5%, -5%); }
-  100% { transform: translate(-10%, -10%); }
+  0% {
+    transform: translate(-5%, -5%);
+  }
+
+  100% {
+    transform: translate(-10%, -10%);
+  }
 }
 
 .subtitulo {
@@ -72,7 +89,7 @@ body {
   font-size: 1.2em;
 }
 
-.imagens-login{
+.imagens-login {
   display: flex;
   justify-content: center;
   gap: 30px;
@@ -83,22 +100,48 @@ body {
 .formulario {
   background-color: white;
   font: var(--fonte-base);
-  padding: 20px;
+  padding: 15px;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .form-control {
-    font-family: var(--fonte-base);
+  font-family: var(--fonte-base);
 }
 
 .botao {
-    font-family: var(--fonte-destaque);
-    color: var(--cor-4);
-    background-color: var(--cor-2);
+  font-family: var(--fonte-destaque);
+  color: var(--cor-4);
+  background-color: var(--cor-2);
 }
 
 .botao:hover {
-    background-color: var(--cor-1);
-    color: var(--cor-3);
+  background-color: var(--cor-1);
+  color: var(--cor-3);
+}
+
+.aviso-final {
+  font-size: 0.8em;
+  color: var(--cor-5);
+  opacity: 0.6;
+  margin-top: 10px;
+}
+
+.aviso-senha {
+  font-family: var(--fonte-base);
+  margin-top: 15px;
+  font-size: 0.6em;
+  color: var(--cor-5);
+  opacity: 0.96;
+  margin-top: 10px;
+  margin-left: 4px;
+}
+
+.form-check-input:checked {
+  background-color: var(--cor-1);
+  border-color: var(--cor-1);
+}
+
+.form-check-label {
+  font-family: var(--fonte-base);
 }

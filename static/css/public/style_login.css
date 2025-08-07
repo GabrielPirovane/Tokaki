@@ -28,10 +28,12 @@ a:hover {
   opacity: 0.8;
 }
 
-.body_login {
+.body_cadastro {
   margin: 0;
   background-color: var(--cor-3);
   display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Container do fundo */

@@ -111,7 +111,8 @@ class OfertaServicoRepo:
             numero=row['numero'],
             bairro=row['bairro'],
             complemento=row['complemento'],
-            cep=row['cep']
+            cep=row['cep'],
+            data_nascimento=row['data_nascimento']  # Adicionado campo data_nascimento
         )
         musico = Musico(id=usuario, experiencia=row['experiencia'])
         servico = Servico(

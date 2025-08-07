@@ -57,7 +57,8 @@ class MusicoRepo:
                     numero=row['numero'],
                     bairro=row['bairro'],
                     complemento=row['complemento'],
-                    cep=row['cep']
+                    cep=row['cep'],
+                    data_nascimento=row['data_nascimento']  # Adicionado aqui
                 )
                 return Musico(id=usuario, experiencia=row['experiencia'])
             return None
@@ -90,7 +91,8 @@ class MusicoRepo:
                     numero=row['numero'],
                     bairro=row['bairro'],
                     complemento=row['complemento'],
-                    cep=row['cep']
+                    cep=row['cep'],
+                    data_nascimento=row['data_nascimento']  # Adicionado aqui
                 )
                 musicos.append(Musico(id=usuario, experiencia=row['experiencia']))
             return musicos
@@ -124,7 +126,8 @@ class MusicoRepo:
                     numero=row['numero'],
                     bairro=row['bairro'],
                     complemento=row['complemento'],
-                    cep=row['cep']
+                    cep=row['cep'],
+                    data_nascimento=row['data_nascimento']  # Adicionado aqui
                 )
                 musicos.append(Musico(id=usuario, experiencia=row['experiencia']))
             return musicos
@@ -161,7 +164,8 @@ class MusicoRepo:
                     numero=row['numero'],
                     bairro=row['bairro'],
                     complemento=row['complemento'],
-                    cep=row['cep']
+                    cep=row['cep'],
+                    data_nascimento=row['data_nascimento']  # Adicionado aqui
                 )
                 musicos.append(Musico(id=usuario, experiencia=row['experiencia']))
             return musicos

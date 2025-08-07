@@ -39,7 +39,8 @@ class TestUsuarioRepo:
             numero="123",
             bairro="Centro",
             complemento="Apto 1",
-            cep="29000000"
+            cep="29000000",
+            data_nascimento="2000-01-01"
         )
         # Act
         id_usuario = repo_usuario.insert(usuario_teste)
@@ -59,6 +60,7 @@ class TestUsuarioRepo:
         assert usuario_db.bairro == "Centro", "Bairro do usuário deveria ser 'Centro'"
         assert usuario_db.complemento == "Apto 1", "Complemento do usuário deveria ser 'Apto 1'"
         assert usuario_db.cep == "29000000", "CEP do usuário deveria ser '29000000'"
+        assert usuario_db.data_nascimento == "2000-01-01", "Data de nascimento do usuário deveria ser '2000-01-01'"
        
     def test_get_by_id(self, test_db):
         # Arrange
@@ -88,8 +90,10 @@ class TestUsuarioRepo:
             numero="123",
             bairro="Centro",
             complemento="Apto 1",
-            cep="29000000"
+            cep="29000000",
+            data_nascimento="2000-01-01"
         )
+       
         id_usuario = repo_usuario.insert(usuario_teste)
         # Act
         usuario_db = repo_usuario.get_by_id(id_usuario)
@@ -108,6 +112,7 @@ class TestUsuarioRepo:
         assert usuario_db.bairro == "Centro", "Bairro do usuário deveria ser 'Centro'"
         assert usuario_db.complemento == "Apto 1", "Complemento do usuário deveria ser 'Apto 1'"
         assert usuario_db.cep == "29000000", "CEP do usuário deveria ser '29000000'"
+        assert usuario_db.data_nascimento == "2000-01-01", "Data de nascimento do usuário deveria ser '2000-01-01'"
 
     def test_count_usuario(self, test_db):
         # Arrange
@@ -137,7 +142,8 @@ class TestUsuarioRepo:
             numero="1",
             bairro="Bairro 1",
             complemento="Comp 1",
-            cep="29000001"
+            cep="29000001",
+            data_nascimento="2000-01-01"
         )
         usuario2 = Usuario(
             id=0,
@@ -153,7 +159,8 @@ class TestUsuarioRepo:
             numero="2",
             bairro="Bairro 2",
             complemento="Comp 2",
-            cep="29000002"
+            cep="29000002",
+            data_nascimento="2000-01-02"
         )
         repo_usuario.insert(usuario1)
         repo_usuario.insert(usuario2)
@@ -190,7 +197,9 @@ class TestUsuarioRepo:
             numero="1",
             bairro="Bairro 1",
             complemento="Comp 1",
-            cep="29000001"
+            cep="29000001",
+            data_nascimento="2000-01-01"
+            
         )
         usuario2 = Usuario(
             id=0,
@@ -206,7 +215,8 @@ class TestUsuarioRepo:
             numero="2",
             bairro="Bairro 2",
             complemento="Comp 2",
-            cep="29000002"
+            cep="29000002",
+            data_nascimento="2000-01-02"
         )
         repo_usuario.insert(usuario1)
         repo_usuario.insert(usuario2)
@@ -247,7 +257,8 @@ class TestUsuarioRepo:
             numero="3",
             bairro="Bairro Antigo",
             complemento="Comp Antigo",
-            cep="29000003"
+            cep="29000003",
+            data_nascimento="2000-01-01"
         )
         id_usuario = repo_usuario.insert(usuario)
         usuario_db = repo_usuario.get_by_id(id_usuario)
@@ -289,7 +300,8 @@ class TestUsuarioRepo:
             numero="4",
             bairro="Bairro Deletar",
             complemento="Comp Deletar",
-            cep="29000004"
+            cep="29000004",
+            data_nascimento="2000-01-01"
         )
         id_usuario = repo_usuario.insert(usuario)
         # Act
@@ -327,7 +339,8 @@ class TestUsuarioRepo:
             numero="1",
             bairro="Bairro 1",
             complemento="Comp 1",
-            cep="29000001"
+            cep="29000001",
+            data_nascimento="2000-01-01"
         )
         usuario2 = Usuario(
             id=0,
@@ -343,7 +356,8 @@ class TestUsuarioRepo:
             numero="2",
             bairro="Bairro 2",
             complemento="Comp 2",
-            cep="29000002"
+            cep="29000002",
+            data_nascimento="2000-01-01"
         )
         repo_usuario.insert(usuario1)
         repo_usuario.insert(usuario2)
@@ -385,7 +399,8 @@ class TestUsuarioRepo:
             numero="1",
             bairro="Bairro 1",
             complemento="Comp 1",
-            cep="29000001"
+            cep="29000001",
+            data_nascimento="2000-01-01"
         )
         usuario2 = Usuario(
             id=0,
@@ -401,7 +416,8 @@ class TestUsuarioRepo:
             numero="2",
             bairro="Bairro 2",
             complemento="Comp 2",
-            cep="29000002"
+            cep="29000002",
+            data_nascimento="2000-01-02"
         )
         repo_usuario.insert(usuario1)
         repo_usuario.insert(usuario2)

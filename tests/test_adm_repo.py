@@ -25,7 +25,23 @@ class TestAdmRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome Adm", "nome usuario adm", "senha adm", "email adm", "cpf adm", "289999999999", "m",  "logradouro adm", "43", "bairro adm", "complemento adm", "29454425")
+        usuario_teste = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Nome Adm",
+            "nome usuario adm",
+            "senha adm",
+            "email adm",
+            "cpf adm",
+            "289999999999",
+            "m",
+            "logradouro adm",
+            "43",
+            "bairro adm",
+            "complemento adm",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido = repo_usuario.insert(usuario_teste)
         
         repo = AdmRepo(test_db)
@@ -52,7 +68,23 @@ class TestAdmRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome Adm", "nome usuario adm", "senha adm", "email adm", "cpf adm", "289999999999", "m",  "logradouro adm", "43", "bairro adm", "complemento adm", "29454425")
+        usuario_teste = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Nome Adm",
+            "nome usuario adm",
+            "senha adm",
+            "email adm",
+            "cpf adm",
+            "289999999999",
+            "m",
+            "logradouro adm",
+            "43",
+            "bairro adm",
+            "complemento adm",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido = repo_usuario.insert(usuario_teste)
         
         repo = AdmRepo(test_db)
@@ -80,9 +112,41 @@ class TestAdmRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste1 = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Adm 1", "nome usuario 1", "senha 1", "email 1", "cpf 1", "289999999991", "m",  "logradouro 1", "41", "bairro 1", "complemento 1", "29454421")
+        usuario_teste1 = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Adm 1",
+            "nome usuario 1",
+            "senha 1",
+            "email 1",
+            "cpf 1",
+            "289999999991",
+            "m",
+            "logradouro 1",
+            "41",
+            "bairro 1",
+            "complemento 1",
+            "29454421",
+            data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido1 = repo_usuario.insert(usuario_teste1)
-        usuario_teste2 = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Adm 2", "nome usuario 2", "senha 2", "email 2", "cpf 2", "289999999992", "f",  "logradouro 2", "42", "bairro 2", "complemento 2", "29454422")
+        usuario_teste2 = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Adm 2",
+            "nome usuario 2",
+            "senha 2",
+            "email 2",
+            "cpf 2",
+            "289999999992",
+            "f",
+            "logradouro 2",
+            "42",
+            "bairro 2",
+            "complemento 2",
+            "29454422",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido2 = repo_usuario.insert(usuario_teste2)
         
         repo = AdmRepo(test_db)
@@ -112,9 +176,41 @@ class TestAdmRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste1 = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Adm 1", "nome usuario 1", "senha 1", "email 1", "cpf 1", "289999999991", "m",  "logradouro 1", "41", "bairro 1", "complemento 1", "29454421")
+        usuario_teste1 = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Adm 1",
+            "nome usuario 1",
+            "senha 1",
+            "email 1",
+            "cpf 1",
+            "289999999991",
+            "m",
+            "logradouro 1",
+            "41",
+            "bairro 1",
+            "complemento 1",
+            "29454421",
+            data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido1 = repo_usuario.insert(usuario_teste1)
-        usuario_teste2 = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Adm 2", "nome usuario 2", "senha 2", "email 2", "cpf 2", "289999999992", "f",  "logradouro 2", "42", "bairro 2", "complemento 2", "29454422")
+        usuario_teste2 = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Adm 2",
+            "nome usuario 2",
+            "senha 2",
+            "email 2",
+            "cpf 2",
+            "289999999992",
+            "f",
+            "logradouro 2",
+            "42",
+            "bairro 2",
+            "complemento 2",
+            "29454422",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido2 = repo_usuario.insert(usuario_teste2)
         
         repo = AdmRepo(test_db)
@@ -142,7 +238,23 @@ class TestAdmRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome Adm", "nome usuario adm", "senha adm", "email adm", "cpf adm", "289999999999", "m",  "logradouro adm", "43", "bairro adm", "complemento adm", "29454425")
+        usuario_teste = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Nome Adm",
+            "nome usuario adm",
+            "senha adm",
+            "email adm",
+            "cpf adm",
+            "289999999999",
+            "m",
+            "logradouro adm",
+            "43",
+            "bairro adm",
+            "complemento adm",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido = repo_usuario.insert(usuario_teste)
         
         repo = AdmRepo(test_db)
@@ -151,7 +263,23 @@ class TestAdmRepo:
         repo.insert(adm_teste)
 
         # Crie um novo usuário para ser o novo administrador
-        novo_usuario = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Novo Adm", "novo usuario adm", "senha adm", "email adm", "cpf novo", "289999999998", "m",  "logradouro novo", "44", "bairro novo", "complemento novo", "29454426")
+        novo_usuario = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Novo Adm",
+            "novo usuario adm",
+            "senha adm",
+            "email adm",
+            "cpf novo",
+            "289999999998",
+            "m",
+            "logradouro novo",
+            "44",
+            "bairro novo",
+            "complemento novo",
+            "29454426",
+            data_nascimento="2001-01-01"  # Adicionado campo data_nascimento
+        )
         novo_id = repo_usuario.insert(novo_usuario)
 
         id_antigo = adm_teste.id
@@ -176,7 +304,23 @@ class TestAdmRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome Adm", "nome usuario adm", "senha adm", "email adm", "cpf adm", "289999999999", "m",  "logradouro adm", "43", "bairro adm", "complemento adm", "29454425")
+        usuario_teste = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Nome Adm",
+            "nome usuario adm",
+            "senha adm",
+            "email adm",
+            "cpf adm",
+            "289999999999",
+            "m",
+            "logradouro adm",
+            "43",
+            "bairro adm",
+            "complemento adm",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido = repo_usuario.insert(usuario_teste)
         
         repo = AdmRepo(test_db)

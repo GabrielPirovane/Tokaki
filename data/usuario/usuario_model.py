@@ -17,3 +17,5 @@ class Usuario:
     bairro: str
     complemento: str | None
     cep: str
+    data_nascimento: str
+    

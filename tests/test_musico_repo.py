@@ -23,12 +23,47 @@ class TestMusicoRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome teste", "nome usuario teste", "senha teste", "email teste", "cpf teste", "289999999999", "m",  "logradouro teste", "43", "bairro teste", "complemento teste", "29454425")
+        usuario_teste = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Nome teste",
+            "nome usuario teste",
+            "senha teste",
+            "email teste",
+            "cpf teste",
+            "289999999999",
+            "m",
+            "logradouro teste",
+            "43",
+            "bairro teste",
+            "complemento teste",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido = repo_usuario.insert(usuario_teste)
         
         repo = MusicoRepo(test_db)
         repo.create_table()
-        musico_teste = Musico(Usuario(id_usuario_inserido, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome teste", "nome usuario teste", "senha teste", "email teste", "cpf teste", "289999999999", "m",  "logradouro teste", 43, "bairro teste", "complemento teste", "29454425"), "experiencia teste")
+        musico_teste = Musico(
+            Usuario(
+                id_usuario_inserido,
+                Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+                "Nome teste",
+                "nome usuario teste",
+                "senha teste",
+                "email teste",
+                "cpf teste",
+                "289999999999",
+                "m",
+                "logradouro teste",
+                43,
+                "bairro teste",
+                "complemento teste",
+                "29454425",
+                data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia teste"
+        )
         
         # Act
         id_musico_inserido = repo.insert(musico_teste)
@@ -49,6 +84,7 @@ class TestMusicoRepo:
         assert musico_teste.id.complemento == "complemento teste", "Complemento do Musico inserido deveria ser 'complemento teste'"
         assert musico_teste.id.cep == "29454425", "CEP do Musico inserido deveria ser '29454425'"
         assert musico_teste.experiencia == "experiencia teste", "Experiência do Musico inserido deveria ser 'experiencia teste'"
+        assert musico_teste.id.data_nascimento == "2000-01-01", "Data de nascimento do Musico inserido deveria ser '2000-01-01'"
 
     def test_get_by_id(self, test_db):
         # Arrange
@@ -64,12 +100,47 @@ class TestMusicoRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome teste", "nome usuario teste", "senha teste", "email teste", "cpf teste", "289999999999", "m",  "logradouro teste", "43", "bairro teste", "complemento teste", "29454425")
+        usuario_teste = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Nome teste",
+            "nome usuario teste",
+            "senha teste",
+            "email teste",
+            "cpf teste",
+            "289999999999",
+            "m",
+            "logradouro teste",
+            "43",
+            "bairro teste",
+            "complemento teste",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido = repo_usuario.insert(usuario_teste)
         
         repo = MusicoRepo(test_db)
         repo.create_table()
-        musico_teste = Musico(Usuario(id_usuario_inserido, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome teste", "nome usuario teste", "senha teste", "email teste", "cpf teste", "289999999999", "m",  "logradouro teste", 43, "bairro teste", "complemento teste", "29454425"), "experiencia teste")
+        musico_teste = Musico(
+            Usuario(
+                id_usuario_inserido,
+                Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+                "Nome teste",
+                "nome usuario teste",
+                "senha teste",
+                "email teste",
+                "cpf teste",
+                "289999999999",
+                "m",
+                "logradouro teste",
+                43,
+                "bairro teste",
+                "complemento teste",
+                "29454425",
+                data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia teste"
+        )
         id
         id_musico_inserido = repo.insert(musico_teste)
         
@@ -93,6 +164,7 @@ class TestMusicoRepo:
         assert musico_teste.id.complemento == "complemento teste", "Complemento do Musico inserido deveria ser 'complemento teste'"
         assert musico_teste.id.cep == "29454425", "CEP do Musico inserido deveria ser '29454425'"
         assert musico_teste.experiencia == "experiencia teste", "Experiência do Musico inserido deveria ser 'experiencia teste'"
+        assert musico_teste.id.data_nascimento == "2000-01-01", "Data de nascimento do Musico inserido deveria ser '2000-01-01'"
     
     def test_get_all_paged(self, test_db):
         # Arrange
@@ -108,15 +180,85 @@ class TestMusicoRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste1 = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 1", "nome usuario 1", "senha 1", "email 1", "cpf 1", "289999999991", "m",  "logradouro 1", "41", "bairro 1", "complemento 1", "29454421")
+        usuario_teste1 = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Test Musico 1",
+            "nome usuario 1",
+            "senha 1",
+            "email 1",
+            "cpf 1",
+            "289999999991",
+            "m",
+            "logradouro 1",
+            "41",
+            "bairro 1",
+            "complemento 1",
+            "29454421",
+            data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido1 = repo_usuario.insert(usuario_teste1)
-        usuario_teste2 = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 2", "nome usuario 2", "senha 2", "email 2", "cpf 2", "289999999992", "f",  "logradouro 2", "42", "bairro 2", "complemento 2", "29454422")
+        usuario_teste2 = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Test Musico 2",
+            "nome usuario 2",
+            "senha 2",
+            "email 2",
+            "cpf 2",
+            "289999999992",
+            "f",
+            "logradouro 2",
+            "42",
+            "bairro 2",
+            "complemento 2",
+            "29454422",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido2 = repo_usuario.insert(usuario_teste2)
         
         repo = MusicoRepo(test_db)
         repo.create_table()
-        musico_teste1 = Musico(Usuario(id_usuario_inserido1, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 1", "nome usuario 1", "senha 1", "email 1", "cpf 1", "289999999991", "m",  "logradouro 1", "41", "bairro 1", "complemento 1", "29454421"), "experiencia 1")
-        musico_teste2 = Musico(Usuario(id_usuario_inserido2, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 2", "nome usuario 2", "senha 2", "email 2", "cpf 2", "289999999992", "f",  "logradouro 2", "42", "bairro 2", "complemento 2", "29454422"), "experiencia 2")
+        musico_teste1 = Musico(
+            Usuario(
+                id_usuario_inserido1,
+                Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+                "Test Musico 1",
+                "nome usuario 1",
+                "senha 1",
+                "email 1",
+                "cpf 1",
+                "289999999991",
+                "m",
+                "logradouro 1",
+                41,
+                "bairro 1",
+                "complemento 1",
+                "29454421",
+                data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia 1"
+        )
+        musico_teste2 = Musico(
+            Usuario(
+                id_usuario_inserido2,
+                Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+                "Test Musico 2",
+                "nome usuario 2",
+                "senha 2",
+                "email 2",
+                "cpf 2",
+                "289999999992",
+                "f",
+                "logradouro 2",
+                42,
+                "bairro 2",
+                "complemento 2",
+                "29454422",
+                data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
+            ),
+            "experiencia 2"
+        )
         repo.insert(musico_teste1)
         repo.insert(musico_teste2)
         # Act
@@ -127,6 +269,8 @@ class TestMusicoRepo:
         assert musicos[0].id.id == id_usuario_inserido1, "ID do usuário da primeira Musico deveria ser igual ao ID do usuário inserido"
         assert musicos[1].experiencia == "experiencia 2", "Experiência da segunda Musico deveria ser 'experiencia 2'"
         assert musicos[1].id.id == id_usuario_inserido2, "ID do usuário da segunda Musico deveria ser igual ao ID do usuário inserido"
+        assert musicos[0].id.data_nascimento == "1990-01-01", "Data de nascimento do primeiro Musico deveria ser '1990-01-01'"
+        assert musicos[1].id.data_nascimento == "1992-02-02", "Data de nascimento do segundo Musico deveria ser '1992-02-02'"
 
     def test_search_paged(self, test_db):
         # Arrange
@@ -142,15 +286,85 @@ class TestMusicoRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste1 = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 1", "nome usuario 1", "senha 1", "email 1", "cpf 1", "289999999991", "m",  "logradouro 1", "41", "bairro 1", "complemento 1", "29454421")
+        usuario_teste1 = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Test Musico 1",
+            "nome usuario 1",
+            "senha 1",
+            "email 1",
+            "cpf 1",
+            "289999999991",
+            "m",
+            "logradouro 1",
+            "41",
+            "bairro 1",
+            "complemento 1",
+            "29454421",
+            data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido1 = repo_usuario.insert(usuario_teste1)
-        usuario_teste2 = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 2", "nome usuario 2", "senha 2", "email 2", "cpf 2", "289999999992", "f",  "logradouro 2", "42", "bairro 2", "complemento 2", "29454422")
+        usuario_teste2 = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Test Musico 2",
+            "nome usuario 2",
+            "senha 2",
+            "email 2",
+            "cpf 2",
+            "289999999992",
+            "f",
+            "logradouro 2",
+            "42",
+            "bairro 2",
+            "complemento 2",
+            "29454422",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido2 = repo_usuario.insert(usuario_teste2)
         
         repo = MusicoRepo(test_db)
         repo.create_table()
-        musico_teste1 = Musico(Usuario(id_usuario_inserido1, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 1", "nome usuario 1", "senha 1", "email 1", "cpf 1", "289999999991", "m",  "logradouro 1", "41", "bairro 1", "complemento 1", "29454421"), "experiencia 1")
-        musico_teste2 = Musico(Usuario(id_usuario_inserido2, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 2", "nome usuario 2", "senha 2", "email 2", "cpf 2", "289999999992", "f",  "logradouro 2", "42", "bairro 2", "complemento 2", "29454422"), "experiencia 2")
+        musico_teste1 = Musico(
+            Usuario(
+                id_usuario_inserido1,
+                Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+                "Test Musico 1",
+                "nome usuario 1",
+                "senha 1",
+                "email 1",
+                "cpf 1",
+                "289999999991",
+                "m",
+                "logradouro 1",
+                41,
+                "bairro 1",
+                "complemento 1",
+                "29454421",
+                data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia 1"
+        )
+        musico_teste2 = Musico(
+            Usuario(
+                id_usuario_inserido2,
+                Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+                "Test Musico 2",
+                "nome usuario 2",
+                "senha 2",
+                "email 2",
+                "cpf 2",
+                "289999999992",
+                "f",
+                "logradouro 2",
+                42,
+                "bairro 2",
+                "complemento 2",
+                "29454422",
+                data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
+            ),
+            "experiencia 2"
+        )
         repo.insert(musico_teste1)
         repo.insert(musico_teste2)
         # Act
@@ -161,6 +375,8 @@ class TestMusicoRepo:
         assert musicos[0].id.id == id_usuario_inserido1, "ID do usuário da primeira Musico deveria ser igual ao ID do usuário inserido"
         assert musicos[1].experiencia == "experiencia 2", "Experiência da segunda Musico deveria ser 'experiencia 2'"
         assert musicos[1].id.id == id_usuario_inserido2, "ID do usuário da segunda Musico deveria ser igual ao ID do usuário inserido"
+        assert musicos[0].id.data_nascimento == "1990-01-01", "Data de nascimento do primeiro Musico deveria ser '1990-01-01'"
+        assert musicos[1].id.data_nascimento == "1992-02-02", "Data de nascimento do segundo Musico deveria ser '1992-02-02'"
 
     def test_count(self, test_db):
         # Arrange
@@ -176,15 +392,85 @@ class TestMusicoRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste1 = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 1", "nome usuario 1", "senha 1", "email 1", "cpf 1", "289999999991", "m",  "logradouro 1", "41", "bairro 1", "complemento 1", "29454421")
+        usuario_teste1 = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Test Musico 1",
+            "nome usuario 1",
+            "senha 1",
+            "email 1",
+            "cpf 1",
+            "289999999991",
+            "m",
+            "logradouro 1",
+            "41",
+            "bairro 1",
+            "complemento 1",
+            "29454421",
+            data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido1 = repo_usuario.insert(usuario_teste1)
-        usuario_teste2 = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 2", "nome usuario 2", "senha 2", "email 2", "cpf 2", "289999999992", "f",  "logradouro 2", "42", "bairro 2", "complemento 2", "29454422")
+        usuario_teste2 = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Test Musico 2",
+            "nome usuario 2",
+            "senha 2",
+            "email 2",
+            "cpf 2",
+            "289999999992",
+            "f",
+            "logradouro 2",
+            "42",
+            "bairro 2",
+            "complemento 2",
+            "29454422",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido2 = repo_usuario.insert(usuario_teste2)
         
         repo = MusicoRepo(test_db)
         repo.create_table()
-        musico_teste1 = Musico(Usuario(id_usuario_inserido1, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 1", "nome usuario 1", "senha 1", "email 1", "cpf 1", "289999999991", "m",  "logradouro 1", "41", "bairro 1", "complemento 1", "29454421"), "experiencia 1")
-        musico_teste2 = Musico(Usuario(id_usuario_inserido2, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 2", "nome usuario 2", "senha 2", "email 2", "cpf 2", "289999999992", "f",  "logradouro 2", "42", "bairro 2", "complemento 2", "29454422"), "experiencia 2")
+        musico_teste1 = Musico(
+            Usuario(
+                id_usuario_inserido1,
+                Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+                "Test Musico 1",
+                "nome usuario 1",
+                "senha 1",
+                "email 1",
+                "cpf 1",
+                "289999999991",
+                "m",
+                "logradouro 1",
+                41,
+                "bairro 1",
+                "complemento 1",
+                "29454421",
+                data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia 1"
+        )
+        musico_teste2 = Musico(
+            Usuario(
+                id_usuario_inserido2,
+                Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+                "Test Musico 2",
+                "nome usuario 2",
+                "senha 2",
+                "email 2",
+                "cpf 2",
+                "289999999992",
+                "f",
+                "logradouro 2",
+                42,
+                "bairro 2",
+                "complemento 2",
+                "29454422",
+                data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
+            ),
+            "experiencia 2"
+        )
         repo.insert(musico_teste1)
         repo.insert(musico_teste2)
         # Act
@@ -206,15 +492,85 @@ class TestMusicoRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste1 = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 1", "nome usuario 1", "senha 1", "email 1", "cpf 1", "289999999991", "m",  "logradouro 1", "41", "bairro 1", "complemento 1", "29454421")
+        usuario_teste1 = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Test Musico 1",
+            "nome usuario 1",
+            "senha 1",
+            "email 1",
+            "cpf 1",
+            "289999999991",
+            "m",
+            "logradouro 1",
+            "41",
+            "bairro 1",
+            "complemento 1",
+            "29454421",
+            data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido1 = repo_usuario.insert(usuario_teste1)
-        usuario_teste2 = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 2", "nome usuario 2", "senha 2", "email 2", "cpf 2", "289999999992", "f",  "logradouro 2", "42", "bairro 2", "complemento 2", "29454422")
+        usuario_teste2 = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Test Musico 2",
+            "nome usuario 2",
+            "senha 2",
+            "email 2",
+            "cpf 2",
+            "289999999992",
+            "f",
+            "logradouro 2",
+            "42",
+            "bairro 2",
+            "complemento 2",
+            "29454422",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido2 = repo_usuario.insert(usuario_teste2)
         
         repo = MusicoRepo(test_db)
         repo.create_table()
-        musico_teste1 = Musico(Usuario(id_usuario_inserido1, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 1", "nome usuario 1", "senha 1", "email 1", "cpf 1", "289999999991", "m",  "logradouro 1", "41", "bairro 1", "complemento 1", "29454421"), "experiencia 1")
-        musico_teste2 = Musico(Usuario(id_usuario_inserido2, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Test Musico 2", "nome usuario 2", "senha 2", "email 2", "cpf 2", "289999999992", "f",  "logradouro 2", "42", "bairro 2", "complemento 2", "29454422"), "experiencia 2")
+        musico_teste1 = Musico(
+            Usuario(
+                id_usuario_inserido1,
+                Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+                "Test Musico 1",
+                "nome usuario 1",
+                "senha 1",
+                "email 1",
+                "cpf 1",
+                "289999999991",
+                "m",
+                "logradouro 1",
+                41,
+                "bairro 1",
+                "complemento 1",
+                "29454421",
+                data_nascimento="1990-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia 1"
+        )
+        musico_teste2 = Musico(
+            Usuario(
+                id_usuario_inserido2,
+                Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+                "Test Musico 2",
+                "nome usuario 2",
+                "senha 2",
+                "email 2",
+                "cpf 2",
+                "289999999992",
+                "f",
+                "logradouro 2",
+                42,
+                "bairro 2",
+                "complemento 2",
+                "29454422",
+                data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
+            ),
+            "experiencia 2"
+        )
         repo.insert(musico_teste1)
         repo.insert(musico_teste2)
         # Act
@@ -238,12 +594,47 @@ class TestMusicoRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome teste", "nome usuario teste", "senha teste", "email teste", "cpf teste", "289999999999", "m",  "logradouro teste", "43", "bairro teste", "complemento teste", "29454425")
+        usuario_teste = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Nome teste",
+            "nome usuario teste",
+            "senha teste",
+            "email teste",
+            "cpf teste",
+            "289999999999",
+            "m",
+            "logradouro teste",
+            "43",
+            "bairro teste",
+            "complemento teste",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido = repo_usuario.insert(usuario_teste)
         
         repo = MusicoRepo(test_db)
         repo.create_table()
-        musico_teste = Musico(Usuario(id_usuario_inserido, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome teste", "nome usuario teste", "senha teste", "email teste", "cpf teste", "289999999999", "m",  "logradouro teste", "43", "bairro teste", "complemento teste", "29454425"), "experiencia teste")
+        musico_teste = Musico(
+            Usuario(
+                id_usuario_inserido,
+                Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+                "Nome teste",
+                "nome usuario teste",
+                "senha teste",
+                "email teste",
+                "cpf teste",
+                "289999999999",
+                "m",
+                "logradouro teste",
+                "43",
+                "bairro teste",
+                "complemento teste",
+                "29454425",
+                data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia teste"
+        )
         id_musico_inserido = repo.insert(musico_teste)
         musico_teste.experiencia = "Updated experiencia"
         # Act
@@ -253,6 +644,7 @@ class TestMusicoRepo:
         assert resultado == True, "Atualização da Musico deveria retornar True"
         assert musico_db.id.id == id_usuario_inserido, "ID do usuário da Musico atualizada deveria ser igual ao ID do usuário inserido"
         assert musico_db.experiencia == "Updated experiencia", "Experiência da Musico atualizada deveria ser 'Updated experiencia'"
+        assert musico_db.id.data_nascimento == "2000-01-01", "Data de nascimento do Musico buscado deveria ser '2000-01-01'"
     
     def test_delete_musico(self, test_db):
         # Arrange
@@ -268,12 +660,47 @@ class TestMusicoRepo:
         
         repo_usuario = UsuarioRepo(test_db)
         repo_usuario.create_table()
-        usuario_teste = Usuario(0, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome teste", "nome usuario teste", "senha teste", "email teste", "cpf teste", "289999999999", "m",  "logradouro teste", "43", "bairro teste", "complemento teste", "29454425")
+        usuario_teste = Usuario(
+            0,
+            Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+            "Nome teste",
+            "nome usuario teste",
+            "senha teste",
+            "email teste",
+            "cpf teste",
+            "289999999999",
+            "m",
+            "logradouro teste",
+            "43",
+            "bairro teste",
+            "complemento teste",
+            "29454425",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+        )
         id_usuario_inserido = repo_usuario.insert(usuario_teste)
         
         repo = MusicoRepo(test_db)
         repo.create_table()
-        musico_teste = Musico(Usuario(id_usuario_inserido, Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")), "Nome teste", "nome usuario teste", "senha teste", "email teste", "cpf teste", "289999999999", "m",  "logradouro teste", "43", "bairro teste", "complemento teste", "29454425"), "experiencia teste")
+        musico_teste = Musico(
+            Usuario(
+                id_usuario_inserido,
+                Cidade(id_cidade_inserida, "Test Cidade", Uf(id_uf_inserida, "Test UF")),
+                "Nome teste",
+                "nome usuario teste",
+                "senha teste",
+                "email teste",
+                "cpf teste",
+                "289999999999",
+                "m",
+                "logradouro teste",
+                "43",
+                "bairro teste",
+                "complemento teste",
+                "29454425",
+                data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
+            ),
+            "experiencia teste"
+        )
         id_musico_inserido = repo.insert(musico_teste)
         # Act
         resultado = repo.delete(id_musico_inserido)

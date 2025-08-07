@@ -49,7 +49,8 @@ class TestContratacaoRepo:
             numero="123",
             bairro="Centro",
             complemento="Apto 1",
-            cep="29000000"
+            cep="29000000",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
         )
         id_usuario_musico = repo_usuario.insert(usuario_musico)
         usuario_musico.id = id_usuario_musico
@@ -76,7 +77,8 @@ class TestContratacaoRepo:
             numero="456",
             bairro="Centro",
             complemento="Apto 2",
-            cep="29000001"
+            cep="29000001",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
         )
         id_usuario_contratante = repo_usuario.insert(usuario_contratante)
         usuario_contratante.id = id_usuario_contratante
@@ -170,7 +172,8 @@ class TestContratacaoRepo:
             numero="123",
             bairro="Centro",
             complemento="Apto 1",
-            cep="29000000"
+            cep="29000000",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
         )
         id_usuario_musico = repo_usuario.insert(usuario_musico)
         usuario_musico.id = id_usuario_musico
@@ -197,7 +200,8 @@ class TestContratacaoRepo:
             numero="456",
             bairro="Centro",
             complemento="Apto 2",
-            cep="29000001"
+            cep="29000001",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
         )
         id_usuario_contratante = repo_usuario.insert(usuario_contratante)
         usuario_contratante.id = id_usuario_contratante
@@ -291,7 +295,8 @@ class TestContratacaoRepo:
             numero="123",
             bairro="Centro",
             complemento="Apto 1",
-            cep="29000000"
+            cep="29000000",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
         )
         id_usuario_musico = repo_usuario.insert(usuario_musico)
         usuario_musico.id = id_usuario_musico
@@ -318,7 +323,8 @@ class TestContratacaoRepo:
             numero="456",
             bairro="Centro",
             complemento="Apto 2",
-            cep="29000001"
+            cep="29000001",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
         )
         id_usuario_contratante = repo_usuario.insert(usuario_contratante)
         usuario_contratante.id = id_usuario_contratante
@@ -432,7 +438,8 @@ class TestContratacaoRepo:
             numero="123",
             bairro="Centro",
             complemento="Apto 1",
-            cep="29000000"
+            cep="29000000",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
         )
         id_usuario_musico = repo_usuario.insert(usuario_musico)
         usuario_musico.id = id_usuario_musico
@@ -459,7 +466,8 @@ class TestContratacaoRepo:
             numero="456",
             bairro="Centro",
             complemento="Apto 2",
-            cep="29000001"
+            cep="29000001",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
         )
         id_usuario_contratante = repo_usuario.insert(usuario_contratante)
         usuario_contratante.id = id_usuario_contratante
@@ -588,7 +596,8 @@ class TestContratacaoRepo:
             numero="123",
             bairro="Centro",
             complemento="Apto 1",
-            cep="29000000"
+            cep="29000000",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
         )
         id_usuario_musico = repo_usuario.insert(usuario_musico)
         usuario_musico.id = id_usuario_musico
@@ -615,7 +624,8 @@ class TestContratacaoRepo:
             numero="456",
             bairro="Centro",
             complemento="Apto 2",
-            cep="29000001"
+            cep="29000001",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
         )
         id_usuario_contratante = repo_usuario.insert(usuario_contratante)
         usuario_contratante.id = id_usuario_contratante
@@ -714,7 +724,8 @@ class TestContratacaoRepo:
             numero="123",
             bairro="Centro",
             complemento="Apto 1",
-            cep="29000000"
+            cep="29000000",
+            data_nascimento="2000-01-01"  # Adicionado campo data_nascimento
         )
         id_usuario_musico = repo_usuario.insert(usuario_musico)
         usuario_musico.id = id_usuario_musico
@@ -741,7 +752,8 @@ class TestContratacaoRepo:
             numero="456",
             bairro="Centro",
             complemento="Apto 2",
-            cep="29000001"
+            cep="29000001",
+            data_nascimento="1992-02-02"  # Adicionado campo data_nascimento
         )
         id_usuario_contratante = repo_usuario.insert(usuario_contratante)
         usuario_contratante.id = id_usuario_contratante

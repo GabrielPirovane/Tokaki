@@ -16,6 +16,10 @@ select {
   font-family: var(--fonte-base);
 }
 
+hr {
+  color: var(--cor-2);
+}
+
 a {
   color: var(--cor-5);
 }

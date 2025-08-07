@@ -1,14 +1,35 @@
 :root {
-    --fonte-base: 'Open Sans', sans-serif;
-    --fonte-destaque: 'Bebas Neue', sans-serif;
-    --cor-1: #b08968;
-    --cor-2: #7f5539;
-    --cor-3: #3d291b;
-    --cor-4: #e6ccb2;
+  --fonte-base: 'Open Sans', sans-serif;
+  --fonte-destaque: 'Bebas Neue', sans-serif;
+  --cor-1: #b08968;
+  --cor-2: #7f5539;
+  --cor-3: #3d291b;
+  --cor-4: #e6ccb2;
+  --cor-5: #212529;
 }
-.body {
+
+body {
+  font-family: var(--fonte-destaque);
+}
+
+select {
+  font-family: var(--fonte-base);
+}
+
+hr {
+  color: var(--cor-2);
+}
+
+a {
+  color: var(--cor-5);
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+.body_login {
   margin: 0;
-  font-family: Arial, sans-serif;
   background-color: var(--cor-3);
   display: flex;
 }
@@ -29,6 +50,7 @@
   width: 120%;
   height: 120%;
   animation: mover 30s linear infinite alternate;
+  filter: blur(2px) brightness(0.95);
 }
 
 /* Imagens */
@@ -42,24 +64,88 @@
 
 /* Movimento suave */
 @keyframes mover {
-  0%   { transform: translate(-5%, -5%); }
-  100% { transform: translate(-10%, -10%); }
+  0% {
+    transform: translate(-5%, -5%);
+  }
+
+  100% {
+    transform: translate(-10%, -10%);
+  }
 }
 
-.formulario_login {
-  background-color: var(--cor-4);
+.subtitulo {
+  font-family: var(--fonte-base);
+  font-size: 1em;
+  color: var(--cor-1);
+  text-align: center;
+  margin-top: 0;
+}
+
+.check {
+  display: flex;
+  gap: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.titulo-form {
+  font-family: var(--fonte-destaque);
+  font-size: 1.2em;
+}
+
+.imagens-login {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.formulario {
+  background-color: white;
   font: var(--fonte-base);
-  padding: 20px;
-  border-radius: 10px;
+  padding: 15px;
+  border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.rodape{
-  color: rgb(255, 255, 255);
-  text-align: center;
-  padding: 50px;
-  bottom: 0;
-  width: 100%;
+.form-control {
   font-family: var(--fonte-base);
-  font-size: 14px;
+}
+
+.botao {
+  font-family: var(--fonte-destaque);
+  color: var(--cor-4);
+  background-color: var(--cor-2);
+}
+
+.botao:hover {
+  background-color: var(--cor-1);
+  color: var(--cor-3);
+}
+
+.aviso-final {
+  font-size: 0.8em;
+  color: var(--cor-5);
+  opacity: 0.6;
+  margin-top: 10px;
+}
+
+.aviso-senha {
+  font-family: var(--fonte-base);
+  margin-top: 15px;
+  font-size: 0.6em;
+  color: var(--cor-5);
+  opacity: 0.96;
+  margin-top: 10px;
+  margin-left: 4px;
+}
+
+.form-check-input:checked {
+  background-color: var(--cor-1);
+  border-color: var(--cor-1);
+}
+
+.form-check-label {
+  font-family: var(--fonte-base);
 }

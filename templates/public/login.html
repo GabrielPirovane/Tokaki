@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="static/img/logo_colorida.png" type="image/x-icon">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <!-- Fontes -->
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+            rel="stylesheet">
+        <!--  -->
+        <link rel="stylesheet" href="static/css/public/style_login.css">
+        <title>Tokaki</title>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+    </head>
+</head>
+
+<body class="body_login">
+    <div class="fundo">
+        <div class="mosaico">
+            <img src="/static/img/mosaico/img15.jpg" alt="">
+            <img src="/static/img/mosaico/img17.jpg" alt="">
+            <img src="/static/img/mosaico/img21.jpg" alt="">
+            <img src="/static/img/mosaico/img22.jpg" alt="">
+            <img src="/static/img/mosaico/img23.jpg" alt="">
+            <img src="/static/img/mosaico/img24.jpg" alt="">
+            <img src="/static/img/mosaico/img25.jpg" alt="">
+            <img src="/static/img/mosaico/img26.jpg" alt="">
+            <img src="/static/img/mosaico/img27.jpg" alt="">
+            <img src="/static/img/mosaico/img28.jpg" alt="">
+            <img src="/static/img/mosaico/img29.jpg" alt="">
+            <img src="/static/img/mosaico/img30.jpg" alt="">
+            <img src="/static/img/mosaico/img31.jpg" alt="">
+            <img src="/static/img/mosaico/img15.jpg" alt="">
+            <img src="/static/img/mosaico/img17.jpg" alt="">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-6">
+                    <div class="card formulario">
+                        <div class="card-body px-5">
+                            <center>
+                                 <a href="/"><img src="/static/img/logo_colorida.png" alt="" height="110px"></a>
+                            </center>
+                            <h2 class="text-center mb-1">BEM-VINDO DE VOLTA!</h2>
+                            <h5 class="text-center subtitulo">Acesse sua conta</h5>
+
+
+                            <form method="POST" action="/cadastro">
+                                <div class="mb-3">
+                                    <label for="email" class="titulo-form">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="exemplo@email.com" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="senha" class="titulo-form">Senha</label>
+                                    <input type="password" class="form-control" id="senha" name="senha"
+                                        placeholder="Digite uma senha" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <center>
+                                        <label for="recaptcha" class="form-label"></label>
+                                        <div class="g-recaptcha"
+                                            data-sitekey="6LfGoG0rAAAAAJo_Yr9NdQiRFHT3vtAzajB8sC1N">
+                                        </div>
+                                    </center> <br>
+                                </div>
+                                <center>
+                                    <button type="submit" class="btn w-50 botao fs-3">Entrar</button>
+                                </center>
+
+                                <div class="d-flex align-items-center my-3">
+                                    <hr class="flex-grow-1">
+                                    <span class="mx-4">OU CONECTE COM</span>
+                                    <hr class="flex-grow-1">
+                                </div>
+                                <center>
+                                    <div class="imagens-login">
+                                        <img src="/static/img/google-icon.png" alt="" height="70px"
+                                            class="rounded-circle">
+                                        <img src="/static/img/facebook-logo.png" alt="" height="70px">
+                                    </div>
+                                    <hr class="flex-grow-1">
+                                    <p class="d-inline fs-5">Ainda não tem uma conta?</p>
+                                    <a href="/cadastro" class="fs-5">Cadastre-se</a>
+                                    <p class="aviso-final mt-4">Ao continuar, você concorda com os <a href="">Termos
+                                            de
+                                            Serviço</a> do Tokaki e confirma que leu nossa <a href="">Política de
+                                            Privacidade</a>. Aviso na coleta de informações</p>
+
+                                </center>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<footer>
+    <div class="container text-center mt-5 text">
+        <p class="text-muted">© 2025 Tokaki. Todos os direitos reservados.</p>
+</footer>

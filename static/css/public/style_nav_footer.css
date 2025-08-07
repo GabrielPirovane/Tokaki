@@ -1,0 +1,68 @@
+:root {
+    --fonte-base: 'Open Sans', sans-serif;
+    --fonte-destaque: 'Bebas Neue', sans-serif;
+    --cor-1: #b08968;
+    --cor-2: #7f5539;
+    --cor-3: #3d291b;
+    --cor-4: #e6ccb2;
+}
+body {
+    overflow-y: scroll;
+    font-family: var(--fonte-base);
+}
+nav {
+    height: 5em;
+    font-family: var(--fonte-destaque);
+    background-color: var(--cor-1) !important;
+}
+footer {
+    height: 7em;
+    font-family: var(--fonte-destaque);
+    background-color: var(--cor-1);
+    color: var(--cor-3);
+}
+body {
+    overflow-y: scroll;
+    font-family: var(--fonte-base);
+}
+nav {
+    height: 5em;
+    font-family: var(--fonte-destaque);
+    background-color: var(--cor-1) !important;
+}
+footer {
+    height: 7em;
+    font-family: var(--fonte-destaque);
+    background-color: var(--cor-1);
+    color: var(--cor-3);
+}
+.navbar-nav .nav-link {
+    font-size: 2rem;
+    font-family: var(--fonte-destaque);
+    font-weight: 700;
+    letter-spacing: 1px;
+   
+}
+#icone-perfil {
+    font-size: 1.8em;
+    margin-bottom: 2em;
+    filter: invert();
+}
+#secao-nav {
+    color: var(--cor-3);
+}
+.placeholder {
+    color: var(--cor-2);
+}
+#barra-pesquisa {
+    width: 50em;
+    border-radius: 1em;
+}
+#barra-pesquisa .btn {
+    background-color: var(--cor-2) !important;
+    color: #fff !important;
+    border: none !important;
+}
+#barra-pesquisa .btn:hover {
+    opacity: 80%;
+}

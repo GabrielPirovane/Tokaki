@@ -8,6 +8,14 @@ templates = Jinja2Templates(directory="templates")
 
 adm_repo = AdmRepo(db_path="dados.db")
 
+
+
+@router.get("/admin")
+async def get_administradores():
+    administradores = adm_repo.get_all()
+    response = templates.TemplateResponse("/admin/area_adm.html", {"request": {}, "administradores": administradores})
+    return response
+
 @router.get("/admin/administradores")
 async def get_administradores():
     administradores = adm_repo.get_all()

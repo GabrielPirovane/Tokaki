@@ -5,8 +5,8 @@ import uvicorn
 
 from routes.public import router as public_router
 from routes.admin.adm_administradores_routes import router as adm_administradores_router
-# from routes.admin.adm_categorias_routes import router as adm_categorias_router
-# from routes.admin.adm_fotos import router as adm_fotos_router
+from routes.admin.adm_categorias_routes import router as adm_categorias_router
+from routes.admin.adm_fotos import router as adm_fotos_router
 
 
 from data.agenda import agenda_repo
@@ -77,8 +77,8 @@ contratacao_repo_instance.create_table()
 
 app.include_router(public_router)
 app.include_router(adm_administradores_router)
-# app.include_router(adm_categorias_router)
-# app.include_router(adm_fotos_router)
+app.include_router(adm_categorias_router)
+app.include_router(adm_fotos_router)
 
 
 if __name__ == "__main__":

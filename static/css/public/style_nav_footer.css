@@ -8,7 +8,7 @@
 }
 body {
     overflow-y: scroll;
-    font-family: var(--fonte-base);
+    font-family: var(--fonte-destaque);
 }
 nav {
     height: 5em;

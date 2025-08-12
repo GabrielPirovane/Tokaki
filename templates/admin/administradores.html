@@ -1,10 +1,19 @@
 {% extends "/admin/base.html" %}
 {% block conteudo %}
+{% if mensagem %}
+<div class="alert alert-{{ tipo_msg }} alert-dismissible fade show" role="alert">
+  {{ mensagem }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+<a class="btn btn-primary" href="/admin/administradores/inserir" role="button">Inserir</a>
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Id</th>
       <th>Nome</th>
+      <th>Email</th>
+      <th class="text-center">Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -12,8 +21,41 @@
     <tr>
       <td>{{adm.id}}</td>
       <td>{{adm.nome}}</td>
+      <td>{{adm.email}}</td>
+      <td class="text-center">
+        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+          data-bs-target="#confirmDeleteModal{{ adm.id }}">
+          <i class="bi-trash"></i>
+        </button>
+        <a href="/admin/adms/alterar/{{ adm.id }}" class="btn btn-warning btn-sm ms-2">
+          <i class="bi bi-pencil"></i>
+        </a>
+
+        <!-- Modal para essa adm -->
+        <div class="modal fade" id="confirmDeleteModal{{ adm.id }}" tabindex="-1"
+          aria-labelledby="modalLabel{{ adm.id }}" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel{{ adm.id }}">Confirmar exclusão</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+              </div>
+              <div class="modal-body">
+                Tem certeza que deseja excluir a adm "{{ adm.nome }}"?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <form action="/admin/adms/excluir/{{ adm.id }}" method="post" style="display:inline;">
+                  <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
 {% endblock %}
+

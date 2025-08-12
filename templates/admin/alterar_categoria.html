@@ -4,7 +4,7 @@
 {% endblock %}
 {% block conteudo %}
 <div class=" form-inserir d-flex justify-content-center align-items-center">
-  <form action="/admin/categorias/alterar" method="post" class="w-50">
+  <form action="/admin/categorias/alterar/{{categoria.id}}" method="post" class="w-50">
     <h1 class="text-center mb-3">Alterar categoria de id {{categoria.id}}</h1>
     <div class="mb-3 w-100">
       <div class="row">

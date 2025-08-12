@@ -51,7 +51,7 @@ class AdmRepo:
             cursor.execute(SQL_SELECT_ADMINISTRADOR)
             rows = cursor.fetchall()
             return [
-            {"id": row["id"], "nome": row["nome_administrador"]}
+            {"id": row["id"], "nome": row["nome_administrador"], "email": row["email_administrador"]}
             for row in rows
             ]
     

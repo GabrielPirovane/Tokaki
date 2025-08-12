@@ -31,7 +31,8 @@ async def get_administradores():
     return response
 
 @router.get("/admin/administradores")
-async def get_administradores(request: Request, 
+async def get_administradores(
+    request: Request, 
     mensagem: str | None = Query(None), 
     tipo_msg: str = Query("info")
 ):

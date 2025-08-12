@@ -41,13 +41,15 @@ async def post_categoria_inserir(request: Request, nome: str = Form(...), descri
     categoria = Categoria(id=0, nome=nome, descricao=descricao)
     categorias_encontradas = categoria_repo.search_paged(nome)
     if categorias_encontradas:
-        return templates.TemplateResponse("admin/inserir_categoria.html", {"request": request, "mensagem": "Categoria já cadastrada."})
+        url = "/admin/categorias?mensagem=Esta categoria já existe!&tipo_msg=danger"
+        return RedirectResponse(url=url, status_code=303)
     categoria_id = categoria_repo.insert(categoria)
     if categoria_id:
-        url = "/admin/categorias?mensagem=Categoria cadastrada com sucesso!"
+        url = "/admin/categorias?mensagem=Categoria cadastrada com sucesso!&type_msg=success"
         return RedirectResponse(url=url, status_code=303)
-    url = "/admin/categorias?mensagem=Erro ao cadastrar categoria."
-    return RedirectResponse(url=url, status_code=303)
+    url = "/admin/categorias?mensagem=Esta categoria já existe!&tipo_msg=danger"
+
+    return RedirectResponse(url=url,  status_code=303)
 
 @router.get("/admin/categorias/alterar/{id}")
 async def get_alterar_categorias(request: Request, id: int, mensagem: str = None, tipo_msg: str = "info"):

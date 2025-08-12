@@ -46,7 +46,7 @@ async def post_categoria_inserir(request: Request, nome: str = Form(...), descri
     if categoria_id:
         url = "/admin/categorias?mensagem=Categoria cadastrada com sucesso!"
         return RedirectResponse(url=url, status_code=303)
-    url = "/admin/inserir_categoria?mensagem=Erro ao cadastrar categoria."
+    url = "/admin/categorias?mensagem=Erro ao cadastrar categoria."
     return RedirectResponse(url=url, status_code=303)
 
 @router.get("/admin/categorias/alterar/{id}")

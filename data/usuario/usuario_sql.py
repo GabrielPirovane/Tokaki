@@ -47,6 +47,18 @@ ORDER BY u.nome
 LIMIT ? OFFSET ?;
 """
 
+SQL_SELECT_RANGE_BUSCA_USUARIO_EMAIL = """
+SELECT u.id, u.id_cidade, u.nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
+u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento,
+c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
+FROM usuario u
+JOIN cidade c ON u.id_cidade = c.id
+JOIN uf ON c.id_uf = uf.id
+WHERE u.email LIKE ?
+ORDER BY u.nome
+LIMIT ? OFFSET ?;
+"""
+
 SQL_SELECT_USUARIO_BY_ID = """
 SELECT u.id, u.id_cidade, u.nome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
 u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento,

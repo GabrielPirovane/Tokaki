@@ -27,10 +27,6 @@
           data-bs-target="#confirmDeleteModal{{ adm.id }}">
           <i class="bi-trash"></i>
         </button>
-        <a href="/admin/adms/alterar/{{ adm.id }}" class="btn btn-warning btn-sm ms-2">
-          <i class="bi bi-pencil"></i>
-        </a>
-
         <!-- Modal para essa adm -->
         <div class="modal fade" id="confirmDeleteModal{{ adm.id }}" tabindex="-1"
           aria-labelledby="modalLabel{{ adm.id }}" aria-hidden="true">
@@ -41,11 +37,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
               </div>
               <div class="modal-body">
-                Tem certeza que deseja excluir a adm "{{ adm.nome }}"?
+                Tem certeza que deseja excluir o (a) administrador "{{ adm.nome }}"?
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <form action="/admin/adms/excluir/{{ adm.id }}" method="post" style="display:inline;">
+                <form action="/admin/administradores/excluir/{{ adm.id }}" method="post" style="display:inline;">
                   <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
               </div>

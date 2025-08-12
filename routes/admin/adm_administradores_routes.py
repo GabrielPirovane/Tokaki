@@ -64,3 +64,11 @@ async def post_administradores_inserir(request: Request, nome: str = Form(...), 
         url = "/admin/administradores/inserir?mensagem=Erro ao cadastrar administrador.&tipo_msg=danger"
         return RedirectResponse(url=url, status_code=303)
     return RedirectResponse(url="/admin/administradores?mensagem=Usuário não encontrado.&tipo_msg=danger", status_code=303)
+
+@router.post("/admin/administradores/excluir/{id}")
+async def post_administradores_excluir(id: int):
+    if adm_repo.delete(id):
+        url = "/admin/administradores?mensagem=Administrador excluído com sucesso!&tipo_msg=success"
+        return RedirectResponse(url=url, status_code=303)
+    url = "/admin/administradores?mensagem=Algo deu errado na exclusão.&tipo_msg=danger"
+    return RedirectResponse(url=url, status_code=303)

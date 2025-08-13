@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-import uvicorn
+# import uvicorn
 
 from routes.public import router as public_router
 from routes.admin.adm_administradores_routes import router as adm_administradores_router
@@ -81,5 +81,5 @@ app.include_router(adm_categorias_router)
 app.include_router(adm_fotos_router)
 
 
-if __name__ == "__main__":
-    uvicorn.run(app="main:app", host="192.168.3.252", port=8080, reload=True)
+# if __name__ == "__main__":
+#     uvicorn.run(app="main:app", host="192.168.3.252", port=8000, reload=True)

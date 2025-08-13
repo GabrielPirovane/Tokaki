@@ -1,13 +1,13 @@
 from fastapi import APIRouter
+from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from data.uf import uf_repo
-
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
 
-@router.get("/")
+@router.get("/", response_class=HTMLResponse)
 async def get_root():
     response = templates.TemplateResponse("/public/home.html", {"request": {}})
     return response

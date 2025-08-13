@@ -1,7 +1,0 @@
-# pip install -r .\requirements.txt
-fastapi[standard]
-uvicorn[standard]
-jinja2
-pytest
-pytest-asyncio
-pytest-cov

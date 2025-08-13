@@ -1,0 +1,175 @@
+{% extends "/public/fundo_login_cadastro.html" %}
+{% block head %}
+<link rel="stylesheet" href="static/css/public/style_cadastro.css">
+{% endblock %}
+{% block conteudo %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card formulario">
+                    <div class="card-body px-5">
+                        <center>
+                            <a href="/"><img src="/static/img/logo_colorida.png" alt="" height="110px"></a>
+                        </center>
+                        <h2 class="text-center mb-1">CRIE SUA CONTA</h2>
+                        <h5 class="text-center subtitulo">Acesse um universo de músicas e eventos</h5>
+
+                        <div class="imagens-login">
+                            <img src="/static/img/google-icon.png" alt="" height="70px" class="rounded-circle">
+                            <img src="/static/img/facebook-logo.png" alt="" height="70px">
+                        </div>
+                        <div class="d-flex align-items-center my-3">
+                            <hr class="flex-grow-1">
+                            <span class="mx-4">OU</span>
+                            <hr class="flex-grow-1">
+                        </div>
+                        <form method="POST" action="/cadastro">
+                            <div class="mb-3">
+                                <h1 class="titulo-form mt-2">Escolha o tipo de usuário</h1>
+                                <div class="check">
+                                    <div>
+                                        <input class="form-check-input" type="radio" name="radioDefault"
+                                            id="radioDefault1">
+                                        <label class="form-check-label ms-2" for="tipo_usuario">
+                                            Contratante de serviços musicais
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <input class="form-check-input" type="radio" name="radioDefault"
+                                            id="radioDefault2">
+                                        <label class="form-check-label ms-2" for="tipo_usuario">
+                                            Músico
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nome" class="titulo-form">Nome Completo</label>
+                                <input type="text" class="form-control" id="nome" name="nome"
+                                    placeholder="Ex: José Silva" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nome" class="titulo-form">Nome de Usuário</label>
+                                <input type="text" class="form-control" id="nome" name="nome"
+                                    placeholder="usuarioexemplo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="titulo-form">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="exemplo@email.com" required>
+                            </div>
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="cpf" class="titulo-form">CPF</label>
+                                    <input type="text" class="form-control" id="cpf" name="cpf"
+                                        placeholder="xxx.xxx.xxx-xx" required>
+                                </div>
+                                <div class="col mb-3">
+                                    <label for="genero" class="titulo-form">Gênero</label>
+                                    <select class="form-select ">
+                                        <option disabled selected hidden>Selecione seu gênero</option>
+                                        <option value="1">Masculino</option>
+                                        <option value="2">Feminino</option>
+                                        <option value="3">Outro</option>
+                                        <option value="3">Prefiro não informar</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="telefone" class="titulo-form">Telefone</label>
+                                    <input type="text" class="form-control" id="telefone" name="telefone"
+                                        placeholder="(xx) xxxxx-xxxx" required>
+                                </div>
+                                <div class="col mb-3">
+                                    <label for="data_nascimento" class="titulo-form">Data de Nascimento</label>
+                                    <input type="date" class="form-control" id="data_nascimento" name="data_nascimento"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="logradouro" class="titulo-form">Logradouro</label>
+                                <input type="text" class="form-control" id="logradouro" name="logradouro"
+                                    placeholder="Ex: Rua 25 de Março" required>
+                            </div>
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="bairro" class="titulo-form">Bairro</label>
+                                    <input type="text" class="form-control" id="bairro" name="bairro"
+                                        placeholder="Ex: Morada do Sol" required>
+                                </div>
+                                <div class="col-3 mb-3">
+                                    <label for="numero" class="titulo-form">Número</label>
+                                    <input type="text" class="form-control" id="numero" name="numero"
+                                        placeholder="Ex: 23" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col mb-3 w-auto">
+                                    <label for="cidade" class="titulo-form">Cidade</label>
+                                    <input type="text" class="form-control" id="cidade" name="cidade"
+                                        placeholder="Ex: Rio de Janeiro" required>
+                                </div>
+                                <div class="col mb-3">
+                                    <label for="estado" class="titulo-form">Estado</label>
+                                    <select class="form-select">
+                                        <option value="" disabled selected hidden>Selecione seu Estado</option>
+                                        {% for u in uf %}
+                                        <option value="1">{{u.nome}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="complemento" class="titulo-form">Complemento</label>
+                                <input type="text" class="form-control" id="complemento" name="complemento"
+                                    placeholder="Ex: Apartamento Térreo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="senha" class="titulo-form">Senha</label>
+                                <input type="password" class="form-control" id="senha" name="senha"
+                                    placeholder="Digite uma senha" required>
+                                <small class="aviso-senha text-muted mt-4">*A senha deve ter de 8 a 20 caracteres,
+                                    ter
+                                    letras e números e não pode conter caracteres especiais.</small>
+                            </div>
+                            <div class="mb-3">
+                                <label for="senha" class="titulo-form">Confirmar Senha</label>
+                                <input type="password" class="form-control" id="confirmação_senha" name="senha"
+                                    placeholder="Confirme sua senha" required>
+                            </div>
+                            <div class="mb-3">
+                                <center>
+                                    <label for="recaptcha" class="form-label"></label>
+                                    <div class="g-recaptcha" data-sitekey="6LfGoG0rAAAAAJo_Yr9NdQiRFHT3vtAzajB8sC1N">
+                                    </div>
+                                </center> <br>
+                            </div>
+                            <center>
+                                <button type="submit" class="btn w-50 botao fs-3">Cadastrar</button>
+                            </center>
+
+                            <hr>
+                            <center>
+                                <p class="d-inline fs-5">Já tem uma conta?</p>
+                                <a href="/login" class="fs-5">Entrar</a>
+                                <p class="aviso-final mt-4">Ao continuar, você concorda com os <a href="">Termos de
+                                        Serviço</a> do Tokaki e confirma que leu nossa <a href="">Política de
+                                        Privacidade</a>. Aviso na coleta de informações</p>
+                            </center>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

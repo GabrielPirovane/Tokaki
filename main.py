@@ -1,8 +1,13 @@
-from fastapi import FastAPI, Form
-from fastapi.responses import RedirectResponse
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
+
+from routes.public import router as public_router
+from routes.admin.adm_administradores_routes import router as adm_administradores_router
+from routes.admin.adm_categorias_routes import router as adm_categorias_router
+from routes.admin.adm_fotos import router as adm_fotos_router
+
 
 from data.agenda import agenda_repo
 from data.agendamento import agendamento_repo
@@ -20,10 +25,9 @@ from data.usuario import usuario_repo
 from data.adm import adm_repo
 from data.musico import musico_repo
 
-
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+
 
 uf_repo_instance = uf_repo.UfRepo("dados.db")
 uf_repo_instance.create_table()
@@ -71,41 +75,11 @@ contratacao_repo_instance = contratacao_repo.ContratacaoRepo("dados.db")
 contratacao_repo_instance.create_table()
 
 
+app.include_router(public_router)
+app.include_router(adm_administradores_router)
+app.include_router(adm_categorias_router)
+app.include_router(adm_fotos_router)
 
-@app.get("/")
-async def get_root():
-    response = templates.TemplateResponse("home.html", {"request": {}})
-    return response
-
-@app.get("/cadastro")
-async def get_cadastro():
-    response = templates.TemplateResponse("cadastro.html", {"request": {}})
-    return response 
-
-@app.get("/login")
-async def get_login():
-    response = templates.TemplateResponse("login.html", {"request": {}})
-    return response
-
-@app.get("/visitante")
-async def get_visitante():
-    response = templates.TemplateResponse("perfil_visitante.html", {"request": {}})
-    return response
-
-@app.get("/musico")
-async def get_musico():
-    response = templates.TemplateResponse("perfil_musico.html", {"request": {}})
-    return response
-
-@app.get("/user")
-async def get_user():
-    response = templates.TemplateResponse("perfil_usuario.html", {"request": {}})
-    return response
-
-@app.get("/adm")
-async def get_adm():
-    response = templates.TemplateResponse("perfil_adm.html", {"request": {}})
-    return response
 
 if __name__ == "__main__":
     uvicorn.run(app="main:app", host="127.0.0.1", port=8000, reload=True)

@@ -50,7 +50,10 @@ class AdmRepo:
             cursor = conn.cursor()
             cursor.execute(SQL_SELECT_ADMINISTRADOR)
             rows = cursor.fetchall()
-            return [Administrador(id=row['id']) for row in rows]
+            return [
+            {"id": row["id"], "nome": row["nome_administrador"], "email": row["email_administrador"]}
+            for row in rows
+            ]
     
     def update(self, adm: Administrador, id_antigo: int = None) -> bool:
         try:

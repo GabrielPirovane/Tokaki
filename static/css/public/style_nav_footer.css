@@ -8,7 +8,7 @@
 }
 body {
     overflow-y: scroll;
-    font-family: var(--fonte-base);
+    font-family: var(--fonte-destaque);
 }
 nav {
     height: 5em;
@@ -36,6 +36,11 @@ footer {
     background-color: var(--cor-1);
     color: var(--cor-3);
 }
+
+#nav-login {
+    font-family: var(--fonte-destaque);
+    font-size: 0.5em;
+}
 .navbar-nav .nav-link {
     font-size: 2rem;
     font-family: var(--fonte-destaque);
@@ -43,6 +48,10 @@ footer {
     letter-spacing: 1px;
    
 }
+.placeholder {
+    color: var(--cor-2);
+}
+
 #icone-perfil {
     font-size: 1.8em;
     margin-bottom: 2em;
@@ -50,9 +59,6 @@ footer {
 }
 #secao-nav {
     color: var(--cor-3);
-}
-.placeholder {
-    color: var(--cor-2);
 }
 #barra-pesquisa {
     width: 50em;

@@ -21,7 +21,7 @@ SELECT COUNT(*) FROM administrador;
 """
 
 SQL_SELECT_ADMINISTRADOR = """
-SELECT a.id, u.nome AS nome_administrador
+SELECT a.id, u.nome AS nome_administrador, u.email AS email_administrador
 FROM administrador a
 JOIN usuario u ON a.id = u.id
 ORDER BY nome_administrador;

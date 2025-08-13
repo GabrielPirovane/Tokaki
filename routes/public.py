@@ -57,3 +57,8 @@ async def get_galeria():
 async def get_foto():
     response = templates.TemplateResponse("/public/ampliar_foto.html", {"request": {}})
     return response
+
+@router.get("/esqueci-senha")
+async def get_esqueci_senha():
+    response = templates.TemplateResponse("/public/esqueci_senha.html", {"request": {}})
+    return response

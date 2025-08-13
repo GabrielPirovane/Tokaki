@@ -8,6 +8,24 @@
   --cor-5: #212529;
 }
 
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  /* centraliza verticalmente */
+  justify-content: center;
+  /* centraliza horizontalmente */
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+  /* garante que fique acima do mosaico */
+}
+
+
+footer {
+  z-index: 1; 
+  padding: 10px 0;
+}
 
 .fundo {
   position: fixed;

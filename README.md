@@ -12,3 +12,5 @@ Telas criadas:
 
 Rotas criadas:
 29/52 => 55,76%
+
+Docker funfando

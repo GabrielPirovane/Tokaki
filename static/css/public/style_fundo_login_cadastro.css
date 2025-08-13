@@ -1,0 +1,46 @@
+:root {
+  --fonte-base: 'Open Sans', sans-serif;
+  --fonte-destaque: 'Bebas Neue', sans-serif;
+  --cor-1: #b08968;
+  --cor-2: #7f5539;
+  --cor-3: #3d291b;
+  --cor-4: #e6ccb2;
+  --cor-5: #212529;
+}
+
+
+.fundo {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+
+.mosaico {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 10px;
+  width: 120%;
+  height: 120%;
+  animation: mover 30s linear infinite alternate;
+  filter: blur(2px) brightness(0.95);
+}
+
+.mosaico img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  transform: rotate(-5deg);
+}
+
+@keyframes mover {
+  0% {
+    transform: translate(-5%, -5%);
+  }
+
+  100% {
+    transform: translate(-10%, -10%);
+  }
+}

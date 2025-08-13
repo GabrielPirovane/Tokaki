@@ -1,0 +1,68 @@
+{% extends "/public/fundo_login_cadastro.html" %}
+{% block head %}
+<link rel="stylesheet" href="static/css/public/style_login.css">
+{% endblock %}
+{% block conteudo %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card formulario">
+                    <div class="card-body px-5">
+                        <center>
+                            <a href="/"><img src="/static/img/logo_colorida.png" alt="" height="110px"></a>
+                        </center>
+                        <h2 class="text-center mb-1">BEM-VINDO DE VOLTA!</h2>
+                        <h5 class="text-center subtitulo">Acesse sua conta</h5>
+                        <form method="POST" action="/cadastro">
+                            <div class="mb-3">
+                                <label for="email" class="titulo-form">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="exemplo@email.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="senha" class="titulo-form">Senha</label>
+                                <input type="password" class="form-control" id="senha" name="senha"
+                                    placeholder="Digite uma senha" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <center>
+                                    <label for="recaptcha" class="form-label"></label>
+                                    <div class="g-recaptcha" data-sitekey="6LfGoG0rAAAAAJo_Yr9NdQiRFHT3vtAzajB8sC1N">
+                                    </div>
+                                </center> <br>
+                            </div>
+                            <center>
+                                <button type="submit" class="btn w-50 botao fs-3">Entrar</button>
+                            </center>
+
+                            <div class="d-flex align-items-center my-3">
+                                <hr class="flex-grow-1">
+                                <span class="mx-4">OU CONECTE COM</span>
+                                <hr class="flex-grow-1">
+                            </div>
+                            <center>
+                                <div class="imagens-login">
+                                    <img src="/static/img/google-icon.png" alt="" height="70px" class="rounded-circle">
+                                    <img src="/static/img/facebook-logo.png" alt="" height="70px">
+                                </div>
+                                <hr class="flex-grow-1">
+                                <p class="d-inline fs-5">Ainda não tem uma conta?</p>
+                                <a href="/cadastro" class="fs-5">Cadastre-se</a>
+                                <p class="aviso-final mt-4">Ao continuar, você concorda com os <a href="">Termos
+                                        de
+                                        Serviço</a> do Tokaki e confirma que leu nossa <a href="">Política de
+                                        Privacidade</a>. Aviso na coleta de informações</p>
+
+                            </center>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -82,4 +82,4 @@ app.include_router(adm_fotos_router)
 
 
 if __name__ == "__main__":
-    uvicorn.run(app="main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run(app="main:app", host="192.168.3.252", port=8080, reload=True)

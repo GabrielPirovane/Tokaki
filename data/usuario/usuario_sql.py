@@ -1,20 +1,20 @@
 SQL_CREATE_TABLE_USUARIO = """
 CREATE TABLE IF NOT EXISTS usuario (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_cidade INTEGER NOT NULL,
     nome TEXT NOT NULL,
     nome_usuario TEXT NOT NULL,
     senha TEXT NOT NULL,
     email TEXT NOT NULL,
-    cpf TEXT NOT NULL,
-    telefone TEXT NOT NULL,
-    genero TEXT NOT NULL,
-    logradouro TEXT NOT NULL,
-    numero INTEGER NOT NULL CHECK(numero > 0),
-    bairro TEXT NOT NULL,
-    complemento TEXT,
-    cep TEXT NOT NULL,
-    data_nascimento DATE NOT NULL,
+    cpf TEXT,
+    telefone TEXT,
+    genero TEXT,
+    logradouro TEXT,
+    id_cidade INTEGER,
+    numero INTEGER CHECK(numero > 0),
+    bairro TEXT,
+    complemento,
+    cep TEXT,
+    data_nascimento,
     FOREIGN KEY (id_cidade) REFERENCES cidade(id)
 );
 """

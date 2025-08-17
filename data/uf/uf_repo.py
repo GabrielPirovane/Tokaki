@@ -50,6 +50,15 @@ class UfRepo:
             cursor.execute(SQL_SELECT_UF)
             rows = cursor.fetchall()
             return [Uf(id=row['id'], nome=row['nome']) for row in rows]
+        
+    def get_by_name(self, nome: str) -> Optional[Uf]:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(SQL_SELECT_UF_BY_NAME, (nome,))
+            row = cursor.fetchone()
+            if row:
+                return Uf(id=row['id'], nome=row['nome'])
+            return None
     
     def update(self, uf: Uf) -> bool:
         try:

@@ -37,7 +37,22 @@
 
                         <div class="mb-3">
                             <h1 class="titulo-form mt-2">* Escolha o tipo de usuário</h1>
-                            <!-- Radios comentados -->
+                            <div class="check">
+                                <div>
+                                    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1"
+                                        required>
+                                    <label class="form-check-label ms-2" for="tipo_usuario"> Contratante de serviços
+                                        musicais </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2"
+                                        required>
+                                    <label class="form-check-label ms-2" for="tipo_usuario"> Músico </label>
+                                </div>
+                            </div>
+                            {% if errors.tipo_usuario %}
+                            <small class="erro-mensagem">{{ errors.tipo_usuario }}</small>
+                            {% endif %}
                         </div>
 
                         <div class="mb-3">
@@ -156,10 +171,11 @@
                             <small id="erro-senha" class="erro-mensagem" style="display:none;">As senhas não
                                 coincidem</small>
                         </div>
-                        
-                        <div class="mb-3 text-center">
-                            <div class="g-recaptcha" data-sitekey="6LfGoG0rAAAAAJo_Yr9NdQiRFHT3vtAzajB8sC1N"></div>
-                        </div>
+                        <center>
+                            <div class="d-flex justify-content-center my-5">
+                                <div class="g-recaptcha" data-sitekey="6LfGoG0rAAAAAJo_Yr9NdQiRFHT3vtAzajB8sC1N"></div>
+                            </div>
+                        </center>
 
                         <center>
                             <button type="submit" id="submit-button" class="btn w-50 botao fs-3">Cadastrar</button>

@@ -3,16 +3,21 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!form) return;
 
   const senha = document.getElementById('senha');
+  const nome = document.getElementById('nome');
+  const sobrenome = document.getElementById('sobrenome');
+  const nomeUsuario = document.getElementById('nome_usuario');
+  const email = document.getElementById('email');
   const confirmacao = document.getElementById('confirmacao_senha');
   const erro = document.getElementById('erro-senha');
-  const botao = document.getElementById('submit-button') || document.querySelector('button[type="submit"]');
+  const botao = document.getElementById('submit-button');
 
   if (!senha || !confirmacao || !botao) return;
 
+  disableButton();
 
   function disableButton() {
     botao.classList.add('btn-disabled');
-    botao.disabled = true; 
+    botao.disabled = true;
   }
 
   function enableButton() {
@@ -36,30 +41,36 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  function checkPasswords() {
-    if (senha.value === '' && confirmacao.value === '') {
+  function checkRequireds() {
+    if (nome.value === '' || sobrenome.value === '' || nomeUsuario.value === '' || email.value === '' || senha.value === '') {
+      disableButton();
+    } else {
       enableButton();
-      if (erro) erro.style.display = 'none';
-      return;
     }
+  }
 
-    if (senha.value === confirmacao.value) {
+  function checkPasswords() {
+    if (senha.value !== '' && senha.value === confirmacao.value) {
       if (erro) erro.style.display = 'none';
       enableButton();
     } else {
-
       if (erro && confirmacao.value.length > 0) {
         erro.textContent = 'As senhas não conferem.';
         erro.style.display = 'block';
       }
-    disableButton();
+      disableButton();
     }
-
   }
+
 
   senha.addEventListener('input', checkPasswords);
   confirmacao.addEventListener('input', checkPasswords);
+  nome.addEventListener('input', checkRequireds);
+  sobrenome.addEventListener('input', checkRequireds);
+  nomeUsuario.addEventListener('input', checkRequireds);
+  email.addEventListener('input', checkRequireds)
 
 
+  checkRequireds();
   checkPasswords();
 });

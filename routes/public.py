@@ -25,6 +25,7 @@ async def get_cadastro():
 
 @router.post("/cadastro")
 async def post_cadastro(
+    tipo_usuario: str = Form(...),
     nome: str = Form(...),
     sobrenome: str = Form(...),
     nome_usuario: str = Form(...),

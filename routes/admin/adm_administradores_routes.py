@@ -17,9 +17,9 @@ usuario_repo = UsuarioRepo(db_path="dados.db")
 
 def confirmar_usuario(nome: str, email: str):
     #Conferindo se o nome e o email existem no banco de dados
-    if not usuario_repo.search_paged_nome(nome) or not usuario_repo.search_paged_email(email):
+    if not usuario_repo.search_paged_nomecompleto(nome) or not usuario_repo.search_paged_email(email):
         return None
-    usuario_id_nome = usuario_repo.search_paged_nome(nome)[0].id
+    usuario_id_nome = usuario_repo.search_paged_nomecompleto(nome)[0].id
     usuario_id_email = usuario_repo.search_paged_email(email)[0].id
     #Conferindo se o email e o nome pertence ao mesmo usuário
     if usuario_id_nome == usuario_id_email:

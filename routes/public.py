@@ -1,10 +1,15 @@
+from typing import Optional
 from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from data.uf import uf_repo
+from data.usuario import usuario_repo
+from fastapi import Form
+from validate_docbr import CPF
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
+
 
 
 @router.get("/", response_class=HTMLResponse)
@@ -15,8 +20,61 @@ async def get_root():
 @router.get("/cadastro")
 async def get_cadastro():
     uf = uf_repo.UfRepo("dados.db").get_all()
-    response = templates.TemplateResponse("/public/cadastro.html", {"request": {}, "uf":uf})
+    response = templates.TemplateResponse("/public/cadastro.html", {"request": {}, "uf":uf, "errors":{}})
     return response
+
+@router.post("/cadastro")
+async def post_cadastro(
+    nome: str = Form(...),
+    sobrenome: str = Form(...),
+    nome_usuario: str = Form(...),
+    senha: str = Form(...),
+    email: str = Form(...),
+    cpf: Optional[str] = Form(None),
+    telefone: Optional[str] = Form(None),
+    genero: Optional[str] = Form(None),
+    logradouro: Optional[str] = Form(None),
+    id_cidade: Optional[int] = Form(None),
+    numero: Optional[str] = Form(None),
+    bairro: Optional[str] = Form(None),
+    complemento: Optional[str] = Form(None),
+    cep: Optional[str] = Form(None),
+    data_nascimento: Optional[str] = Form(None),  
+):
+    usuario = usuario_repo.UsuarioRepo("dados.db")
+    usuarios = usuario.get_all()
+    errors = dict()
+    if len(nome) > 100:
+        errors["nome"] = "Nome muito grande (Máx: 100 caracteres)."
+    elif len(sobrenome) > 100:
+        errors["sobrenome"] = "Sobrenome muito grande (Máx: 100 caracteres)."
+    elif len(nome_usuario) > 30:
+        errors["nome_usuario"] = "Nome de usuário muito grande (Máx: 30 caracteres)."
+    for u in usuarios:
+        if u['nome_usuario'] == nome_usuario: errors["nome_usuario"] = "Nome de usuário já cadastrado."
+        if u['email'] == email: errors["email"] = "Esse email já está cadastrado. Tente logar-se com ele."
+        
+    
+    
+        
+    if errors:
+        uf = uf_repo.UfRepo('dados.db').get_all()
+        return templates.TemplateResponse(
+            "/public/cadastro.html",
+            {
+                "request": {},
+                "errors": errors,
+                "uf": uf,
+                "form_data": {
+                    "nome": nome,
+                    "sobrenome": sobrenome,
+                    "nome_usuario": nome_usuario,
+                    "email": email,
+                },
+            },
+        )
+    
+    
 
 @router.get("/login")
 async def get_login():

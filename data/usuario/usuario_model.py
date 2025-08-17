@@ -6,6 +6,7 @@ class Usuario:
     id: int
     id_cidade: Cidade
     nome: str
+    sobrenome: str
     nome_usuario: str
     senha: str
     email: str

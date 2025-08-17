@@ -6,6 +6,7 @@
   --cor-3: #3d291b;
   --cor-4: #e6ccb2;
   --cor-5: #212529;
+  --cor-6: #af3e51;
 }
 
 body {
@@ -142,6 +143,29 @@ a:hover {
   margin-top: 10px;
   margin-left: 4px;
 }
+
+.erro-mensagem {
+    font-family: var(--fonte-base);
+    color: var(--cor-6); /* Força sobrescrever Bootstrap */
+    font-size: 0.85em;
+    margin-top: 15px;
+}
+
+#submit-button.btn-disabled {
+  opacity: 0.6;               
+  cursor: not-allowed;        
+  pointer-events: none;      
+  transform: none !important; 
+  box-shadow: none !important;
+}
+
+#submit-button.btn-disabled:hover,
+#submit-button.btn-disabled:focus {
+  background-color: inherit !important;
+  color: inherit !important;
+  box-shadow: none !important;
+}
+
 
 .form-check-input:checked {
   background-color: var(--cor-1);

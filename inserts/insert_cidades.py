@@ -1,8 +1,11 @@
+import ast
 from data.util import get_connection
 from data.uf.uf_repo import UfRepo
 from data.cidade.cidade_sql import SQL_INSERT_CIDADE
+from data.uf.uf_sql import SQL_INSERT_UF
 import sqlite3
 import json
+
 
 
 def open_json(file_path: str):
@@ -11,6 +14,47 @@ def open_json(file_path: str):
             return json.load(file)
     except Exception as e:
         raise Exception(f"Erro ao abrir o arquivo JSON: {e}")
+    
+def insert_ufs():
+    ufs = [
+    ('Acre',),
+    ('Alagoas',),
+    ('Amapá',),
+    ('Amazonas',),
+    ('Bahia',),
+    ('Ceará',),
+    ('Distrito Federal',),
+    ('Espírito Santo',),
+    ('Goiás',),
+    ('Maranhão',),
+    ('Mato Grosso',),
+    ('Mato Grosso do Sul',),
+    ('Minas Gerais',),
+    ('Pará',),
+    ('Paraíba',),
+    ('Paraná',),
+    ('Pernambuco',),
+    ('Piauí',),
+    ('Rio de Janeiro',),
+    ('Rio Grande do Norte',),
+    ('Rio Grande do Sul',),
+    ('Rondônia',),
+    ('Roraima',),
+    ('Santa Catarina',),
+    ('São Paulo',),
+    ('Sergipe',),
+    ('Tocantins',)
+]
+    try:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            values = ufs
+            cursor.executemany(SQL_INSERT_UF, values)
+            return cursor.rowcount 
+    except sqlite3.IntegrityError as e:
+        print("Erro de integridade:", e)
+        return 0
+
 
 def insert_cidades():
     try:
@@ -41,4 +85,5 @@ def get_id_uf(nome_uf: str) -> int:
     
     
 if __name__ == "__main__":
-    print("Cidades inseridas" if insert_cidades() else "Erro ao inserir cidades")
+    insert_ufs()
+    insert_cidades()

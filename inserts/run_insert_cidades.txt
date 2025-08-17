@@ -1,1 +1,1 @@
-python -m inserts.insert_cidades
+python -m inserts.insert_cidades_ufs

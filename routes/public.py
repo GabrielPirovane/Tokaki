@@ -6,10 +6,20 @@ from data.uf import uf_repo
 from data.usuario import usuario_repo
 from fastapi import Form
 from validate_docbr import CPF
+from email_validator import validate_email, EmailNotValidError
+
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
+
+def validar_email(email: str):
+    try:
+        v = validate_email(email)
+        return True
+    except EmailNotValidError as e:
+        print(str(e))
+        return False
 
 
 @router.get("/", response_class=HTMLResponse)
@@ -45,15 +55,30 @@ async def post_cadastro(
     usuario = usuario_repo.UsuarioRepo("dados.db")
     usuarios = usuario.get_all()
     errors = dict()
+    validador_cpf = CPF()
+    validacao_email = validar_email(email=email)
+    
+
+    
     if len(nome) > 100:
         errors["nome"] = "Nome muito grande (Máx: 100 caracteres)."
     elif len(sobrenome) > 100:
         errors["sobrenome"] = "Sobrenome muito grande (Máx: 100 caracteres)."
     elif len(nome_usuario) > 30:
         errors["nome_usuario"] = "Nome de usuário muito grande (Máx: 30 caracteres)."
+    elif cpf != "":
+        if not validador_cpf.validate(cpf) or len(cpf) < 11:
+            errors["cpf"] = "Cpf inválido."
+    elif len(email) > 254:
+        errors["email"] = "Email muito grande (Máx: 254 caracteres)"
+    elif not validacao_email:
+        errors["email"] = "Email inválido."
+    
+    
     for u in usuarios:
         if u['nome_usuario'] == nome_usuario: errors["nome_usuario"] = "Nome de usuário já cadastrado."
         if u['email'] == email: errors["email"] = "Esse email já está cadastrado. Tente logar-se com ele."
+        if u['cpf'] == cpf: errors["cpf"] = "Cpf já cadastrado."
         
     
     
@@ -71,6 +96,7 @@ async def post_cadastro(
                     "sobrenome": sobrenome,
                     "nome_usuario": nome_usuario,
                     "email": email,
+                    "cpf": cpf
                 },
             },
         )

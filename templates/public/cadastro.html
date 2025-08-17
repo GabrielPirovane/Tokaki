@@ -39,17 +39,22 @@
                             <h1 class="titulo-form mt-2">* Escolha o tipo de usuário</h1>
                             <div class="check">
                                 <div>
-                                    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1"
-                                        required>
-                                    <label class="form-check-label ms-2" for="tipo_usuario"> Contratante de serviços
-                                        musicais </label>
+                                    <input class="form-check-input" type="radio" name="tipo_usuario" id="radioDefault1"
+                                        value="contratante" required>
+                                    <label class="form-check-label ms-2" for="radioDefault1">
+                                        Contratante de serviços musicais
+                                    </label>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2"
-                                        required>
-                                    <label class="form-check-label ms-2" for="tipo_usuario"> Músico </label>
+                                    <input class="form-check-input" type="radio" name="tipo_usuario" id="radioDefault2"
+                                        value="musico">
+                                    <label class="form-check-label ms-2" for="radioDefault2">
+                                        Músico
+                                    </label>
                                 </div>
                             </div>
+
+
                             {% if errors.tipo_usuario %}
                             <small class="erro-mensagem">{{ errors.tipo_usuario }}</small>
                             {% endif %}
@@ -87,7 +92,11 @@
                             <div class="col mb-3">
                                 <label for="cpf" class="titulo-form">CPF</label>
                                 <input type="text" class="form-control" id="cpf" name="cpf"
-                                    placeholder="xxx.xxx.xxx-xx">
+                                    placeholder="xxx.xxx.xxx-xx" value="{{ form_data.cpf if form_data else '' }}" {% if errors.cpf and not
+                                first_error_set %}autofocus{% set first_error_set=true %}{% endif %} >
+                                {% if errors.cpf %}
+                                <small class="erro-mensagem">{{ errors.cpf }}</small>
+                                {% endif %}
                             </div>
                             <div class="col mb-3">
                                 <label for="genero" class="titulo-form">Gênero</label>

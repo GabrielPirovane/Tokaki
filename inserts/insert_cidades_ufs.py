@@ -1,6 +1,7 @@
 import ast
 from data.util import get_connection
 from data.uf.uf_repo import UfRepo
+from data.cidade.cidade_repo import CidadeRepo
 from data.cidade.cidade_sql import SQL_INSERT_CIDADE
 from data.uf.uf_sql import SQL_INSERT_UF
 import sqlite3
@@ -48,9 +49,12 @@ def insert_ufs():
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
-            values = ufs
-            cursor.executemany(SQL_INSERT_UF, values)
-            return cursor.rowcount 
+            if not UfRepo('dados.db').get_all():
+                values = ufs
+                cursor.executemany(SQL_INSERT_UF, values)
+                return cursor.rowcount > 0
+            else:
+                return "Já inserido."
     except sqlite3.IntegrityError as e:
         print("Erro de integridade:", e)
         return 0
@@ -60,19 +64,22 @@ def insert_cidades():
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
-            json_cidades = open_json('inserts/cidades.json')
-            json_estados = open_json('inserts/estados.json')
-            values = list()
-            for cidade in json_cidades:
-                #Acha o nome do estado pelo id do json importado no github
-                nome_uf = next((e['nome'] for e in json_estados if e['codigo_uf'] == cidade["codigo_uf"]), None)
-                id_uf = get_id_uf(nome_uf)
-                values.append((cidade['nome'], id_uf))
-            cursor.executemany(
-                SQL_INSERT_CIDADE,
-                values
-            )
-            return cursor.rowcount 
+            if not CidadeRepo('dados.db').get_all():
+                json_cidades = open_json('inserts/cidades.json')
+                json_estados = open_json('inserts/estados.json')
+                values = list()
+                for cidade in json_cidades:
+                    #Acha o nome do estado pelo id do json importado no github
+                    nome_uf = next((e['nome'] for e in json_estados if e['codigo_uf'] == cidade["codigo_uf"]), None)
+                    id_uf = get_id_uf(nome_uf)
+                    values.append((cidade['nome'], id_uf))
+                cursor.executemany(
+                    SQL_INSERT_CIDADE,
+                    values
+                )
+                return cursor.rowcount > 0
+            else: 
+                return "Já inserido."
     except sqlite3.IntegrityError as e:
         print("Erro de integridade:", e)
         return 0
@@ -85,5 +92,5 @@ def get_id_uf(nome_uf: str) -> int:
     
     
 if __name__ == "__main__":
-    insert_ufs()
-    insert_cidades()
+    print(insert_ufs())
+    print(insert_cidades())

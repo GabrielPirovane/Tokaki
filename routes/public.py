@@ -222,7 +222,8 @@ async def post_cadastro(
                     )
                 )
                 if novo_musico:
-                    pass
+                    response = templates.TemplateResponse("/public/verificacao.html", {"request": {}})
+                    return response
                 else:
                     pass
         else:
@@ -241,7 +242,6 @@ async def post_cadastro(
                 "form_data": form_data_dict
             },
         )
-    
     
 
 @router.get("/login")

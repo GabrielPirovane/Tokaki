@@ -26,7 +26,7 @@ class UsuarioRepo:
             with get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute(SQL_INSERT_USUARIO, (
-                    usuario.id_cidade.id,
+                    usuario.id_cidade,
                     usuario.nome,
                     usuario.sobrenome,
                     usuario.nome_usuario,
@@ -40,7 +40,8 @@ class UsuarioRepo:
                     usuario.bairro,
                     usuario.complemento,
                     usuario.cep,
-                    usuario.data_nascimento
+                    usuario.data_nascimento,
+                    usuario.verificado
                 ))
                 return cursor.lastrowid
         except sqlite3.IntegrityError as e:
@@ -145,10 +146,13 @@ class UsuarioRepo:
     def search_paged_nomecompleto(self, termo: str, page_number: int=1, page_size: int=10) -> List[Usuario]:
         limit = page_size
         offset = (page_number - 1) * page_size
-        termo = f"%{termo}%"
+        termos = termo.strip().split(maxsplit=1)
+        nome_term = f"%{termos[0]}%"
+        sobrenome_term = f"%{termos[1]}%" if len(termos) > 1 else "%"
+
         with get_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute(SQL_SELECT_RANGE_BUSCA_USUARIO_NOMECOMPLETO, (f'%{termo}%', limit, offset))
+            cursor.execute(SQL_SELECT_RANGE_BUSCA_USUARIO_NOMECOMPLETO,  (nome_term, sobrenome_term, limit, offset))
             rows = cursor.fetchall()
             return [
                 Usuario(
@@ -241,7 +245,8 @@ class UsuarioRepo:
                     bairro=row['bairro'],
                     complemento=row['complemento'],
                     cep=row['cep'],
-                    data_nascimento=row['data_nascimento']
+                    data_nascimento=row['data_nascimento'],
+                    verificado=row['verificado']
                 ) for row in rows
             ]
     

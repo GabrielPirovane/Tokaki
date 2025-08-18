@@ -163,7 +163,8 @@
                             <div class="col-3 mb-3">
                                 <label for="numero" class="titulo-form">Número</label>
                                 <input type="number" class="form-control" id="numero" name="numero" placeholder="Ex: 23"
-                                    maxlength="6">
+                                    maxlength="6" value="{{ form_data.numero if form_data else '' }}" {% if errors.numero
+                                and not first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
                             </div>
                             <div class="col mb-3">
                                 <label for="bairro" class="titulo-form">Bairro</label>
@@ -181,7 +182,8 @@
                             <div class="col mb-3 w-auto">
                                 <label for="cidade" class="titulo-form">Cidade</label>
                                 <input type="text" class="form-control" id="cidade" name="cidade" maxlength="50"
-                                    placeholder="Ex: Rio de Janeiro">
+                                    placeholder="Ex: Rio de Janeiro" value="{{ form_data.cidade if form_data else '' }}" {% if errors.cidade
+                                and not first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
                             </div>
                             <div class="col mb-3">
                                 <label for="estado" class="titulo-form">Estado</label>
@@ -197,19 +199,22 @@
                         <div class="mb-3">
                             <label for="complemento" class="titulo-form">Complemento</label>
                             <input type="text" class="form-control" id="complemento" name="complemento" maxlength="200"
-                                placeholder="Ex: Apartamento Térreo">
+                                placeholder="Ex: Apartamento Térreo" value="{{ form_data.complemento if form_data else '' }}" {% if errors.complemento
+                                and not first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
                         </div>
-
                         <div class="mb-3">
                             <label for="senha" class="titulo-form">*Senha</label>
-                            <input type="password" class="form-control" id="senha" name="senha"
-                                placeholder="Digite uma senha" maxlength="20" minlength="8" required>
-                            <span class="toggle-password">
-                                <i class="bi bi-eye-slash"></i>
-                            </span>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="senha" name="senha"
+                                    placeholder="Digite uma senha" maxlength="20" minlength="8" required>
+                                <button class="btn btn-outline-secondary border-start-0 rounded-start-0" type="button"
+                                    id="toggleSenha">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+
                             <small class="aviso-senha text-muted mt-2">
-                                *A senha deve ter de 8 a 20 caracteres, ter letras e números e não pode conter
-                                caracteres especiais.
+                                *A senha deve ter de 8 a 20 caracteres, ter letras e números e não pode conter acentos ou sinais gráficos.
                             </small>
                             <div id="strengthBarContainer">
                                 <div id="strengthBarFill"></div>
@@ -219,8 +224,17 @@
 
                         <div class="mb-3">
                             <label for="confirmacao_senha" class="titulo-form">*Confirmar Senha</label>
-                            <input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha"
-                                placeholder="Confirme sua senha" maxlength="20" minlength="8" required>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="confirmacao_senha"
+                                    name="confirmacao_senha" placeholder="Confirme sua senha" maxlength="20"
+                                    minlength="8" required>
+                                <button class="btn btn-outline-secondary border-start-0 rounded-start-0" type="button"
+                                    id="toggleConfirmacao">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+
+
                             <small id="erro-senha" class="erro-mensagem" style="display:none;">As senhas não
                                 coincidem</small>
                         </div>

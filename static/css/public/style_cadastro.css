@@ -213,3 +213,37 @@ a:hover {
   font-size: 1em;
   margin-top: 5px;
 }
+
+#toggleSenha {
+    border-color: #dfe3e6;
+    background-color: white;
+    color: #495057;
+    transition: none; 
+}
+
+#toggleSenha:hover,
+#toggleSenha:focus,
+#toggleSenha:active {
+    background-color: white; 
+    border-color: #dfe3e6;   
+    color: #495057;          
+    box-shadow: none;         
+    outline: none;          
+}
+
+#toggleConfirmacao {
+    border-color: #dfe3e6;
+    background-color: white;
+    color: #495057;
+    transition: none; 
+}
+
+#toggleConfirmacao:hover,
+#toggleConfirmacao:focus,
+#toggleConfirmacao:active {
+    background-color: white; 
+    border-color: #dfe3e6;   
+    color: #495057;          
+    box-shadow: none;         
+    outline: none;          
+}

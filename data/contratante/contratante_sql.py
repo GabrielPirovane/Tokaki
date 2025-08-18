@@ -1,8 +1,8 @@
 SQL_CREATE_TABLE_CONTRATANTE = """
 CREATE TABLE IF NOT EXISTS contratante (
     id INTEGER PRIMARY KEY,
-    nota FLOAT NOT NULL,
-    numero_contratacoes INTEGER NOT NULL,
+    nota FLOAT,
+    numero_contratacoes,
     FOREIGN KEY (id) REFERENCES usuario(id)
 );
 """

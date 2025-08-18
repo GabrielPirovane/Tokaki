@@ -3,7 +3,8 @@ import {
   initCPFInput,
   initCEPInput,
   initTelefone,
-  initDataNascimentoInput
+  initDataNascimentoInput,
+  initSenha
 } from '/static/js/cadastro.js';
 
 initFormValidation();
@@ -11,6 +12,7 @@ initCPFInput();
 initCEPInput();
 initTelefone();
 initDataNascimentoInput();
+initSenha();
 
 document.addEventListener("DOMContentLoaded", () => {
   const senha = document.getElementById('senha');

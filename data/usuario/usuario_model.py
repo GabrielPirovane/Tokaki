@@ -4,19 +4,20 @@ from data.cidade.cidade_model import Cidade
 @dataclass
 class Usuario:
     id: int
-    id_cidade: Cidade
+    id_cidade: Cidade | None
     nome: str
     sobrenome: str
     nome_usuario: str
     senha: str
     email: str
-    cpf: str
-    telefone: str
-    genero: str
-    logradouro: str
-    numero: int
-    bairro: str
+    cpf: str | None
+    telefone: str | None
+    genero: str | None
+    logradouro: str | None
+    numero: int | None
+    bairro: str | None
     complemento: str | None
-    cep: str
-    data_nascimento: str
+    cep: str | None
+    data_nascimento: str | None
+    verificado: bool
     

@@ -187,9 +187,9 @@ export function initCEPInput() {
         const nomeUF = ufMap[data.uf];
         const option = Array.from(ufInput.options).find(opt => opt.text.trim() === nomeUF);
         if (option) {
-          option.selected = true; 
+          option.selected = true;
         } else {
-          ufInput.selectedIndex = 0; 
+          ufInput.selectedIndex = 0;
         }
       }
     } catch (err) {
@@ -284,8 +284,8 @@ export function initDataNascimentoInput() {
   dataInput.addEventListener('input', function () {
     let v = this.value.replace(/\D/g, ''); // remove tudo que não for número
 
-    if (v.length > 2) v = v.slice(0,2) + '/' + v.slice(2);
-    if (v.length > 5) v = v.slice(0,5) + '/' + v.slice(5,9); // permite até 4 dígitos do ano
+    if (v.length > 2) v = v.slice(0, 2) + '/' + v.slice(2);
+    if (v.length > 5) v = v.slice(0, 5) + '/' + v.slice(5, 9); // permite até 4 dígitos do ano
 
     this.value = v;
   });
@@ -294,9 +294,60 @@ export function initDataNascimentoInput() {
     const pasted = (e.clipboardData || window.clipboardData).getData('text');
     let digits = pasted.replace(/\D/g, '').slice(0, 8); // ddmmaaaa
     let formatted = digits;
-    if (digits.length > 2) formatted = digits.slice(0,2) + '/' + digits.slice(2);
-    if (digits.length > 4) formatted = formatted.slice(0,5) + '/' + digits.slice(4,8);
+    if (digits.length > 2) formatted = digits.slice(0, 2) + '/' + digits.slice(2);
+    if (digits.length > 4) formatted = formatted.slice(0, 5) + '/' + digits.slice(4, 8);
     this.value = formatted;
     e.preventDefault();
   });
 }
+
+
+export function initSenha() {
+  document.addEventListener('DOMContentLoaded', function () {
+    const senhaInput = document.getElementById('senha');
+    const toggleSenhaBtn = document.getElementById('toggleSenha');
+
+    const confirmInput = document.getElementById('confirmacao_senha');
+    const toggleConfirmBtn = document.getElementById('toggleConfirmacao');
+
+
+    function toggleVisibility(input, button) {
+      const icon = button.querySelector("i");
+      if (input.type === "password") {
+        input.type = "text";
+        if (icon) {
+          icon.classList.remove("bi-eye");
+          icon.classList.add("bi-eye-slash");
+        }
+      } else {
+        input.type = "password";
+        if (icon) {
+          icon.classList.remove("bi-eye-slash");
+          icon.classList.add("bi-eye");
+        }
+      }
+    }
+
+    function allowOnlyLettersAndNumbers(input) {
+      input.addEventListener('input', function () {
+        this.value = this.value.replace(/[^a-zA-Z0-9!@#$%¨&*]/g, '');
+      });
+    }
+
+    if (senhaInput && toggleSenhaBtn) {
+      toggleSenhaBtn.addEventListener('click', function () {
+        toggleVisibility(senhaInput, toggleSenhaBtn);
+      });
+      allowOnlyLettersAndNumbers(senhaInput);
+    }
+
+    if (confirmInput && toggleConfirmBtn) {
+      toggleConfirmBtn.addEventListener('click', function () {
+        toggleVisibility(confirmInput, toggleConfirmBtn);
+      });
+      allowOnlyLettersAndNumbers(confirmInput);
+    }
+  });
+}
+
+

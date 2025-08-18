@@ -8,6 +8,7 @@ from fastapi.templating import Jinja2Templates
 from data.adm.adm_repo import AdmRepo
 from data.adm.adm_model import Administrador
 from data.usuario.usuario_repo import UsuarioRepo
+from data.util import get_connection
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
@@ -15,15 +16,22 @@ templates = Jinja2Templates(directory="templates")
 adm_repo = AdmRepo(db_path="dados.db")
 usuario_repo = UsuarioRepo(db_path="dados.db")
 
-def confirmar_usuario(nome: str, email: str):
-    #Conferindo se o nome e o email existem no banco de dados
-    if not usuario_repo.search_paged_nomecompleto(nome) or not usuario_repo.search_paged_email(email):
+def confirmar_usuario(nome_completo: str, email: str):
+    nome_completo = nome_completo.strip()
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT id
+            FROM usuario
+            WHERE (TRIM(nome) || ' ' || TRIM(sobrenome)) = ?
+              AND email = ?
+        """, (nome_completo, email))
+        row = cursor.fetchone()
+        if row:
+            return row['id']
         return None
-    usuario_id_nome = usuario_repo.search_paged_nomecompleto(nome)[0].id
-    usuario_id_email = usuario_repo.search_paged_email(email)[0].id
-    #Conferindo se o email e o nome pertence ao mesmo usuário
-    if usuario_id_nome == usuario_id_email:
-        return usuario_id_email
+    return None
+
         
 @router.get("/admin")
 async def get_administradores():

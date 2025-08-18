@@ -3,8 +3,13 @@ from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from data.cidade import cidade_repo
+from data.contratante import contratante_repo
+from data.contratante.contratante_model import Contratante
+from data.musico import musico_repo
+from data.musico.musico_model import Musico
 from data.uf import uf_repo
 from data.usuario import usuario_repo
+from data.usuario.usuario_model import Usuario
 from fastapi import Form
 from validate_docbr import CPF
 from email_validator import validate_email, EmailNotValidError
@@ -50,38 +55,6 @@ def validar_nome_usuario(nome):
         return "Este nome de usuário não é permitido."
 
     return None 
-
-def validar_logradouro_bairro(logradouro: str, bairro: str, cidade: str) -> bool:
-
-    query = f"{logradouro}, {bairro}, {cidade}, Brasil"
-    url = "https://nominatim.openstreetmap.org/search"
-    headers = {"User-Agent": "MeuApp/1.0"}
-    params = {
-        "q": query,
-        "format": "json",
-        "addressdetails": 1, 
-        "limit": 5           
-    }
-    
-    try:
-        res = requests.get(url, params=params, headers=headers, timeout=5)
-        res.raise_for_status()
-        data = res.json()
-        validados = {
-            "logradouro":False,
-            "bairro":False
-        }
-
-        for item in data:
-            addr = item.get("address", {})
-            if addr.get("road", "").lower() == logradouro.lower():
-                validados["logradouro"] = True
-            if addr.get("suburb", "").lower() == bairro.lower():
-                validados["bairro"] = True
-        return validados
-    except Exception as e:
-        print("Erro na validação do endereço:", e)
-        return None
 
 @router.get("/", response_class=HTMLResponse)
 async def get_root():
@@ -145,9 +118,17 @@ async def post_cadastro(
     "complemento": complemento or "",
     "cep": cep or ""
 }
+    generos = {
+        '1': "Masculino",
+        '2': "Feminino",
+        '3': "Outro",
+        '4': "Prefiro não informar"
+    }
 
     usuario = usuario_repo.UsuarioRepo("dados.db")
     cidades = cidade_repo.CidadeRepo("dados.db").get_all()
+    contratante = contratante_repo.ContratanteRepo("dados.db")
+    musico = musico_repo.MusicoRepo("dados.db")
     usuarios = usuario.get_all()
     errors = dict()
     validador_cpf = CPF()
@@ -171,20 +152,19 @@ async def post_cadastro(
     elif len(nome_usuario) < 3:
         errors["nome_usuario"] = "Nome de usuário muito curto (Min: 3 caracteres)."
     for u in usuarios:
-        if u['nome_usuario'] == nome_usuario: errors["nome_usuario"] = "Nome de usuário já cadastrado."
-        if u['email'] == email: errors["email"] = "Esse email já está cadastrado. Tente logar-se com ele."
-        if u['cpf'] == cpf: errors["cpf"] = "Cpf já cadastrado."
-
+        if u.nome_usuario == nome_usuario: errors["nome_usuario"] = "Nome de usuário já cadastrado."
+        if u.email == email: errors["email"] = "Esse email já está cadastrado. Tente logar-se com ele."
+        if u.cpf == cpf: errors["cpf"] = "Cpf já cadastrado."
     if validacao_nome_usuario:
         errors["nome_usuario"] = validacao_nome_usuario
-    elif cpf != "":
+    elif cpf != '':
         if not validador_cpf.validate(cpf) or len(cpf) < 11:
             errors["cpf"] = "Cpf inválido."
+        cpf = re.sub(r'[^0-9]', '', cpf) 
     elif not validacao_email:
         errors["email"] = "Email inválido."
     elif len(data_nascimento) < 10 and data_nascimento != "":
         errors["data_nascimento"] = "Data inválida."
-
     id_cidade = None
     for c in cidades:
         if c.nome == cidade:
@@ -192,10 +172,63 @@ async def post_cadastro(
             break
     if not id_cidade:
         errors["cidade"] = "Cidade não encontrada."
-    validados_dict = validar_logradouro_bairro(logradouro=logradouro, bairro=bairro, cidade=cidade)
-    if validados_dict != None:
-        errors["logradouro"] = "Rua não encontrada" if not validados_dict["logradouro"] else None
-        errors["bairro"] = "Bairro não encontrado" if not validados_dict["bairro"] else None
+        
+    senha_hash = bcrypt.hashpw(senha.encode(), bcrypt.gensalt())
+
+    if telefone != '' and cep != '':
+        telefone = re.sub(r'[^0-9]', '', telefone)
+        cep = re.sub(r'[^0-9]', '', cep)  
+    try:
+        novo_usuario = Usuario(
+            id=0,
+            nome=nome,
+            sobrenome=sobrenome,
+            id_cidade=id_cidade if cidade != '' else None,
+            nome_usuario=nome_usuario,
+            email=email,
+            senha=senha_hash.decode(), 
+            genero=None if genero is None or genero == '' else generos[genero],
+            telefone=None if telefone == '' else telefone,
+            cpf=None if cpf == '' else cpf,
+            logradouro=None if logradouro == '' else logradouro,  
+            numero=None if numero == '' else numero,
+            bairro=None if bairro == '' else bairro,
+            complemento=None if complemento == '' else complemento,
+            cep=None if cep == '' else cep,
+            data_nascimento=None if data_nascimento == '' else data_nascimento,
+            verificado=False
+        )
+        novo_usuario = usuario.insert(novo_usuario)
+        if novo_usuario:
+            print('tudo certo')
+            if tipo_usuario == 'contratante':
+                id_contratante = novo_usuario
+                novo_contratante = contratante.insert(
+                    Contratante(
+                        id=id_contratante,
+                        nota=None,
+                        numero_contratacoes=0
+                ))
+                if novo_contratante:
+                    pass
+                else:
+                    pass
+            elif tipo_usuario == 'musico':
+                id_musico = novo_usuario
+                novo_musico = musico.insert(
+                    Musico(
+                        id=id_musico,
+                        experiencia=None
+                    )
+                )
+                if novo_musico:
+                    pass
+                else:
+                    pass
+        else:
+            pass
+    except Exception as e:
+        pass
         
     if errors:
         uf = uf_repo.UfRepo('dados.db').get_all()

@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS usuario (
     nome TEXT NOT NULL CHECK(LENGTH(nome) <= 100),
     sobrenome TEXT NOT NULL CHECK(LENGTH(sobrenome) <= 100),
     nome_usuario TEXT NOT NULL CHECK(LENGTH(nome_usuario) <= 20),
-    senha TEXT NOT NULL CHECK(LENGTH(senha) <= 20),
+    senha TEXT NOT NULL CHECK(LENGTH(senha) <= 100),
     email TEXT NOT NULL CHECK(LENGTH(email) <= 254),
     cpf TEXT UNIQUE CHECK(LENGTH(cpf) == 11),
     telefone TEXT CHECK(LENGTH(telefone) <= 11),
@@ -56,7 +56,7 @@ c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
 JOIN cidade c ON u.id_cidade = c.id
 JOIN uf ON c.id_uf = uf.id
-WHERE u.nome LIKE ? AND u.sobrenome LIKE ?
+WHERE LOWER(TRIM(u.nome)) LIKE LOWER(?) AND LOWER(TRIM(u.sobrenome)) LIKE LOWER(?)
 ORDER BY u.nome
 LIMIT ? OFFSET ?;
 """

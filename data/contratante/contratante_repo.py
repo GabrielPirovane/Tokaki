@@ -26,7 +26,7 @@ class ContratanteRepo:
         try:
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_INSERT_CONTRATANTE, (contratante.id.id, contratante.nota, contratante.numero_contratacoes))
+                cursor.execute(SQL_INSERT_CONTRATANTE, (contratante.id, contratante.nota, contratante.numero_contratacoes))
                 return cursor.lastrowid
         except sqlite3.IntegrityError as e:
             print(f"Erro de integridade ao inserir contratante: {e}")

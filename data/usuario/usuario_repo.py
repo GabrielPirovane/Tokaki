@@ -26,8 +26,9 @@ class UsuarioRepo:
             with get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute(SQL_INSERT_USUARIO, (
-                    usuario.id_cidade.id,
+                    usuario.id_cidade,
                     usuario.nome,
+                    usuario.sobrenome,
                     usuario.nome_usuario,
                     usuario.senha,
                     usuario.email,
@@ -39,7 +40,8 @@ class UsuarioRepo:
                     usuario.bairro,
                     usuario.complemento,
                     usuario.cep,
-                    usuario.data_nascimento
+                    usuario.data_nascimento,
+                    usuario.verificado
                 ))
                 return cursor.lastrowid
         except sqlite3.IntegrityError as e:
@@ -60,6 +62,7 @@ class UsuarioRepo:
                         id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
                     ),
                     nome=row['nome'],
+                    sobrenome=row['sobrenome'],
                     nome_usuario=row['nome_usuario'],
                     senha=row['senha'],
                     email=row['email'],
@@ -91,6 +94,7 @@ class UsuarioRepo:
                         id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
                     ),
                     nome=row['nome'],
+                    sobrenome=row['sobrenome'],
                     nome_usuario=row['nome_usuario'],
                     senha=row['senha'],
                     email=row['email'],
@@ -112,7 +116,7 @@ class UsuarioRepo:
         termo = f"%{termo}%"
         with get_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute(SQL_SELECT_RANGE_BUSCA_USUARIO, (f'%{termo}%', limit, offset))
+            cursor.execute(SQL_SELECT_RANGE_BUSCA_USUARIO_NOME, (f'%{termo}%', limit, offset))
             rows = cursor.fetchall()
             return [
                 Usuario(
@@ -123,6 +127,43 @@ class UsuarioRepo:
                         id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
                     ),
                     nome=row['nome'],
+                    sobrenome=row['sobrenome'],
+                    nome_usuario=row['nome_usuario'],
+                    senha=row['senha'],
+                    email=row['email'],
+                    cpf=row['cpf'],
+                    telefone=row['telefone'],
+                    genero=row['genero'],
+                    logradouro=row['logradouro'],
+                    numero=row['numero'],
+                    bairro=row['bairro'],
+                    complemento=row['complemento'],
+                    cep=row['cep'],
+                    data_nascimento=row['data_nascimento']
+                ) for row in rows
+            ]
+            
+    def search_paged_nomecompleto(self, termo: str, page_number: int=1, page_size: int=10) -> List[Usuario]:
+        limit = page_size
+        offset = (page_number - 1) * page_size
+        termos = termo.strip().split(maxsplit=1)
+        nome_term = f"%{termos[0]}%"
+        sobrenome_term = f"%{termos[1]}%" if len(termos) > 1 else "%"
+
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(SQL_SELECT_RANGE_BUSCA_USUARIO_NOMECOMPLETO,  (nome_term, sobrenome_term, limit, offset))
+            rows = cursor.fetchall()
+            return [
+                Usuario(
+                    id=row['id'],
+                    id_cidade=Cidade(
+                        id=row['id_cidade'],
+                        nome=row['nome_cidade'],
+                        id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
+                    ),
+                    nome=row['nome'],
+                    sobrenome=row['sobrenome'],
                     nome_usuario=row['nome_usuario'],
                     senha=row['senha'],
                     email=row['email'],
@@ -155,6 +196,7 @@ class UsuarioRepo:
                         id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
                     ),
                     nome=row['nome'],
+                    sobrenome=row['sobrenome'],
                     nome_usuario=row['nome_usuario'],
                     senha=row['senha'],
                     email=row['email'],
@@ -191,6 +233,7 @@ class UsuarioRepo:
                         id_uf=Uf(id=row['id_uf'], nome=row['nome_uf'])
                     ),
                     nome=row['nome'],
+                    sobrenome=row['sobrenome'],
                     nome_usuario=row['nome_usuario'],
                     senha=row['senha'],
                     email=row['email'],
@@ -202,7 +245,8 @@ class UsuarioRepo:
                     bairro=row['bairro'],
                     complemento=row['complemento'],
                     cep=row['cep'],
-                    data_nascimento=row['data_nascimento']
+                    data_nascimento=row['data_nascimento'],
+                    verificado=row['verificado']
                 ) for row in rows
             ]
     
@@ -213,6 +257,7 @@ class UsuarioRepo:
                 cursor.execute(SQL_UPDATE_USUARIO, (
                     usuario.id_cidade.id,
                     usuario.nome,
+                    usuario.sobrenome,
                     usuario.nome_usuario,
                     usuario.senha,
                     usuario.email,

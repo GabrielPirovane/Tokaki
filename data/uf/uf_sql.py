@@ -26,6 +26,12 @@ FROM uf
 ORDER BY nome;
 """
 
+SQL_SELECT_UF_BY_NAME = """
+SELECT id, nome
+FROM uf
+WHERE nome = ? COLLATE NOCASE;
+"""
+
 SQL_UPDATE_UF = """
 UPDATE uf   
 SET nome = ?

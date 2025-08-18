@@ -133,15 +133,15 @@ a:hover {
   margin-top: 10px;
 }
 
-.aviso-senha {
-  font-family: var(--fonte-base);
-  margin-top: 15px;
-  font-size: 0.6em;
-  color: var(--cor-5);
-  opacity: 0.96;
-  margin-top: 10px;
+.esqueceu-senha {
+  font-family: var(--fonte-destaque);
   margin-left: 4px;
+  margin-top: 10px;
+  font-size: 1em;
+  color: var(--cor-2);
 }
+
+
 
 .form-check-input:checked {
   background-color: var(--cor-1);

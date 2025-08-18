@@ -1,7 +1,7 @@
 SQL_CREATE_TABLE_MUSICO = """
 CREATE TABLE IF NOT EXISTS musico (
     id INTEGER PRIMARY KEY,
-    experiencia TEXT NOT NULL,
+    experiencia TEXT,
     FOREIGN KEY (id) REFERENCES usuario(id)
 );
 """
@@ -30,6 +30,7 @@ SELECT
     u.complemento,
     u.cep,
     u.data_nascimento,
+    u.verificado,
     c.id AS cidade_id,
     c.nome AS nome_cidade,
     uf.id AS uf_id,
@@ -61,6 +62,7 @@ SELECT
     u.complemento,
     u.cep,
     u.data_nascimento,
+    u.verificado,
     c.id AS cidade_id,
     c.nome AS nome_cidade,
     uf.id AS uf_id,
@@ -93,6 +95,7 @@ SELECT
     u.complemento,
     u.cep,
     u.data_nascimento,
+    u.verificado,
     c.id AS cidade_id,
     c.nome AS nome_cidade,
     uf.id AS uf_id,
@@ -127,6 +130,7 @@ SELECT
     u.complemento,
     u.cep,
     u.data_nascimento,
+    u.verificado,
     c.id AS cidade_id,
     c.nome AS nome_cidade,
     uf.id AS uf_id,

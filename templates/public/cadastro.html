@@ -62,9 +62,9 @@
 
                         <div class="mb-3">
                             <label for="nome" class="titulo-form">*Nome</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="José"
-                                value="{{ form_data.nome if form_data else '' }}" {% if errors.nome and not
-                                first_error_set %}autofocus{% set first_error_set=true %}{% endif %} required>
+                            <input type="text" class="form-control" id="nome" name="nome" maxlength="100" minlength="2"
+                                placeholder="José" value="{{ form_data.nome if form_data else '' }}" {% if errors.nome
+                                and not first_error_set %}autofocus{% set first_error_set=true %}{% endif %} required>
                             {% if errors.nome %}
                             <small class="erro-mensagem">{{ errors.nome }}</small>
                             {% endif %}
@@ -72,28 +72,41 @@
 
                         <div class="mb-3">
                             <label for="sobrenome" class="titulo-form">*Sobrenome</label>
-                            <input type="text" class="form-control" id="sobrenome" name="sobrenome"
-                                placeholder="Silva Campos" required>
+                            <input type="text" class="form-control" id="sobrenome" name="sobrenome" maxlength="100"
+                                minlength="2" placeholder="Silva Campos"
+                                value="{{ form_data.sobrenome if form_data else '' }}" {% if errors.sobrenome and not
+                                first_error_set %}autofocus{% set first_error_set=true %}{% endif %} required>
                         </div>
 
                         <div class="mb-3">
                             <label for="nome_usuario" class="titulo-form">*Nome de Usuário</label>
-                            <input type="text" class="form-control" id="nome_usuario" name="nome_usuario"
-                                placeholder="usuarioexemplo123" required>
+                            <input type="text" class="form-control" id="nome_usuario" name="nome_usuario" maxlength="20"
+                                placeholder="usuarioexemplo123"
+                                value="{{ form_data.nome_usuario if form_data else '' }}" {% if errors.nome_usuario and
+                                not first_error_set %}autofocus{% set first_error_set=true %}{% endif %} required>
+                            {% if errors.nome_usuario %}
+                            <small class="erro-mensagem">{{ errors.nome_usuario }}</small>
+                            {% endif %}
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="titulo-form">*Email</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                placeholder="exemplo@email.com" required>
+                            <input type="email" class="form-control" id="email" name="email" maxlength="254"
+                                placeholder="exemplo@email.com" value="{{ form_data.email if form_data else '' }}" {% if
+                                errors.email and not first_error_set %}autofocus{% set first_error_set=true %}{% endif
+                                %} required>
+                            <small id="erro-email" class="erro-mensagem" style="display: none;"></small>
+                            {% if errors.email %}
+                            <small class="erro-mensagem">{{ errors.email }}</small>
+                            {% endif %}
                         </div>
 
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="cpf" class="titulo-form">CPF</label>
-                                <input type="text" class="form-control" id="cpf" name="cpf"
-                                    placeholder="xxx.xxx.xxx-xx" value="{{ form_data.cpf if form_data else '' }}" {% if errors.cpf and not
-                                first_error_set %}autofocus{% set first_error_set=true %}{% endif %} >
+                                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="xxx.xxx.xxx-xx"
+                                    value="{{ form_data.cpf if form_data else '' }}" {% if errors.cpf and not
+                                    first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
                                 {% if errors.cpf %}
                                 <small class="erro-mensagem">{{ errors.cpf }}</small>
                                 {% endif %}
@@ -113,37 +126,61 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="telefone" class="titulo-form">Telefone</label>
-                                <input type="text" class="form-control" id="telefone" name="telefone"
+                                <input type="text" class="form-control" id="telefone" name="telefone" maxlength="15"
                                     placeholder="(xx) xxxxx-xxxx">
                             </div>
                             <div class="col mb-3">
                                 <label for="data_nascimento" class="titulo-form">Data de Nascimento</label>
-                                <input type="date" class="form-control" id="data_nascimento" name="data_nascimento">
+                                <input type="text" class="form-control" id="data_nascimento" maxlength="10"
+                                    name="data_nascimento" placeholder="dd/mm/aaaa"
+                                    value="{{ form_data.data_nascimento if form_data else '' }}" {% if
+                                    errors.data_nascimento and not first_error_set %}autofocus{% set
+                                    first_error_set=true %}{% endif %}>
+                                {% if errors.data_nascimento %}
+                                <small class="erro-mensagem">{{ errors.data_nascimento }}</small>
+                                {% endif %}
                             </div>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="logradouro" class="titulo-form">Logradouro</label>
-                            <input type="text" class="form-control" id="logradouro" name="logradouro"
-                                placeholder="Ex: Rua 25 de Março">
+                        <div class="row">
+                            <div class="col-4 mb-3">
+                                <label for="cep" class="titulo-form">CEP</label>
+                                <input type="text" class="form-control" id="cep" name="cep" maxlength="9"
+                                    placeholder="Ex: xxxxx-xxx">
+                            </div>
+                            <div class="col mb-3">
+                                <label for="logradouro" class="titulo-form">Endereço</label>
+                                <input type="text" class="form-control" id="logradouro" name="logradouro"
+                                    maxlength="150" placeholder="Ex: Rua 25 de Março"
+                                    value="{{ form_data.logradouro if form_data else '' }}" {% if errors.logradouro and
+                                    not first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
+                                {% if errors.logradouro %}
+                                <small class="erro-mensagem">{{ errors.logradouro }}</small>
+                                {% endif %}
+                            </div>
                         </div>
 
                         <div class="row">
-                            <div class="col mb-3">
-                                <label for="bairro" class="titulo-form">Bairro</label>
-                                <input type="text" class="form-control" id="bairro" name="bairro"
-                                    placeholder="Ex: Morada do Sol">
-                            </div>
                             <div class="col-3 mb-3">
                                 <label for="numero" class="titulo-form">Número</label>
-                                <input type="text" class="form-control" id="numero" name="numero" placeholder="Ex: 23">
+                                <input type="number" class="form-control" id="numero" name="numero" placeholder="Ex: 23"
+                                    maxlength="6">
+                            </div>
+                            <div class="col mb-3">
+                                <label for="bairro" class="titulo-form">Bairro</label>
+                                <input type="text" class="form-control" id="bairro" name="bairro" maxlength="50"
+                                    placeholder="Ex: Morada do Sol" value="{{ form_data.bairro if form_data else '' }}"
+                                    {% if errors.bairro and not first_error_set %}autofocus{% set first_error_set=true
+                                    %}{% endif %}>
+                                {% if errors.bairro %}
+                                <small class="erro-mensagem">{{ errors.bairro }}</small>
+                                {% endif %}
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col mb-3 w-auto">
                                 <label for="cidade" class="titulo-form">Cidade</label>
-                                <input type="text" class="form-control" id="cidade" name="cidade"
+                                <input type="text" class="form-control" id="cidade" name="cidade" maxlength="50"
                                     placeholder="Ex: Rio de Janeiro">
                             </div>
                             <div class="col mb-3">
@@ -159,24 +196,31 @@
 
                         <div class="mb-3">
                             <label for="complemento" class="titulo-form">Complemento</label>
-                            <input type="text" class="form-control" id="complemento" name="complemento"
+                            <input type="text" class="form-control" id="complemento" name="complemento" maxlength="200"
                                 placeholder="Ex: Apartamento Térreo">
                         </div>
 
                         <div class="mb-3">
                             <label for="senha" class="titulo-form">*Senha</label>
                             <input type="password" class="form-control" id="senha" name="senha"
-                                placeholder="Digite uma senha" required>
+                                placeholder="Digite uma senha" maxlength="20" minlength="8" required>
+                            <span class="toggle-password">
+                                <i class="bi bi-eye-slash"></i>
+                            </span>
                             <small class="aviso-senha text-muted mt-2">
                                 *A senha deve ter de 8 a 20 caracteres, ter letras e números e não pode conter
                                 caracteres especiais.
                             </small>
+                            <div id="strengthBarContainer">
+                                <div id="strengthBarFill"></div>
+                            </div>
+                            <span id="strengthText"></span>
                         </div>
 
                         <div class="mb-3">
                             <label for="confirmacao_senha" class="titulo-form">*Confirmar Senha</label>
                             <input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha"
-                                placeholder="Confirme sua senha" required>
+                                placeholder="Confirme sua senha" maxlength="20" minlength="8" required>
                             <small id="erro-senha" class="erro-mensagem" style="display:none;">As senhas não
                                 coincidem</small>
                         </div>
@@ -206,5 +250,4 @@
         </div>
     </div>
 </div>
-
-{% endblock %}
+{% endblock%}

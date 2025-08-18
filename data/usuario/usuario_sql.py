@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS usuario (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL CHECK(LENGTH(nome) <= 100),
     sobrenome TEXT NOT NULL CHECK(LENGTH(sobrenome) <= 100),
-    nome_usuario TEXT NOT NULL CHECK(LENGTH(nome_usuario) <= 30),
+    nome_usuario TEXT NOT NULL CHECK(LENGTH(nome_usuario) <= 20),
     senha TEXT NOT NULL CHECK(LENGTH(senha) <= 20),
     email TEXT NOT NULL CHECK(LENGTH(email) <= 254),
     cpf TEXT UNIQUE CHECK(LENGTH(cpf) == 11),

@@ -145,17 +145,18 @@ a:hover {
 }
 
 .erro-mensagem {
-    font-family: var(--fonte-base);
-    color: var(--cor-6); /* Força sobrescrever Bootstrap */
-    font-size: 0.85em;
-    margin-top: 15px;
+  font-family: var(--fonte-base);
+  color: var(--cor-6);
+  /* Força sobrescrever Bootstrap */
+  font-size: 0.85em;
+  margin-top: 15px;
 }
 
 #submit-button.btn-disabled {
-  opacity: 0.6;               
-  cursor: not-allowed;        
-  pointer-events: none;      
-  transform: none !important; 
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
   box-shadow: none !important;
 }
 
@@ -174,4 +175,41 @@ a:hover {
 
 .form-check-label {
   font-family: var(--fonte-base);
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#strengthBarContainer {
+  display: flex;
+  width: 75%;
+  max-width: auto;
+  height: 0;
+  /* barra escondida inicialmente */
+  overflow: hidden;
+  /* esconde conteúdo */
+  border-radius: 5px;
+  background-color: #ddd;
+  margin-top: 5px;
+  transition: height 0.3s;
+}
+
+#strengthBarFill {
+  height: 100%;
+  width: 0%;
+  border-radius: 5px;
+  transition: width 0.3s, background-color 0.3s;
+  background-color: red;
+}
+
+#strengthText {
+  display: block;
+  font-family: var(--fonte-base);
+  font-size: 1em;
+  margin-top: 5px;
 }

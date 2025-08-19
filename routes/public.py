@@ -1,6 +1,6 @@
 from typing import Optional
-from fastapi import APIRouter
-from fastapi.responses import HTMLResponse
+from fastapi import APIRouter, Request
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from data.cidade import cidade_repo
 from data.contratante import contratante_repo
@@ -17,7 +17,6 @@ from pydantic import BaseModel, field_validator
 from pydantic import ValidationError
 from datetime import date
 import re
-import requests
 from io import BytesIO
 import bcrypt
 
@@ -85,6 +84,7 @@ async def get_cadastro():
 
 @router.post("/cadastro")
 async def post_cadastro(
+    request: Request,
     tipo_usuario: str = Form(...),
     nome: str = Form(...),
     sobrenome: str = Form(...),
@@ -242,12 +242,33 @@ async def post_cadastro(
             },
         )
     
-    
-
 @router.get("/login")
 async def get_login():
     response = templates.TemplateResponse("/public/login.html", {"request": {}})
     return response
+
+@router.post("/login")
+async def post_login(
+    request: Request, 
+    email: str = Form(...),
+    senha: str = Form(...),
+):
+    senha_hash = usuario_repo.UsuarioRepo("dados.db").get_senha_by_email(email)
+    if not senha_hash:
+        pass
+    if not bcrypt.checkpw(senha.encode(), senha_hash.encode()):
+        pass
+    usuario = usuario_repo.UsuarioRepo("dados.db").get_by_email(email)
+    username = usuario.nome_usuario
+    request.session["usuario"] = {
+        "id": usuario.id,
+        "nome": usuario.nome,
+        "email": usuario.email,
+        "nome_usuario": username
+    }
+    response = RedirectResponse(f"/{username}", 303)
+    return response
+    
 
 @router.get("/verificacao")
 async def get_verificacao():

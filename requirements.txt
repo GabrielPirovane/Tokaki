@@ -10,3 +10,4 @@ pytest-cov
 validate-docbr
 bcrypt
 requests
+itsdangerous

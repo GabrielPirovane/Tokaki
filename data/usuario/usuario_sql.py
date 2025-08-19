@@ -73,6 +73,34 @@ ORDER BY u.nome
 LIMIT ? OFFSET ?;
 """
 
+
+SQL_SELECT_USUARIO_BY_NOMEUSUARIO = """
+SELECT u.id, u.id_cidade, u.nome, u.sobrenome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
+       u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado,
+       c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
+FROM usuario u
+LEFT JOIN cidade c ON u.id_cidade = c.id
+LEFT JOIN uf ON c.id_uf = uf.id
+WHERE u.nome_usuario = ?;
+"""
+
+
+SQL_GET_SENHA_POR_EMAIL = """
+SELECT senha
+FROM usuario
+WHERE email = ?
+"""
+
+SQL_GET_DADOS_POR_EMAIL = """
+SELECT u.id, u.id_cidade, u.nome, u.sobrenome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
+       u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado, c.id_uf, uf.nome AS nome_uf
+FROM usuario u
+LEFT JOIN cidade c ON u.id_cidade = c.id
+LEFT JOIN uf ON c.id_uf = uf.id
+WHERE u.email = ?
+"""
+
+
 SQL_SELECT_USUARIO_BY_ID = """
 SELECT u.id, u.id_cidade, u.nome, u.sobrenome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
 u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado,

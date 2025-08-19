@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from starlette.middleware.sessions import SessionMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
@@ -7,6 +8,8 @@ from routes.public import router as public_router
 from routes.admin.adm_administradores_routes import router as adm_administradores_router
 from routes.admin.adm_categorias_routes import router as adm_categorias_router
 from routes.admin.adm_fotos import router as adm_fotos_router
+from routes.usuario.usuario_perfil import router as usuario_perfil_router
+from routes.usuario.usuario_conversas import router as usuario_conversas_router
 
 
 from data.agenda import agenda_repo
@@ -24,10 +27,6 @@ from data.cidade import cidade_repo
 from data.usuario import usuario_repo
 from data.adm import adm_repo
 from data.musico import musico_repo
-
-app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
 
 uf_repo_instance = uf_repo.UfRepo("dados.db")
 uf_repo_instance.create_table()
@@ -75,10 +74,20 @@ contratacao_repo_instance = contratacao_repo.ContratacaoRepo("dados.db")
 contratacao_repo_instance.create_table()
 
 
+#Teste em localhost
+import secrets
+secret_key = secrets.token_hex(32)
+app = FastAPI()
+app.add_middleware(SessionMiddleware, secret_key=secret_key)
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
 app.include_router(public_router)
 app.include_router(adm_administradores_router)
 app.include_router(adm_categorias_router)
 app.include_router(adm_fotos_router)
+app.include_router(usuario_perfil_router)
+app.include_router(usuario_conversas_router)
 
 
 if __name__ == "__main__":

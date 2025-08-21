@@ -4,7 +4,7 @@ Tokaki é uma plataforma que conecta o músico com o contratante.
 # OBS: ESSA É A BRANCH MAIN. NÃO DÊ MERGE DE SUA BRANCH SEM FALAR COM AS OUTRAS PESSOAS DO GRUPO
 
 # Como rodar o site para testes:
-_(Opcional, mas recomendado) Antes de começar, baixar a extensão "Python Enviroments" e, logo após,  criar um ambiente python com ``` python -m venv .venv_```
+_**(Opcional, mas recomendado) Antes de começar, baixar a extensão "Python Enviroments" e, logo após,  criar um ambiente python com:**_ ``` python -m venv .venv```
 1 - Executar git clone com o link deste repositório;
 2 - Configurar o git no computador com:
 ```

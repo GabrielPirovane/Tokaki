@@ -45,7 +45,7 @@ Link para mapa de telas: https://www.gloomaps.com/XKWlAlTm3G
 - [x] Home pública (/);
 - [x] Login (/login);
 - [x] Esqueci a senha (/esqueci-senha);
-- [x] Cadastro (/cadastro);
+- [x] **Cadastro (/cadastro);**
 - [x] Verificação de email (/verificacao);
 - [x] Sobre (/sobre);
 - [x] Contatos (/contatos);

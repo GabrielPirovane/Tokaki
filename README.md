@@ -38,14 +38,14 @@ git config --global user.email fulanodetal@exemplo.br
 # Telas e rotas: 
 
 Link para mapa de telas: https://www.gloomaps.com/XKWlAlTm3G
-_1. Rotas com ✅: funcionais, mas front-end e back-end em desenvolvimento;_
-_2. Rotas com ✅ em negrito: prontas e totalmente funcionais;_
+1. Rotas com ✅: funcionais, mas front-end e back-end em desenvolvimento;
+2. Rotas com ✅ em negrito: prontas e totalmente funcionais;
 
 **Rotas públicas**
 - [x] Home pública (/);
 - [x] Login (/login);
 - [x] Esqueci a senha (/esqueci-senha);
-- [x] <a href=“https://tokaki.cachoeiro.es/cadastro“>Cadastro;</a>
+- [x] Cadastro (/cadastro);
 - [x] Verificação de email (/verificacao);
 - [x] Sobre (/sobre);
 - [x] Contatos (/contatos);

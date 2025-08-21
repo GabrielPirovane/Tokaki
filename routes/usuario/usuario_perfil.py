@@ -23,7 +23,7 @@ async def get_home_usuario(request: Request, nome_usuario: str):
     )
     return response
     
-@router.get("/perfil", response_class=HTMLResponse)
+@router.get("/perfil/visualizar", response_class=HTMLResponse)
 async def get_perfil_usuario(request: Request, nome_usuario: str):
     sessao_usuario = request.session.get("usuario")
     if not sessao_usuario or sessao_usuario.get("nome_usuario") != nome_usuario:

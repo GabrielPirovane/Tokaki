@@ -1,5 +1,5 @@
 from typing import Optional
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Depends
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from data.cidade import cidade_repo
@@ -22,6 +22,10 @@ import bcrypt
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
+
+
+def get_sessao(request: Request) -> Optional[dict]:
+    return request.session.get("usuario")
 
 class UserModel(BaseModel):
     data_nascimento: str
@@ -56,12 +60,12 @@ def validar_nome_usuario(nome):
     return None 
 
 @router.get("/", response_class=HTMLResponse)
-async def get_root():
-    response = templates.TemplateResponse("/public/home.html", {"request": {}})
-    return response
+async def get_root(request: Request, sessao: Optional[dict] = Depends(get_sessao)):
+    return templates.TemplateResponse("/public/home.html", {"request": request, "sessao": sessao})
+
 
 @router.get("/cadastro")
-async def get_cadastro():
+async def get_cadastro(request: Request, sessao: Optional[dict] = Depends(get_sessao)):
     form_data = {
         "nome": "",
         "sobrenome": "",
@@ -79,8 +83,10 @@ async def get_cadastro():
         "cep": ""
     }
     uf = uf_repo.UfRepo("dados.db").get_all()
-    response = templates.TemplateResponse("/public/cadastro.html", {"request": {}, "uf":uf, "errors":{}, "form_data": form_data})
-    return response
+    return templates.TemplateResponse(
+        "/public/cadastro.html",
+        {"request": request, "uf": uf, "errors": {}, "form_data": form_data, "sessao": sessao}
+    )
 
 @router.post("/cadastro")
 async def post_cadastro(
@@ -271,41 +277,40 @@ async def post_login(
     
 
 @router.get("/verificacao")
-async def get_verificacao():
-    response = templates.TemplateResponse("/public/verificacao.html", {"request": {}})
-    return response
+async def get_verificacao(request: Request, sessao: Optional[dict] = Depends(get_sessao)):
+    return templates.TemplateResponse("/public/verificacao.html", {"request": request, "sessao": sessao})
+
 
 @router.get("/sobre")
-async def get_sobre():
-    response = templates.TemplateResponse("/public/sobre.html", {"request": {}})
-    return response
+async def get_sobre(request: Request, sessao: Optional[dict] = Depends(get_sessao)):
+    return templates.TemplateResponse("/public/sobre.html", {"request": request, "sessao": sessao})
+
 
 @router.get("/contatos")
-async def get_contatos():
-    response = templates.TemplateResponse("/public/contatos.html", {"request": {}})
-    return response
+async def get_contatos(request: Request, sessao: Optional[dict] = Depends(get_sessao)):
+    return templates.TemplateResponse("/public/contatos.html", {"request": request, "sessao": sessao})
+
 
 @router.get("/catalogo")
-async def get_catalogo():
-    response = templates.TemplateResponse("/public/catalogo.html", {"request": {}})
-    return response
+async def get_catalogo(request: Request, sessao: Optional[dict] = Depends(get_sessao)):
+    return templates.TemplateResponse("/public/catalogo.html", {"request": request, "sessao": sessao})
+
 
 @router.get("/detalhes")
-async def get_detalhes():
-    response = templates.TemplateResponse("/public/detalhes_musico.html", {"request": {}})
-    return response
+async def get_detalhes(request: Request, sessao: Optional[dict] = Depends(get_sessao)):
+    return templates.TemplateResponse("/public/detalhes_musico.html", {"request": request, "sessao": sessao})
+
 
 @router.get("/galeria")
-async def get_galeria():
-    response = templates.TemplateResponse("/public/galeria.html", {"request": {}})
-    return response
+async def get_galeria(request: Request, sessao: Optional[dict] = Depends(get_sessao)):
+    return templates.TemplateResponse("/public/galeria.html", {"request": request, "sessao": sessao})
+
 
 @router.get("/foto")
-async def get_foto():
-    response = templates.TemplateResponse("/public/ampliar_foto.html", {"request": {}})
-    return response
+async def get_foto(request: Request, sessao: Optional[dict] = Depends(get_sessao)):
+    return templates.TemplateResponse("/public/ampliar_foto.html", {"request": request, "sessao": sessao})
+
 
 @router.get("/esqueci-senha")
-async def get_esqueci_senha():
-    response = templates.TemplateResponse("/public/esqueci_senha.html", {"request": {}})
-    return response
+async def get_esqueci_senha(request: Request, sessao: Optional[dict] = Depends(get_sessao)):
+    return templates.TemplateResponse("/public/esqueci_senha.html", {"request": request, "sessao": sessao})

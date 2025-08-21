@@ -14,3 +14,14 @@ Rotas criadas:
 29/52 => 55,76%
 
 Docker funfando
+
+Usuário (100%)
+
+- [x] Alterar dados
+- [x] Alterar senha
+- [x] Conversas
+- [x] Detalhes conversas
+- [x] Encerrar conta
+- [x] Home usuário (nav footer usuário)
+- [x] Perfil
+- [x] Solicitar contratação

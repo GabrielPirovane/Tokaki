@@ -38,14 +38,14 @@ git config --global user.email fulanodetal@exemplo.br
 # Telas e rotas: 
 
 Link para mapa de telas: https://www.gloomaps.com/XKWlAlTm3G
-_Rotas em negrito: prontas e funcionais;_
-_Rotas marcadas: rotas funcionais, mas telas em desenvolvimento;_
+_1. Rotas com ✅: funcionais, mas front-end e back-end em desenvolvimento;_
+_2. Rotas com ✅ em negrito: prontas e totalmente funcionais;_
 
-Público
+**Rotas públicas**
 - [x] Home pública (/);
 - [x] Login (/login);
 - [x] Esqueci a senha (/esqueci-senha);
-- [x] **Cadastro (/cadastro);**
+- [x] <a href=“https://tokaki.cachoeiro.es/cadastro“>Cadastro;</a>
 - [x] Verificação de email (/verificacao);
 - [x] Sobre (/sobre);
 - [x] Contatos (/contatos);
@@ -54,7 +54,7 @@ Público
 - [x] Galeria (/galeria);
 - [x] Foto (/foto);
 
-Usuário (prefixo é o nome do usuário. Necessário estar logado)
+**Rotas comuns para todos os tipos de usuário (o prefixo da url é o nome de usuário. Portanto, é necessário estar logado)**
 
 - [x] Home usuário (nav footer usuário) (/);
 - [x] Perfil (/perfil/visualizar);
@@ -66,7 +66,7 @@ Usuário (prefixo é o nome do usuário. Necessário estar logado)
 - [] Encerrar conta ;
 - [] Solicitar contratação.
 
-Músico(prefixo é o nome do usuário + /musico. Necessário estar logado numa conta do tipo músico)
+**Rotas únicas para o usuário do tipo músico(prefixo é o nome do usuário + /musico. Necessário estar logado numa conta do tipo músico)**
 
 - [] Home músico;
 - [] Agenda;
@@ -86,7 +86,7 @@ Músico(prefixo é o nome do usuário + /musico. Necessário estar logado numa c
 - [] Atribuir categorias;
 - [] Remover categorias.
 
-Contratante (prefixo é o nome de usuário. Necessário estar logado numa conta padrão ou músico)
+**Rotas Contratante (prefixo é o nome de usuário. Necessário estar logado numa conta padrão ou músico)**
 
 - [] Home contratante;
 - [] Minhas contratações;

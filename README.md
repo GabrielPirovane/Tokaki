@@ -95,7 +95,7 @@ Link para mapa de telas: https://www.gloomaps.com/XKWlAlTm3G
 - [] Detalhes de solicitação;
 - [] Cancelar solicitação;
 
-Admin
+**Rotas de administração, exclusivas para staff**
 - [x] **Home admin (/admin);**
 - [x] **Ver administradores (/admin/administradores);**
 - [x] **Inserir administrador (/admin/administradores/inserir);**

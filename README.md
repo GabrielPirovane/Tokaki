@@ -38,12 +38,14 @@ git config --global user.email fulanodetal@exemplo.br
 # Telas e rotas: 
 
 Link para mapa de telas: https://www.gloomaps.com/XKWlAlTm3G
+_Rotas em negrito: prontas e funcionais;_
+_Rotas marcadas: rotas funcionais, mas telas em desenvolvimento;_
 
 Público
 - [x] Home pública (/);
 - [x] Login (/login);
 - [x] Esqueci a senha (/esqueci-senha);
-- [x] Cadastro (/cadastro);
+- [x] **Cadastro (/cadastro);**
 - [x] Verificação de email (/verificacao);
 - [x] Sobre (/sobre);
 - [x] Contatos (/contatos);
@@ -94,15 +96,15 @@ Contratante (prefixo é o nome de usuário. Necessário estar logado numa conta 
 - [] Cancelar solicitação;
 
 Admin
-- [x] Home admin (/admin);
-- [x] Ver administradores (/admin/administradores);
-- [x] Inserir administrador (/admin/administradores/inserir);
-- [x] Excluir administrador (/admin/administradores/excluir);
+- [x] **Home admin (/admin);**
+- [x] **Ver administradores (/admin/administradores);**
+- [x] **Inserir administrador (/admin/administradores/inserir);**
+- [x] **Excluir administrador (/admin/administradores/excluir);**
 - [] Alterar administrador (/admin/administradores/alterar);
-- [x] Ver categorias (/admin/categorias);
-- [x] Inserir categoria (/admin/categorias/inserir);
-- [x] Alterar categoria (/admin/categorias/alterar);
-- [x] Excluir categoria (/admin/categorias/excluir);
+- [x] **Ver categorias (/admin/categorias);**
+- [x] **Inserir categoria (/admin/categorias/inserir);**
+- [x] **Alterar categoria (/admin/categorias/alterar);**
+- [x] **Excluir categoria (/admin/categorias/excluir);**
 - [x] Ver fotos (/admin/fotos);
 - [] Moderar foto (/admin/fotos/moderar);
 

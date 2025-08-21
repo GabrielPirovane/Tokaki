@@ -5,16 +5,16 @@ Tokaki é uma plataforma que conecta o músico com o contratante.
 
 # Como rodar o site para testes:
 _**(Opcional, mas recomendado) Antes de começar, baixar a extensão "Python Enviroments" e, logo após,  criar um ambiente python com:**_ ``` python -m venv .venv```
-1 - Executar git clone com o link deste repositório;
-2 - Configurar o git no computador com:
+1. Executar git clone com o link deste repositório;
+2. Configurar o git no computador com:
 ```
 git config --global user.name "Fulano de Tal"
 git config --global user.email fulanodetal@exemplo.br
 ```
-4 - Executar ```git checkout (seu nome)``` no terminal;
-5- Verificar com ```git branch``` se a branch selecionada é aquela com o seu nome;
-6 - Executar no terminal: ```pip install -r .\requirements.txt```
-7 - Executar main.py com FastAPI (verificar se .vscode/launch.json está conforme código abaixo):
+3. Executar ```git checkout (seu nome)``` no terminal;
+4. Verificar com ```git branch``` se a branch selecionada é aquela com o seu nome;
+5. Executar no terminal: ```pip install -r .\requirements.txt```
+6. Executar main.py com FastAPI (verificar se .vscode/launch.json está conforme código abaixo):
 ```
 {
     "version": "0.2.0",
@@ -33,7 +33,7 @@ git config --global user.email fulanodetal@exemplo.br
     ]
 }
 ```
-8 - Inserir ufs e cidades no banco de dados com o comando ``` python -m inserts.insert_cidades_ufs ```
+7. Inserir ufs e cidades no banco de dados com o comando ``` python -m inserts.insert_cidades_ufs ```
 
 # Telas e rotas: 
 

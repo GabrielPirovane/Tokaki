@@ -37,10 +37,10 @@ git config --global user.email fulanodetal@exemplo.br
 
 # Telas e rotas: 
 
-Link para mapa de telas: https://www.gloomaps.com/XKWlAlTm3G
-Link para o protótipo de interface: https://www.canva.com/design/DAGmtF6l3IY/AZC2mX-GrKfBh9qfN4qIow/edit
-1. Rotas com ✅: funcionais, mas front-end e back-end em desenvolvimento;
-2. Rotas com ✅ em negrito: prontas e totalmente funcionais;
+Link para mapa de telas: https://www.gloomaps.com/XKWlAlTm3G \\
+Link para o protótipo de interface: https://www.canva.com/design/DAGmtF6l3IY/AZC2mX-GrKfBh9qfN4qIow/edit \\
+Rotas com ✅: funcionais, mas front-end e back-end em desenvolvimento; \\
+Rotas com ✅ em negrito: prontas e totalmente funcionais;
 
 **Rotas públicas**
 - [x] Home pública (/);

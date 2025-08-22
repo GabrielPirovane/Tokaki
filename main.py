@@ -10,6 +10,7 @@ from routes.admin.adm_categorias_routes import router as adm_categorias_router
 from routes.admin.adm_fotos import router as adm_fotos_router
 from routes.usuario.usuario_perfil import router as usuario_perfil_router
 from routes.usuario.usuario_conversas import router as usuario_conversas_router
+from routes.usuario.usuario_contratacao import router as usuario_contratacao_router
 
 
 from data.agenda import agenda_repo
@@ -88,6 +89,7 @@ app.include_router(adm_categorias_router)
 app.include_router(adm_fotos_router)
 app.include_router(usuario_perfil_router)
 app.include_router(usuario_conversas_router)
+app.include_router(usuario_contratacao_router)
 
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@ from data.adm.adm_model import Administrador
 from data.usuario.usuario_repo import UsuarioRepo
 from data.util import get_connection
 
-router = APIRouter()
+router = APIRouter(prefix="/admin")
 templates = Jinja2Templates(directory="templates")
 
 adm_repo = AdmRepo(db_path="dados.db")
@@ -33,12 +33,12 @@ def confirmar_usuario(nome_completo: str, email: str):
     return None
 
         
-@router.get("/admin")
+@router.get("/")
 async def get_administradores():
     response = templates.TemplateResponse("admin/area_adm.html", {"request": {}})
     return response
 
-@router.get("/admin/administradores")
+@router.get("/administradores")
 async def get_administradores(
     request: Request, 
     mensagem: str | None = Query(None), 
@@ -56,12 +56,12 @@ async def get_administradores(
     )
     return response
 
-@router.get("/admin/administradores/inserir")
+@router.get("/administradores/inserir")
 async def get_administradores_inserir():
     response = templates.TemplateResponse("/admin/inserir_adm.html", {"request": {}})
     return response
 
-@router.post("/admin/administradores/inserir")
+@router.post("/administradores/inserir")
 async def post_administradores_inserir(request: Request, nome: str = Form(...), email: str = Form(...)):
     adm_id = confirmar_usuario(nome, email)
     if adm_id is not None:
@@ -74,7 +74,7 @@ async def post_administradores_inserir(request: Request, nome: str = Form(...), 
         return RedirectResponse(url=url, status_code=303)
     return RedirectResponse(url="/admin/administradores?mensagem=Usuário não encontrado.&tipo_msg=danger", status_code=303)
 
-@router.post("/admin/administradores/excluir/{id}")
+@router.post("/administradores/excluir/{id}")
 async def post_administradores_excluir(id: int):
     if adm_repo.delete(id):
         url = "/admin/administradores?mensagem=Administrador excluído com sucesso!&tipo_msg=success"

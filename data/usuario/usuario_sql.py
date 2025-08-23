@@ -17,18 +17,19 @@ CREATE TABLE IF NOT EXISTS usuario (
     cep TEXT CHECK(LENGTH(cep) == 8),
     data_nascimento DATE,
     verificado BOOLEAN DEFAULT FALSE,
+    tipo_usuario TEXT CHECK(tipo_usuario IN ('musico', 'contratante')),
     FOREIGN KEY (id_cidade) REFERENCES cidade(id)
 );
 """
 
 SQL_INSERT_USUARIO = """
-INSERT INTO usuario (id_cidade, nome, sobrenome, nome_usuario, senha, email, cpf, telefone, genero, logradouro, numero, bairro, complemento, cep, data_nascimento, verificado) 
-VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+INSERT INTO usuario (id_cidade, nome, sobrenome, nome_usuario, senha, email, cpf, telefone, genero, logradouro, numero, bairro, complemento, cep, data_nascimento, verificado, tipo_usuario) 
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
 """
 
 SQL_SELECT_RANGE_USUARIO = """
 SELECT u.id, u.id_cidade, u.nome, u.sobrenome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
-u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado,
+u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado, u.tipo_usuario,
 c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
 JOIN cidade c ON u.id_cidade = c.id
@@ -39,7 +40,7 @@ LIMIT ? OFFSET ?;
 
 SQL_SELECT_RANGE_BUSCA_USUARIO_NOME = """
 SELECT u.id, u.id_cidade, u.nome, u.sobrenome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
-u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado,
+u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado, u.tipo_usuario,
 c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
 JOIN cidade c ON u.id_cidade = c.id
@@ -51,7 +52,7 @@ LIMIT ? OFFSET ?;
 
 SQL_SELECT_RANGE_BUSCA_USUARIO_NOMECOMPLETO = """
 SELECT u.id, u.id_cidade, u.nome, u.sobrenome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
-u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado,
+u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado, u.tipo_usuario,
 c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
 JOIN cidade c ON u.id_cidade = c.id
@@ -63,7 +64,7 @@ LIMIT ? OFFSET ?;
 
 SQL_SELECT_RANGE_BUSCA_USUARIO_EMAIL = """
 SELECT u.id, u.id_cidade, u.nome, u.sobrenome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
-u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado,
+u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado, u.tipo_usuario,
 c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
 JOIN cidade c ON u.id_cidade = c.id
@@ -73,17 +74,15 @@ ORDER BY u.nome
 LIMIT ? OFFSET ?;
 """
 
-
 SQL_SELECT_USUARIO_BY_NOMEUSUARIO = """
 SELECT u.id, u.id_cidade, u.nome, u.sobrenome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
-       u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado,
+       u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado, u.tipo_usuario,
        c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
 LEFT JOIN cidade c ON u.id_cidade = c.id
 LEFT JOIN uf ON c.id_uf = uf.id
 WHERE u.nome_usuario = ?;
 """
-
 
 SQL_GET_SENHA_POR_EMAIL = """
 SELECT senha
@@ -93,17 +92,16 @@ WHERE email = ?
 
 SQL_GET_DADOS_POR_EMAIL = """
 SELECT u.id, u.id_cidade, u.nome, u.sobrenome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
-       u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado, c.id_uf, uf.nome AS nome_uf
+       u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado, u.tipo_usuario, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
 LEFT JOIN cidade c ON u.id_cidade = c.id
 LEFT JOIN uf ON c.id_uf = uf.id
 WHERE u.email = ?
 """
 
-
 SQL_SELECT_USUARIO_BY_ID = """
 SELECT u.id, u.id_cidade, u.nome, u.sobrenome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
-u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado,
+u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado, u.tipo_usuario,
 c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
 JOIN cidade c ON u.id_cidade = c.id
@@ -117,17 +115,17 @@ SELECT COUNT(*) FROM usuario;
 
 SQL_SELECT_USUARIO = """
 SELECT u.id, u.id_cidade, u.nome, u.sobrenome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
-u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado,
-c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
+       u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado, u.tipo_usuario,
+       c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
-JOIN cidade c ON u.id_cidade = c.id
-JOIN uf ON c.id_uf = uf.id
+LEFT JOIN cidade c ON u.id_cidade = c.id
+LEFT JOIN uf ON c.id_uf = uf.id
 ORDER BY u.nome;
 """
 
 SQL_UPDATE_USUARIO = """
 UPDATE usuario
-SET id_cidade = ?, nome = ?, sobrenome = ?, nome_usuario = ?, senha = ?, email = ?, cpf = ?, telefone = ?, genero = ?, logradouro = ?, numero = ?, bairro = ?, complemento = ?, cep = ?, data_nascimento = ?, verificado = ?,
+SET id_cidade = ?, nome = ?, sobrenome = ?, nome_usuario = ?, senha = ?, email = ?, cpf = ?, telefone = ?, genero = ?, logradouro = ?, numero = ?, bairro = ?, complemento = ?, cep = ?, data_nascimento = ?, verificado = ?, tipo_usuario = ?
 WHERE id = ?;
 """
 

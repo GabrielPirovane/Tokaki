@@ -68,25 +68,25 @@ Rotas com ✅ em negrito: prontas e totalmente funcionais;
 - [x] Detalhes conversas (/conversas/detalhes);
 - [x] Solicitar contratação (/contratacao).
 
-**Rotas únicas para o usuário do tipo músico(prefixo é o nome do usuário + /musico. Necessário estar logado numa conta do tipo músico)**
+**Rotas únicas para o usuário do tipo músico(prefixo é o nome do usuário). Necessário estar logado numa conta do tipo músico)**
 
-- [] Home músico;
-- [] Agenda;
-- [] Alterar disponibilidade;
-- [] Galeria de fotos;
-- [] Detalhes da galeria;
-- [] Ampliar foto;
-- [] Сadastrar foto;
-- [] Alterar foto;
-- [] Excluir galeria;
-- [] Cadastrar galeria;
-- [] Alterar galeria;
-- [] Minhas contratações;
-- [] Solicitações de contratação;
-- [] Gerenciar solicitação;
-- [] Categorias;
-- [] Atribuir categorias;
-- [] Remover categorias.
+- [x] Home músico (/);
+- [x] Agenda (/agenda);
+- [x] Alterar disponibilidade (/agenda/disponibilidade);
+- [x] Galeria de fotos (/galeria);
+- [x] Detalhes da galeria (/galeria/detalhes);
+- [x] Cadastrar galeria (/galeria/cadastrar);
+- [x] Alterar galeria (/galeria/alterar);
+- [x] Excluir galeria (/galeria/excluir);
+- [x] Ampliar foto (/galeria/foto);
+- [x] Сadastrar foto (/galeria/foto/upload);
+- [x] Alterar foto (/galeria/foto/alterar);
+- [x] Minhas contratações (/contratacoes);
+- [x] Solicitações de contratação (/contratacoes);
+- [x] Gerenciar solicitação (/contratacoes/solicitacoes);
+- [x] Categorias (/categorias);
+- [x] Atribuir categorias (/categorias/atribuir);
+- [x] Remover categorias (/categorias/remover).
 
 **Rotas Contratante (prefixo é o nome de usuário. Necessário estar logado numa conta padrão ou músico)**
 
@@ -102,7 +102,7 @@ Rotas com ✅ em negrito: prontas e totalmente funcionais;
 - [x] **Ver administradores (/admin/administradores);**
 - [x] **Inserir administrador (/admin/administradores/inserir);**
 - [x] **Excluir administrador (/admin/administradores/excluir);**
-- [] Alterar administrador (/admin/administradores/alterar);
+- [] ~~~Alterar administrador (/admin/administradores/alterar)~~;
 - [x] **Ver categorias (/admin/categorias);**
 - [x] **Inserir categoria (/admin/categorias/inserir);**
 - [x] **Alterar categoria (/admin/categorias/alterar);**

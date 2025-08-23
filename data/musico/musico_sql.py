@@ -101,11 +101,12 @@ SELECT
     uf.id AS uf_id,
     uf.nome AS nome_uf
 FROM musico m
-JOIN usuario u ON m.id = u.id
-JOIN cidade c ON u.id_cidade = c.id
-JOIN uf ON c.id_uf = uf.id
+LEFT JOIN usuario u ON m.id = u.id
+LEFT JOIN cidade c ON u.id_cidade = c.id
+LEFT JOIN uf ON c.id_uf = uf.id
 WHERE m.id = ?;
 """
+
 
 SQL_SELECT_COUNT_MUSICO = """
 SELECT COUNT(*) FROM musico;

@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const labels = ['Muito fraca', 'Fraca', 'Média', 'Forte', 'Muito forte'];
   const colors = ['#ff0000', '#FF8000', '#FFD700', '#4CAF50', '#2196F3'];
 
+
   senha.addEventListener('input', () => {
     const value = senha.value.trim();
 

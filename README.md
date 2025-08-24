@@ -59,7 +59,7 @@ Rotas com ✅ em negrito: prontas e totalmente funcionais;
 100%
 
 - [x] Home usuário (nav footer usuário) (/); 
-- [x] Perfil (/perfil/visualizar); 
+- [x] Perfil (/perfil); 
 - [x] Alterar dados (/perfil/alterar-dados); 
 - [x] Alterar senha (/perfil/alterar-senha); 
 - [x] Encerrar conta (/perfil/encerrar-conta); 
@@ -82,7 +82,7 @@ Rotas com ✅ em negrito: prontas e totalmente funcionais;
 - [x] Сadastrar foto (/galeria/foto/upload);
 - [x] Alterar foto (/galeria/foto/alterar);
 - [x] Minhas contratações (/contratacoes);
-- [x] Solicitações de contratação (/contratacoes);
+- [x] Solicitações de contratação (/contratacoes/solicitacoes);
 - [x] Gerenciar solicitação (/contratacoes/solicitacoes);
 - [x] Categorias (/categorias);
 - [x] Atribuir categorias (/categorias/atribuir);
@@ -90,12 +90,12 @@ Rotas com ✅ em negrito: prontas e totalmente funcionais;
 
 **Rotas Contratante (prefixo é o nome de usuário. Necessário estar logado numa conta padrão ou músico)**
 
-- [] Home contratante;
-- [] Minhas contratações;
-- [] Solicitações de contratação;
-- [] Cancelar solicitação;
-- [] Detalhes de solicitação;
-- [] Cancelar solicitação;
+- [x] Home contratante (/);
+- [x] Minhas contratações (/minhas-contratacoes);
+- [x] Solicitações de contratação (/minhas-contratacoes/solicitacoes);
+- [x] Cancelar solicitação (/minhas-contratacoes/solicitacoes/cancelar);
+- [x] Detalhes de solicitação (/minhas-contratacoes/solicitacoes/detalhes);
+- [x] Realizar pagamento (/pagamento);
 
 **Rotas de administração, exclusivas para staff**
 - [x] **Home admin (/admin);**
@@ -108,7 +108,7 @@ Rotas com ✅ em negrito: prontas e totalmente funcionais;
 - [x] **Alterar categoria (/admin/categorias/alterar);**
 - [x] **Excluir categoria (/admin/categorias/excluir);**
 - [x] Ver fotos (/admin/fotos);
-- [] Moderar foto (/admin/fotos/moderar);
+- [x] Moderar foto (/admin/fotos/moderar);
 
 
 

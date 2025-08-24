@@ -12,3 +12,9 @@ async def get_fotos():
     fotos = foto_repo.get_all()
     response = templates.TemplateResponse("admin/fotos.html", {"request": {}, "fotos": fotos})
     return response
+
+@router.get("/moderar")
+async def get_moderar_fotos():
+    fotos = foto_repo.get_all()
+    response = templates.TemplateResponse("admin/moderar_fotos.html", {"request": {}, "fotos": fotos})
+    return response

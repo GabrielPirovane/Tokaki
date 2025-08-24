@@ -6,29 +6,28 @@ from fastapi.templating import Jinja2Templates
 from data.usuario import usuario_repo
 from data.musico import musico_repo
 
-# import dos sub-roteadores (esses arquivos devem EXPORTAR `router`)
 from routes.usuario.usuario_perfil import router as usuario_router
+from routes.usuario.usuario_conversas import router as usuario_conversas_router
+from routes.usuario.usuario_contratacao import router as usuario_contratacao_router
 from routes.musico.musico_agenda import router as musico_agenda_router
 from routes.musico.musico_galeria import router as musico_galeria_router
 from routes.musico.musico_contratacoes import router as musico_contratacoes_router
 from routes.musico.musico_categorias import router as musico_categorias_router
 
+from routes.contratante.contratante_contratacoes import router as contratante_contratacoes_router
+from routes.contratante.contratante_pagamento import router as contratante_pagamento_router
+
 templates = Jinja2Templates(directory="templates")
 
 router = APIRouter(prefix="/{nome_usuario}")
-
-# Inclui rotas comuns a todos os usuários (perfil, alterar dados, sair, etc.)
-# Esses sub-roteadores devem conter apenas rotas relativas (ex: "/perfil", "/perfil/alterar-dados")
 router.include_router(usuario_router, tags=["usuario"])
-
+router.include_router(usuario_conversas_router, tags=["usuario"])
+router.include_router(usuario_contratacao_router, tags=["usuario"])
 
 def get_current_usuario(request: Request, nome_usuario: str):
     sessao_usuario = request.session.get("usuario")
     if not sessao_usuario or sessao_usuario.get("nome_usuario") != nome_usuario:
-        # preferi lançar HTTPException aqui para o FastAPI tratar;
-        # se você quer redirecionar para /login, trate isso dentro da rota que chama a dependência.
         raise HTTPException(status_code=403, detail="Não autorizado")
-
     usuario = usuario_repo.UsuarioRepo("dados.db").get_by_nome_usuario(nome_usuario)
     if not usuario:
         raise HTTPException(status_code=404, detail="Usuário não encontrado")
@@ -69,4 +68,6 @@ def include_dynamic_routes(app):
     app.include_router(musico_agenda_router, prefix="/{nome_usuario}", tags=["musico"])
     app.include_router(musico_galeria_router, prefix="/{nome_usuario}", tags=["musico"])
     app.include_router(musico_contratacoes_router, prefix="/{nome_usuario}", tags=["musico"])
+    app.include_router(contratante_contratacoes_router, prefix="/{nome_usuario}", tags=["contratante"])
+    app.include_router(contratante_pagamento_router, prefix="/{nome_usuario}", tags=["contratante"])
     

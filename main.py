@@ -76,19 +76,16 @@ agendamento_repo_instance.create_table()
 contratacao_repo_instance = contratacao_repo.ContratacaoRepo("dados.db")
 contratacao_repo_instance.create_table()
 
-# App
 secret_key = secrets.token_hex(32)
 app = FastAPI()
 app.add_middleware(SessionMiddleware, secret_key=secret_key)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Rotas públicas / admin
 app.include_router(public_router)
 app.include_router(adm_administradores_router)
 app.include_router(adm_categorias_router)
 app.include_router(adm_fotos_router)
 
-# Monta todas as rotas dinâmicas (/{nome_usuario}/...) via seu roteador central
 include_dynamic_routes(app)
 
 if __name__ == "__main__":

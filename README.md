@@ -102,7 +102,7 @@ Rotas com ✅ em negrito: prontas e totalmente funcionais;
 - [x] **Ver administradores (/admin/administradores);**
 - [x] **Inserir administrador (/admin/administradores/inserir);**
 - [x] **Excluir administrador (/admin/administradores/excluir);**
-- [] ~~~Alterar administrador (/admin/administradores/alterar)~~;
+- [] ~~Alterar administrador (/admin/administradores/alterar)~~;
 - [x] **Ver categorias (/admin/categorias);**
 - [x] **Inserir categoria (/admin/categorias/inserir);**
 - [x] **Alterar categoria (/admin/categorias/alterar);**

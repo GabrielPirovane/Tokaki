@@ -20,4 +20,5 @@ class Usuario:
     cep: str | None
     data_nascimento: str | None
     verificado: bool
+    tipo_usuario: str | None
     

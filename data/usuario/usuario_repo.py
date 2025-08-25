@@ -45,6 +45,7 @@ class UsuarioRepo:
                         usuario.cep,
                         usuario.data_nascimento,
                         usuario.verificado,
+                        usuario.tipo_usuario
                     ),
                 )
                 return cursor.lastrowid
@@ -79,6 +80,8 @@ class UsuarioRepo:
                     complemento=row["complemento"],
                     cep=row["cep"],
                     data_nascimento=row["data_nascimento"],
+                    verificado=row["verificado"],
+                    tipo_usuario=row["tipo_usuario"]
                 )
             return None
 
@@ -110,6 +113,7 @@ class UsuarioRepo:
                 cep=row["cep"],
                 data_nascimento=row["data_nascimento"],
                 verificado=row["verificado"],
+                tipo_usuario=row["tipo_usuario"]
             )
 
     def get_all_paged(self, page_number: int = 1, page_size: int = 10) -> List[Usuario]:
@@ -141,6 +145,7 @@ class UsuarioRepo:
                     complemento=row["complemento"],
                     cep=row["cep"],
                     data_nascimento=row["data_nascimento"],
+                    tipo_usuario=row["tipo_usuario"],
                 )
                 for row in rows
             ]
@@ -179,6 +184,8 @@ class UsuarioRepo:
                     complemento=row["complemento"],
                     cep=row["cep"],
                     data_nascimento=row["data_nascimento"],
+                    verificado=row["verificado"],
+                    tipo_usuario=row["tipo_usuario"]
                 )
                 for row in rows
             ]
@@ -211,6 +218,7 @@ class UsuarioRepo:
                     cep=row["cep"],
                     data_nascimento=row["data_nascimento"],
                     verificado=row["verificado"],
+                    tipo_usuario=row["tipo_usuario"]
                 )
             return None
 
@@ -261,6 +269,8 @@ class UsuarioRepo:
                     complemento=row["complemento"],
                     cep=row["cep"],
                     data_nascimento=row["data_nascimento"],
+                    verificado=row["verificado"],
+                    tipo_usuario=row["tipo_usuario"]
                 )
                 for row in rows
             ]
@@ -299,6 +309,8 @@ class UsuarioRepo:
                     complemento=row["complemento"],
                     cep=row["cep"],
                     data_nascimento=row["data_nascimento"],
+                    verificado=row["verificado"],
+                    tipo_usuario=row["tipo_usuario"]
                 )
                 for row in rows
             ]
@@ -337,6 +349,7 @@ class UsuarioRepo:
                     cep=row["cep"],
                     data_nascimento=row["data_nascimento"],
                     verificado=row["verificado"],
+                    tipo_usuario=row["tipo_usuario"],
                 )
                 for row in rows
             ]
@@ -363,7 +376,10 @@ class UsuarioRepo:
                         usuario.complemento,
                         usuario.cep,
                         usuario.data_nascimento,
+                        usuario.verificado,
+                        usuario.tipo_usuario,
                         usuario.id,
+                        
                     ),
                 )
                 return cursor.rowcount > 0

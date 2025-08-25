@@ -56,7 +56,7 @@
 
 
                             {% if errors.tipo_usuario %}
-                            <small class="erro-mensagem">{{ errors.tipo_usuario }}</small>
+                            <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.tipo_usuario }}</small>
                             {% endif %}
                         </div>
 
@@ -66,7 +66,7 @@
                                 placeholder="José" value="{{ form_data.nome if form_data else '' }}" {% if errors.nome
                                 and not first_error_set %}autofocus{% set first_error_set=true %}{% endif %} required>
                             {% if errors.nome %}
-                            <small class="erro-mensagem">{{ errors.nome }}</small>
+                            <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.nome }}</small>
                             {% endif %}
                         </div>
 
@@ -84,8 +84,8 @@
                                 placeholder="usuarioexemplo123"
                                 value="{{ form_data.nome_usuario if form_data else '' }}" {% if errors.nome_usuario and
                                 not first_error_set %}autofocus{% set first_error_set=true %}{% endif %} required>
-                            {% if errors.nome_usuario %}
-                            <small class="erro-mensagem">{{ errors.nome_usuario }}</small>
+                            {% if errors.nome_usuario%}
+                            <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.nome_usuario }}</small>
                             {% endif %}
                         </div>
 
@@ -97,7 +97,7 @@
                                 %} required>
                             <small id="erro-email" class="erro-mensagem" style="display: none;"></small>
                             {% if errors.email %}
-                            <small class="erro-mensagem">{{ errors.email }}</small>
+                            <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.email }}</small>
                             {% endif %}
                         </div>
 
@@ -108,7 +108,7 @@
                                     value="{{ form_data.cpf if form_data else '' }}" {% if errors.cpf and not
                                     first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
                                 {% if errors.cpf %}
-                                <small class="erro-mensagem">{{ errors.cpf }}</small>
+                                <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.cpf }}</small>
                                 {% endif %}
                             </div>
                             <div class="col mb-3">
@@ -137,7 +137,7 @@
                                     errors.data_nascimento and not first_error_set %}autofocus{% set
                                     first_error_set=true %}{% endif %}>
                                 {% if errors.data_nascimento %}
-                                <small class="erro-mensagem">{{ errors.data_nascimento }}</small>
+                                <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.data_nascimento }}</small>
                                 {% endif %}
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                                     value="{{ form_data.logradouro if form_data else '' }}" {% if errors.logradouro and
                                     not first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
                                 {% if errors.logradouro %}
-                                <small class="erro-mensagem">{{ errors.logradouro }}</small>
+                                <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.logradouro }}</small>
                                 {% endif %}
                             </div>
                         </div>
@@ -173,7 +173,7 @@
                                     {% if errors.bairro and not first_error_set %}autofocus{% set first_error_set=true
                                     %}{% endif %}>
                                 {% if errors.bairro %}
-                                <small class="erro-mensagem">{{ errors.bairro }}</small>
+                                <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.bairro }}</small>
                                 {% endif %}
                             </div>
                         </div>

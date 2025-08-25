@@ -8,12 +8,12 @@ from fastapi.templating import Jinja2Templates
 from data.categoria.categoria_repo import CategoriaRepo
 from data.categoria.categoria_model import Categoria
 
-router = APIRouter()
+router = APIRouter(prefix="/admin/categorias")
 templates = Jinja2Templates(directory="templates")
 
 categoria_repo = CategoriaRepo(db_path="dados.db")
 
-@router.get("/admin/categorias")
+@router.get("/")
 async def get_categorias(
     request: Request, 
     mensagem: str | None = Query(None), 
@@ -31,12 +31,12 @@ async def get_categorias(
     )
     return response
 
-@router.get("/admin/categorias/inserir")
+@router.get("/inserir")
 async def get_inserir_categorias(request: Request, mensagem: str = None):
     response = templates.TemplateResponse("admin/inserir_categoria.html", {"request": request, "mensagem": mensagem})
     return response
 
-@router.post("/admin/categorias/inserir")
+@router.post("/inserir")
 async def post_categoria_inserir(request: Request, nome: str = Form(...), descricao: str = Form(...)):
     categoria = Categoria(id=0, nome=nome, descricao=descricao)
     categorias_encontradas = categoria_repo.search_paged(nome)
@@ -51,7 +51,7 @@ async def post_categoria_inserir(request: Request, nome: str = Form(...), descri
 
     return RedirectResponse(url=url,  status_code=303)
 
-@router.get("/admin/categorias/alterar/{id}")
+@router.get("/alterar/{id}")
 async def get_alterar_categorias(request: Request, id: int, mensagem: str = None, tipo_msg: str = "info"):
     categoria = categoria_repo.get_by_id(id)
     if categoria:
@@ -74,7 +74,7 @@ async def get_alterar_categorias(request: Request, id: int, mensagem: str = None
             }
         )
 
-@router.post("/admin/categorias/alterar/{id}")
+@router.post("/alterar/{id}")
 async def post_categoria_alterar(id: int, nome: str = Form(...), descricao: str = Form(...)):
     categorias_encontradas = categoria_repo.search_paged(nome)
     categoria_atual = categoria_repo.get_by_id(id)
@@ -91,7 +91,7 @@ async def post_categoria_alterar(id: int, nome: str = Form(...), descricao: str 
     url = "/admin/categorias?mensagem=Erro ao alterar categoria.&tipo_msg=danger"
     return RedirectResponse(url=url, status_code=status.HTTP_303_SEE_OTHER)
 
-@router.post("/admin/categorias/excluir/{id}")
+@router.post("/categorias/excluir/{id}")
 async def get_excluir_categorias(id: int, mensagem: str = None, tipo_msg: str = "info"):
     if categoria_repo.delete(id):
         url = "/admin/categorias?mensagem=Categoria excluida com sucesso!&tipo_msg=success"

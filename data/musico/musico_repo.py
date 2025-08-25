@@ -26,7 +26,7 @@ class MusicoRepo:
         try:
             with get_connection() as conn:
                 cursor = conn.cursor()
-                cursor.execute(SQL_INSERT_MUSICO, (musico.id.id, musico.experiencia))
+                cursor.execute(SQL_INSERT_MUSICO, (musico.id, musico.experiencia))
                 return cursor.lastrowid
         except sqlite3.IntegrityError as e:
             print(f"Erro de integridade ao inserir musico: {e}")
@@ -58,7 +58,8 @@ class MusicoRepo:
                     bairro=row['bairro'],
                     complemento=row['complemento'],
                     cep=row['cep'],
-                    data_nascimento=row['data_nascimento']  # Adicionado aqui
+                    data_nascimento=row['data_nascimento'],
+                    verificado=row['verificado']
                 )
                 return Musico(id=usuario, experiencia=row['experiencia'])
             return None

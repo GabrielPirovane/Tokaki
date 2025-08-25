@@ -40,11 +40,11 @@ git config --global user.email fulanodetal@exemplo.br
 Link para mapa de telas: https://www.gloomaps.com/XKWlAlTm3G  
 Link para o protótipo de interface: https://www.canva.com/design/DAGmtF6l3IY/AZC2mX-GrKfBh9qfN4qIow/edit  
 Rotas com ✅: funcionais, mas front-end e back-end em desenvolvimento;  
-Rotas com ✅ em negrito: prontas e totalmente funcionais;
+Rotas com ✅ em negrito: prontas e quase ou totalmente funcionais;
 
 **Rotas públicas**
 - [x] Home pública (/);
-- [x] Login (/login);
+- [x] **Login (/login)**;
 - [x] **Esqueci a senha (/esqueci-senha)**;
 - [ ] _Mudar senha (token enviado no email);_
 - [x] **Cadastro (/cadastro);**

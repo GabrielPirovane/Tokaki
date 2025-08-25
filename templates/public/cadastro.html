@@ -35,6 +35,7 @@
                     <form method="POST" action="/cadastro" id="form-cadastro">
                         {% set first_error_set = false %}
 
+                        <!-- Tipo de usuário -->
                         <div class="mb-3">
                             <h1 class="titulo-form mt-2">* Escolha o tipo de usuário</h1>
                             <div class="check">
@@ -54,37 +55,42 @@
                                 </div>
                             </div>
 
-
                             {% if errors.tipo_usuario %}
-                            <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.tipo_usuario }}</small>
+                            <small id="erro-tipo-usuario" class="erro-mensagem">{{ errors.tipo_usuario }}</small>
                             {% endif %}
                         </div>
 
+                        <!-- Nome -->
                         <div class="mb-3">
                             <label for="nome" class="titulo-form">*Nome</label>
                             <input type="text" class="form-control" id="nome" name="nome" maxlength="100" minlength="2"
                                 placeholder="José" value="{{ form_data.nome if form_data else '' }}" {% if errors.nome
                                 and not first_error_set %}autofocus{% set first_error_set=true %}{% endif %} required>
                             {% if errors.nome %}
-                            <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.nome }}</small>
+                            <small id="erro-nome" class="erro-mensagem">{{ errors.nome }}</small>
                             {% endif %}
                         </div>
 
+                        <!-- Sobrenome -->
                         <div class="mb-3">
                             <label for="sobrenome" class="titulo-form">*Sobrenome</label>
                             <input type="text" class="form-control" id="sobrenome" name="sobrenome" maxlength="100"
                                 minlength="2" placeholder="Silva Campos"
                                 value="{{ form_data.sobrenome if form_data else '' }}" {% if errors.sobrenome and not
                                 first_error_set %}autofocus{% set first_error_set=true %}{% endif %} required>
+                            {% if errors.sobrenome %}
+                            <small id="erro-sobrenome" class="erro-mensagem">{{ errors.sobrenome }}</small>
+                            {% endif %}
                         </div>
 
+                        <!-- Nome de Usuário -->
                         <div class="mb-3">
                             <label for="nome_usuario" class="titulo-form">*Nome de Usuário</label>
                             <input type="text" class="form-control" id="nome_usuario" name="nome_usuario" maxlength="20"
                                 placeholder="usuarioexemplo123"
                                 value="{{ form_data.nome_usuario if form_data else '' }}" {% if errors.nome_usuario and
                                 not first_error_set %}autofocus{% set first_error_set=true %}{% endif %} required>
-                            {% if errors.nome_usuario%}
+                            {% if errors.nome_usuario %}
                             <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.nome_usuario }}</small>
                             {% endif %}
                         </div>
@@ -95,12 +101,11 @@
                                 placeholder="exemplo@email.com" value="{{ form_data.email if form_data else '' }}" {% if
                                 errors.email and not first_error_set %}autofocus{% set first_error_set=true %}{% endif
                                 %} required>
-                            <small id="erro-email" class="erro-mensagem" style="display: none;"></small>
+                            <small id="erro-email-js" class="erro-mensagem" style="display: none;"></small>
                             {% if errors.email %}
-                            <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.email }}</small>
+                            <small id="erro-email-backend" class="erro-mensagem">{{ errors.email }}</small>
                             {% endif %}
                         </div>
-
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="cpf" class="titulo-form">CPF</label>
@@ -108,7 +113,7 @@
                                     value="{{ form_data.cpf if form_data else '' }}" {% if errors.cpf and not
                                     first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
                                 {% if errors.cpf %}
-                                <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.cpf }}</small>
+                                <small id="erro-cpf" class="erro-mensagem">{{ errors.cpf }}</small>
                                 {% endif %}
                             </div>
                             <div class="col mb-3">
@@ -122,12 +127,12 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="telefone" class="titulo-form">Telefone</label>
                                 <input type="text" class="form-control" id="telefone" name="telefone" maxlength="15"
                                     placeholder="(xx) xxxxx-xxxx">
+                                <small id="erro-telefone" class="erro-mensagem"></small>
                             </div>
                             <div class="col mb-3">
                                 <label for="data_nascimento" class="titulo-form">Data de Nascimento</label>
@@ -137,15 +142,19 @@
                                     errors.data_nascimento and not first_error_set %}autofocus{% set
                                     first_error_set=true %}{% endif %}>
                                 {% if errors.data_nascimento %}
-                                <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.data_nascimento }}</small>
+                                <small id="erro-data-nascimento" class="erro-mensagem">{{ errors.data_nascimento
+                                    }}</small>
                                 {% endif %}
                             </div>
                         </div>
+
+                        <!-- CEP e Logradouro -->
                         <div class="row">
                             <div class="col-4 mb-3">
                                 <label for="cep" class="titulo-form">CEP</label>
                                 <input type="text" class="form-control" id="cep" name="cep" maxlength="9"
                                     placeholder="Ex: xxxxx-xxx">
+                                <small id="erro-cep" class="erro-mensagem"></small>
                             </div>
                             <div class="col mb-3">
                                 <label for="logradouro" class="titulo-form">Endereço</label>
@@ -154,17 +163,20 @@
                                     value="{{ form_data.logradouro if form_data else '' }}" {% if errors.logradouro and
                                     not first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
                                 {% if errors.logradouro %}
-                                <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.logradouro }}</small>
+                                <small id="erro-logradouro" class="erro-mensagem">{{ errors.logradouro }}</small>
                                 {% endif %}
                             </div>
                         </div>
 
+                        <!-- Número e Bairro -->
                         <div class="row">
                             <div class="col-3 mb-3">
                                 <label for="numero" class="titulo-form">Número</label>
                                 <input type="number" class="form-control" id="numero" name="numero" placeholder="Ex: 23"
-                                    maxlength="6" value="{{ form_data.numero if form_data else '' }}" {% if errors.numero
-                                and not first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
+                                    maxlength="6" value="{{ form_data.numero if form_data else '' }}" {% if
+                                    errors.numero and not first_error_set %}autofocus{% set first_error_set=true %}{%
+                                    endif %}>
+                                <small id="erro-numero" class="erro-mensagem"></small>
                             </div>
                             <div class="col mb-3">
                                 <label for="bairro" class="titulo-form">Bairro</label>
@@ -173,17 +185,22 @@
                                     {% if errors.bairro and not first_error_set %}autofocus{% set first_error_set=true
                                     %}{% endif %}>
                                 {% if errors.bairro %}
-                                <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.bairro }}</small>
+                                <small id="erro-bairro" class="erro-mensagem">{{ errors.bairro }}</small>
                                 {% endif %}
                             </div>
                         </div>
 
+                        <!-- Cidade e Estado -->
                         <div class="row">
                             <div class="col mb-3 w-auto">
                                 <label for="cidade" class="titulo-form">Cidade</label>
                                 <input type="text" class="form-control" id="cidade" name="cidade" maxlength="50"
-                                    placeholder="Ex: Rio de Janeiro" value="{{ form_data.cidade if form_data else '' }}" {% if errors.cidade
-                                and not first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
+                                    placeholder="Ex: Rio de Janeiro" value="{{ form_data.cidade if form_data else '' }}"
+                                    {% if errors.cidade and not first_error_set %}autofocus{% set first_error_set=true
+                                    %}{% endif %}>
+                                {% if errors.cidade %}
+                                <small id="erro-cidade" class="erro-mensagem">{{ errors.cidade }}</small>
+                                {% endif %}
                             </div>
                             <div class="col mb-3">
                                 <label for="estado" class="titulo-form">Estado</label>
@@ -193,15 +210,21 @@
                                     <option value="1">{{ u.nome }}</option>
                                     {% endfor %}
                                 </select>
+                                <small id="erro-estado" class="erro-mensagem"></small>
                             </div>
                         </div>
 
+                        <!-- Complemento -->
                         <div class="mb-3">
                             <label for="complemento" class="titulo-form">Complemento</label>
                             <input type="text" class="form-control" id="complemento" name="complemento" maxlength="200"
-                                placeholder="Ex: Apartamento Térreo" value="{{ form_data.complemento if form_data else '' }}" {% if errors.complemento
-                                and not first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
+                                placeholder="Ex: Apartamento Térreo"
+                                value="{{ form_data.complemento if form_data else '' }}" {% if errors.complemento and
+                                not first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
+                            <small id="erro-complemento" class="erro-mensagem"></small>
                         </div>
+
+                        <!-- Senha -->
                         <div class="mb-3">
                             <label for="senha" class="titulo-form">*Senha</label>
                             <div class="input-group">
@@ -214,7 +237,8 @@
                             </div>
 
                             <small class="aviso-senha text-muted mt-2">
-                                *A senha deve ter de 8 a 20 caracteres, ter letras e números e não pode conter acentos ou sinais gráficos.
+                                *A senha deve ter de 8 a 20 caracteres, ter letras e números e não pode conter acentos
+                                ou sinais gráficos.
                             </small>
                             <div id="strengthBarContainer">
                                 <div id="strengthBarFill"></div>
@@ -222,6 +246,7 @@
                             <span id="strengthText"></span>
                         </div>
 
+                        <!-- Confirmação de Senha -->
                         <div class="mb-3">
                             <label for="confirmacao_senha" class="titulo-form">*Confirmar Senha</label>
                             <div class="input-group">
@@ -234,16 +259,18 @@
                                 </button>
                             </div>
 
-
                             <small id="erro-senha" class="erro-mensagem" style="display:none;">As senhas não
                                 coincidem</small>
                         </div>
+
+                        <!-- reCAPTCHA -->
                         <center>
                             <div class="d-flex justify-content-center my-5">
                                 <div class="g-recaptcha" data-sitekey="6LfGoG0rAAAAAJo_Yr9NdQiRFHT3vtAzajB8sC1N"></div>
                             </div>
                         </center>
 
+                        <!-- Submit -->
                         <center>
                             <button type="submit" id="submit-button" class="btn w-50 botao fs-3">Cadastrar</button>
                         </center>
@@ -264,4 +291,4 @@
         </div>
     </div>
 </div>
-{% endblock%}
+{% endblock %}

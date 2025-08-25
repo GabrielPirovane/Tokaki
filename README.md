@@ -44,7 +44,7 @@ Rotas com ✅ em negrito: prontas e totalmente funcionais;
 
 **Rotas públicas**
 - [x] Home pública (/);
-- [x] Login (/login);
+- [x] **Login (/login)**;
 - [x] Esqueci a senha (/esqueci-senha);
 - [x] **Cadastro (/cadastro);**
 - [x] Verificação de email (/verificacao);

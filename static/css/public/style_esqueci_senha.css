@@ -102,6 +102,7 @@ a:hover {
   margin-bottom: 20px;
 }
 
+
 .formulario {
   background-color: white;
   font: var(--fonte-base);
@@ -125,28 +126,6 @@ a:hover {
   color: var(--cor-3);
 }
 
-.aviso-final {
-  font-size: 0.8em;
-  color: var(--cor-5);
-  opacity: 0.6;
-  margin-top: 10px;
-}
-
-.esqueceu-senha {
-  font-family: var(--fonte-destaque);
-  margin-left: 4px;
-  margin-top: 10px;
-  font-size: 1em;
-  color: var(--cor-2);
-}
-
-
-.esqueceu-senha {
-  font-family: var(--fonte-base);
-  margin-top: 2em;
-}
-
-
 
 .form-check-input:checked {
   background-color: var(--cor-1);
@@ -165,19 +144,3 @@ a:hover {
   margin-top: 15px;
 }
 
-#toggleSenha {
-  border-color: #dfe3e6;
-  background-color: white;
-  color: #495057;
-  transition: none;
-}
-
-#toggleSenha:hover,
-#toggleSenha:focus,
-#toggleSenha:active {
-  background-color: white;
-  border-color: #dfe3e6;
-  color: #495057;
-  box-shadow: none;
-  outline: none;
-}

@@ -182,9 +182,9 @@ async def post_cadastro(
     if validacao_nome_usuario:
         errors["nome_usuario"] = validacao_nome_usuario
     elif cpf != "":
+        cpf = re.sub(r"[^0-9]", "", cpf)
         if not validador_cpf.validate(cpf) or len(cpf) < 11:
             errors["cpf"] = "Cpf inválido."
-        cpf = re.sub(r"[^0-9]", "", cpf)
     elif not validacao_email:
         errors["email"] = "Email inválido."
     elif len(data_nascimento) < 10 and data_nascimento != "":
@@ -352,11 +352,8 @@ async def get_foto(request: Request, sessao: Optional[dict] = Depends(get_sessao
         "/public/ampliar_foto.html", {"request": request, "sessao": sessao}
     )
 
-#rou
 @router.get("/esqueci-senha")
-async def get_esqueci_senha(
-    request: Request, sessao: Optional[dict] = Depends(get_sessao)
-):
+async def get_esqueci_senha(request: Request):
     return templates.TemplateResponse(
-        "/public/esqueci_senha.html", {"request": request, "sessao": sessao}
+        "/public/esqueci_senha.html", {"request": request}
     )

@@ -91,14 +91,26 @@ export function initFormValidation() {
     nomeUsuario.addEventListener('input', checkRequireds);
     email.addEventListener('input', checkRequireds);
 
+    clearErrorOnInput('nome', 'erro-nome');
+    clearErrorOnInput('sobrenome', 'erro-sobrenome');
+    clearErrorOnInput('nome_usuario', 'erro-nome-usuario');
+    clearErrorOnInput('senha', 'erro-senha');
+    clearErrorOnInput('confirmacao_senha', 'erro-senha');
+    clearErrorOnInput('data_nascimento', 'erro-data-nascimento');
+    clearErrorOnInput('email', 'erro-email-backend');
+    clearErrorOnInput('cpf', 'erro-cpf');
+    clearErrorOnInput('telefone', 'erro-telefone');
+    clearErrorOnInput('cep', 'erro-cep');
     checkRequireds();
     checkPasswords();
+
+
   });
 }
 
 function checkEmail() {
   const emailInput = document.getElementById('email');
-  const erroEmail = document.getElementById('erro-email');
+  const erroEmail = document.getElementById('erro-email-js');
 
   if (!emailInput || !erroEmail) return;
 
@@ -350,4 +362,16 @@ export function initSenha() {
   });
 }
 
+function clearErrorOnInput(inputId, errorId) {
+  const input = document.getElementById(inputId);
+  const error = document.getElementById(errorId);
+
+  if (!input || !error) return;
+
+  input.addEventListener('input', () => {
+    error.textContent = '';
+    error.style.display = 'none';
+    input.classList.remove('is-invalid'); 
+  });
+}
 

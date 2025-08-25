@@ -276,11 +276,10 @@ async def post_login(
     repo = usuario_repo.UsuarioRepo("dados.db")
 
     senha_hash = repo.get_senha_by_email(email)
-    # usuário não encontrado ou senha não cadastrada
     if not senha_hash:
         return RedirectResponse("/login?error=invalid", status_code=303)
 
-    # senha inválida
+
     if not bcrypt.checkpw(senha.encode(), senha_hash.encode()):
         return RedirectResponse("/login?error=invalid", status_code=303)
 
@@ -288,19 +287,23 @@ async def post_login(
     if not usuario:
         return RedirectResponse("/login?error=invalid", status_code=303)
 
-    username = usuario.nome_usuario
+    if usuario.tipo_usuario != "administrador":
+        
+        username = usuario.nome_usuario
 
-    # salva sessão (incluindo tipo para acesso rápido)
-    request.session["usuario"] = {
-        "id": usuario.id,
-        "nome": usuario.nome,
-        "email": usuario.email,
-        "nome_usuario": username,
-        "tipo": usuario.tipo_usuario,
-    }
+        # salva sessão (incluindo tipo para acesso rápido)
+        request.session["usuario"] = {
+            "id": usuario.id,
+            "nome": usuario.nome,
+            "email": usuario.email,
+            "nome_usuario": username,
+            "tipo": usuario.tipo_usuario,
+        }
 
-    # Sempre redireciona para a home central /{nome_usuario}
-    return RedirectResponse(f"/{username}", status_code=303)
+        # Sempre redireciona para a home central /{nome_usuario}
+        return RedirectResponse(f"/{username}", status_code=303)
+    else:
+        return RedirectResponse(f"/admin", status_code=303)
 
 @router.get("/verificacao")
 async def get_verificacao(

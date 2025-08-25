@@ -116,6 +116,74 @@ class UsuarioRepo:
                 tipo_usuario=row["tipo_usuario"]
             )
 
+    def get_senha_by_email(self, email: str) -> Optional[str]:
+        with get_connection() as db:
+            cursor = db.cursor()
+            cursor.execute(SQL_GET_SENHA_POR_EMAIL, (email,))
+            dados = cursor.fetchone()
+            if dados is None:
+                return None
+            return dados["senha"]
+
+    def update_token(self, email: str, token: str, expiracao: str) -> bool:
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_UPDATE_TOKEN, (token, expiracao, email))
+                return cursor.rowcount > 0
+        except Exception as e:
+            print(f"Erro ao atualizar token: {e}")
+            return False
+
+    def get_by_token(self, token: str) -> Optional[Usuario]:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(SQL_SELECT_BY_TOKEN, (token,))
+            row = cursor.fetchone()
+            if row:
+                return Usuario(
+                    id=row["id"],
+                    email=row["email"],
+                    senha=None, 
+                    nome=None,
+                    sobrenome=None,
+                    nome_usuario=None,
+                    cpf=None,
+                    telefone=None,
+                    genero=None,
+                    logradouro=None,
+                    numero=None,
+                    bairro=None,
+                    complemento=None,
+                    cep=None,
+                    data_nascimento=None,
+                    verificado=None,
+                    tipo_usuario=None,
+                    id_cidade=None
+                )
+            return None
+
+    def update_senha(self, id: int, nova_senha: str) -> bool:
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_UPDATE_SENHA, (nova_senha, id))
+                return cursor.rowcount > 0
+        except Exception as e:
+            print(f"Erro ao atualizar senha: {e}")
+            return False
+
+    def clear_token(self, id: int) -> bool:
+        try:
+            with get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(SQL_CLEAR_TOKEN,(id,))
+                return cursor.rowcount > 0
+        except Exception as e:
+            print(f"Erro ao limpar token: {e}")
+            return False
+
+
     def get_all_paged(self, page_number: int = 1, page_size: int = 10) -> List[Usuario]:
         limit = page_size
         offset = (page_number - 1) * page_size

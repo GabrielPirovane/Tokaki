@@ -1,4 +1,5 @@
 SQL_CREATE_TABLE_USUARIO = """
+-- Criação da tabela usuario
 CREATE TABLE IF NOT EXISTS usuario (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL CHECK(LENGTH(nome) <= 100),
@@ -18,6 +19,8 @@ CREATE TABLE IF NOT EXISTS usuario (
     data_nascimento DATE,
     verificado BOOLEAN DEFAULT FALSE,
     tipo_usuario TEXT CHECK(tipo_usuario IN ('musico', 'contratante')),
+    token_redefinicao TEXT DEFAULT NULL,
+    token_expiracao DATETIME DEFAULT NULL,
     FOREIGN KEY (id_cidade) REFERENCES cidade(id)
 );
 """
@@ -123,11 +126,50 @@ LEFT JOIN uf ON c.id_uf = uf.id
 ORDER BY u.nome;
 """
 
+SQL_SELECT_BY_TOKEN = """
+SELECT id, email
+FROM usuario
+WHERE token_redefinicao = ?
+  AND token_expiracao > CURRENT_TIMESTAMP;
+"""
+
+
 SQL_UPDATE_USUARIO = """
 UPDATE usuario
 SET id_cidade = ?, nome = ?, sobrenome = ?, nome_usuario = ?, senha = ?, email = ?, cpf = ?, telefone = ?, genero = ?, logradouro = ?, numero = ?, bairro = ?, complemento = ?, cep = ?, data_nascimento = ?, verificado = ?, tipo_usuario = ?
 WHERE id = ?;
 """
+
+SQL_UPDATE_SENHA = """
+UPDATE usuario
+SET senha = ?
+WHERE id = ?;
+"""
+
+
+
+SQL_UPDATE_TOKEN = """
+UPDATE usuario
+SET token_redefinicao = ?, token_expiracao = ?
+WHERE email = ?;
+"""
+
+
+SQL_SELECT_BY_TOKEN = """
+SELECT id, email
+FROM usuario
+WHERE token_redefinicao = ?
+  AND token_expiracao > CURRENT_TIMESTAMP;
+"""
+
+
+SQL_CLEAR_TOKEN = """
+UPDATE usuario
+SET token_redefinicao = NULL, token_expiracao = NULL
+WHERE id = ?;
+"""
+
+
 
 SQL_DELETE_USUARIO = """
 DELETE FROM usuario

@@ -1,0 +1,67 @@
+{% extends "/public/fundo_login_cadastro.html" %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/public/style_mudar_senha.css">
+{% endblock %}
+{% block conteudo %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card formulario">
+                    <div class="card-body px-5">
+                        <center>
+                            <a href="/"><img src="/static/img/logo_colorida.png" alt="" height="110px"></a>
+                        </center>
+                        <h2 class="text-center mb-1">Esqueceu a senha?</h2>
+                        <h5 class="text-center subtitulo">Redefina-a já!</h5>
+                        <form id="formEsqueciSenha" method="POST" action="/mudar-senha/{{token}}">
+                            <div id="formContent">
+                                <div class="mb-3">
+                                    <label for="senha" class="titulo-form">Senha</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="senha" name="senha"
+                                            placeholder="Digite uma senha" maxlength="20" minlength="8" required>
+                                        <button class="btn btn-outline-secondary border-start-0 rounded-start-0"
+                                            type="button" id="toggleSenha">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                    <small class="aviso-senha text-muted mt-2">
+                                        *A senha deve ter de 8 a 20 caracteres, ter letras e números e não pode conter
+                                        acentos
+                                        ou sinais gráficos.
+                                    </small>
+                                    <div id="strengthBarContainer">
+                                        <div id="strengthBarFill"></div>
+                                    </div>
+                                    <span id="strengthText"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="confirmacao_senha" class="titulo-form">*Confirmar Senha</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="confirmacao_senha"
+                                            name="confirmacao_senha" placeholder="Confirme sua senha" maxlength="20"
+                                            minlength="8" required>
+                                        <button class="btn btn-outline-secondary border-start-0 rounded-start-0"
+                                            type="button" id="toggleConfirmacao">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                    <small id="erro-senha" class="erro-mensagem" style="display:none;">As senhas não
+                                        coincidem</small>
+                                </div>
+                                <center>
+                                    <button type="submit" class="btn w-50 botao fs-3">Alterar</button>
+                                </center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/mudar_senha.js"></script>
+{% endblock %}

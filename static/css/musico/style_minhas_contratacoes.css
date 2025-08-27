@@ -7,3 +7,85 @@
     --cor-4: #e6ccb2;
     --cor-5: #e7d9cb;
 }
+
+
+.header {
+    background-color: #b58b6a;
+    padding: 15px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    background: url('https://via.placeholder.com/1200x150') center/cover;
+    height: 150px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    font-size: 20px;
+    border-left: 4px solid #b58b6a;
+    padding-left: 10px;
+    color: #333;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    width: calc(33% - 10px);
+    min-width: 250px;
+    position: relative;
+}
+
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: #444;
+}
+
+.card p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.card .arrow {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 16px;
+    color: #b58b6a;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+}

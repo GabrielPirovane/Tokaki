@@ -2,7 +2,6 @@
 <html lang="pt-br">
 
 <head>
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,25 +14,24 @@
             href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
             rel="stylesheet">
         <!--  -->
-        <link rel="stylesheet" href="/static/css/public/style_nav_footer.css">
+        <link rel="stylesheet" href="/static/css/musico/style_nav_footer_musico.css">
         {% block head %}
         {% endblock %}
         <title>Tokaki</title>
     </head>
 </head>
-
 <body>
     <header>
         <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container-fluid">
-                <img src="/static/img/logo_colorida.png" alt="Bootstrap" width="4%" height="4%" class="img-fluid me-3">
+                <img src="/static/img/logo_colorida.png" alt="Bootstrap" width="4%" height="4%"
+                    class="img-fluid me-3 logo">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <form class="d-flex me-auto" role="search" id="barra-pesquisa"
-                        style="max-width: 500px; width: 100%;">
+                    <form class="d-flex me-auto" role="search" id="barra-pesquisa">
                         <div class="input-group">
                             <span class="input-group-text">
                                 <i class="bi bi-search"></i>
@@ -44,15 +42,25 @@
                             </button>
                         </div>
                     </form>
-                    <ul class="navbar-nav ms-auto align-items-center flex-wrap ">
-                        <li class="nav-item">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item me-3 flex-fill">
                             <a class="nav-link active" href="/login" id="secao-nav">
-                                <span class="nav-item-secao">login</span>
+                                Aulas agendadas
+                            </a>
+                        </li>
+                        <li class="nav-item me-3 flex-fill">
+                            <a class="nav-link active" href="/login" id="secao-nav">
+                                Minhas contratações
+                            </a>
+                        </li>
+                        <li class="nav-item me-3 flex-fill">
+                            <a class="nav-link active" href="/login" id="secao-nav">
+                                Chat
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="/cadastro" id="secao-nav">
-                                <span class="nav-item-secao">cadastro</span>
+                            <a class="nav-link active" href="/login" id="secao-nav">
+                                <i class="bi bi-bell-fill"></i>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -67,19 +75,27 @@
                 </div>
         </nav>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
-            <div class="offcanvas-header">
-                <img src="/static/img/profile_icon.jpg" alt="" class="foto-perfil">
-                <div class="d-flex flex-column ms-3 ">
-                    <span class="fw-bold d-block fs-5 perfil">Faça login para visualizar</span>
-                    <span class="fw-semibold small fs-8 sub-perfil">Faça login para visualizar</span>
+            <div class="offcanvas-header d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <a href="/{{nome_usuario}}/" class="d-flex align-items-center text-decoration-none">
+                        <img src="/static/img/profile_icon.jpg" alt="" class="foto-perfil">
+                    </a>
+                    
+                    <div class="d-flex flex-column ms-3">
+                        <span class="fw-bold d-block fs-5 perfil">{{usuario.nome + " " + usuario.sobrenome}}</span>
+                        <span class="small fs-6 sub-perfil">{{nome_usuario}}</span>
+                    </div>
                 </div>
+                <a href="/{{nome_usuario}}/sair"><i class="bi bi-box-arrow-right icone-sair"></i></a>
             </div>
-            <div class="offcanvas-body">
-                <ul class="list-group">
-                    <li class="list-group-item"><a href="/sobre" class="text-decoration-none" > <i class="bi bi-caret-right-fill"></i> Sobre</a></li>
-                    <li class="list-group-item"><a href="/contatos" class="text-decoration-none"> <i class="bi bi-caret-right-fill"></i> Contatos</a></li>
-                    <li class="list-group-item"><a href="/login" class="text-decoration-none"> <i class="bi bi-caret-right-fill"></i> Login</a></li>
-                    <li class="list-group-item"><a href="/cadastro" class="text-decoration-none"> <i class="bi bi-caret-right-fill"></i> Cadastro</a></li>
+
+            <div class="offcanvas-body d-flex flex-column justify-content-center">
+                <ul class="list-group d-flex align-content-center">
+                    <li class="list-group-item"><a href="/{{nome_usuario}}/perfil" class="text-decoration-none">Meu
+                            perfil</a></li>
+                    <li class="list-group-item"><a href="/" class="text-decoration-none">Configurações</a></li>
+                    <li class="list-group-item"><a href="/contatos" class="text-decoration-none">Suporte</a></li>
+                    <li class="list-group-item"><a href="/contatos" class="text-decoration-none">Sobre o TOKAKI</a></li>
                 </ul>
             </div>
         </div>

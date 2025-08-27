@@ -1,24 +1,94 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="static/img/logo_colorida.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Fontes -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-      rel="stylesheet">
-    <!--  -->
-    <link rel="stylesheet" href="/static/css/musico/style_minhas_contratacoes.css">
-    <title>Tokaki</title>
-  <body>
-    <h1>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, et itaque, dolorem accusantium consequatur
-      consequuntur facilis tenetur cumque ipsam pariatur quo sit voluptatem nisi omnis maxime fugit nostrum error sint.
-    </h1>
-  </body>
-</head>
-</head>
+{% extends "/public/navbar_footer.html" %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/public/style_home.css">
+{% endblock %}
+{% block conteudo %}
+ <div class="header">
+    <div><strong>🎵 Logo</strong></div>
+    <nav>
+      <a href="#">Início</a>
+      <a href="#">Aulas Agendadas</a>
+      <a href="#">Minhas Contratações</a>
+      <a href="#">Sair</a>
+    </nav>
+  </div>
+
+  <div class="hero"></div>
+
+  <div class="container">
+    <h2>Minhas Contratações</h2>
+
+    <div class="section">
+      <h3>Em andamento</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="arrow">➔</div>
+          <h3>Nome do Músico</h3>
+          <p><strong>Data:</strong> 10/09/2025</p>
+          <p><strong>Local:</strong> São Paulo - SP</p>
+          <p><strong>Status:</strong> Em andamento</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Aprovados</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="arrow">➔</div>
+          <h3>Nome do Músico</h3>
+          <p><strong>Data:</strong> 12/09/2025</p>
+          <p><strong>Local:</strong> Rio de Janeiro - RJ</p>
+          <p><strong>Status:</strong> Aprovado</p>
+        </div>
+        <div class="card">
+          <div class="arrow">➔</div>
+          <h3>Nome do Músico</h3>
+          <p><strong>Data:</strong> 15/09/2025</p>
+          <p><strong>Local:</strong> Belo Horizonte - MG</p>
+          <p><strong>Status:</strong> Aprovado</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Concluídos</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="arrow">➔</div>
+          <h3>Nome do Músico</h3>
+          <p><strong>Data:</strong> 01/08/2025</p>
+          <p><strong>Local:</strong> Curitiba - PR</p>
+          <p><strong>Status:</strong> Concluído</p>
+        </div>
+        <div class="card">
+          <div class="arrow">➔</div>
+          <h3>Nome do Músico</h3>
+          <p><strong>Data:</strong> 03/08/2025</p>
+          <p><strong>Local:</strong> Recife - PE</p>
+          <p><strong>Status:</strong> Concluído</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Não finalizados</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="arrow">➔</div>
+          <h3>Nome do Músico</h3>
+          <p><strong>Data:</strong> 05/08/2025</p>
+          <p><strong>Local:</strong> Salvador - BA</p>
+          <p><strong>Status:</strong> Não finalizado</p>
+        </div>
+        <div class="card">
+          <div class="arrow">➔</div>
+          <h3>Nome do Músico</h3>
+          <p><strong>Data:</strong> 07/08/2025</p>
+          <p><strong>Local:</strong> Porto Alegre - RS</p>
+          <p><strong>Status:</strong> Não finalizado</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

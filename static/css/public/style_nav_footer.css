@@ -54,11 +54,6 @@ footer {
     opacity: 90%;
 }
 
-#nav-login {
-    font-family: var(--fonte-destaque);
-    font-size: 0.5em;
-}
-
 .navbar-nav .nav-link {
     font-size: 2rem;
     font-family: var(--fonte-destaque);
@@ -101,77 +96,76 @@ footer {
 }
 
 .foto-perfil {
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
   overflow: hidden;
-  border: 2px solid #000;
+  border: 2px solid var(--cor-4);
   max-width: 30vw;     /* não cresce demais em telas pequenas */
   height: auto;        /* ajusta a altura automaticamente quando usar max-width */
   aspect-ratio: 1 / 1; /* garante proporção quadrada moderna */
 }
-
 
 .perfil {
     color: var(--cor-5);
 }
 
 .sub-perfil {
-    color: var(--cor-5);
-    opacity: 0.8;
+    color: var(--cor-2);
 }
 
 /* ---------- BARRA DE PESQUISA ---------- */
-.barra-pesquisa {
+#barra-pesquisa {
+    width: 50em;
     border-radius: 1em;
-    width: 40em;
-    max-width: 40em; 
 }
 
-.barra-pesquisa .btn {
+#barra-pesquisa .btn {
     background-color: var(--cor-2) !important;
     color: #fff !important;
     border: none !important;
 }
 
-.barra-pesquisa .btn:hover {
+#barra-pesquisa .btn:hover {
     opacity: 80%;
 }
 
 /* ---------- OFFCANVAS ---------- */
 #offcanvasMenu {
     background-color: var(--cor-1) !important;
-    width: 30em !important;
-    height: 50%;
-    border-radius: 3em !important;
+    width: 25em !important;
+    height: 15em;
+    border-radius: 2em !important;
     border: none !important;
     overflow: hidden;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    margin-top: 30px;
+    margin-right: 30px;
 }
 
 .offcanvas-body {
-    background-color: var(--cor-5);
+    background-color: var(--cor-4);
     border: none;
-    padding: 8px 16px !important;
+    padding: 3px 3px !important;
 }
 
 .offcanvas-header {
-    background-color: var(--cor-2 );
+    background-color: var(--cor-3 );
 }
 
 /* ---------- LISTA MENU ---------- */
 .offcanvas-body .list-group {
-    margin-top: 1.5rem;
-    margin-left: 2rem;
+    margin-top: 0.3rem;
+    margin-left: 1rem;
     padding: 0;
     list-style: none;
 }
 
 .offcanvas-body .list-group .list-group-item {
     font-family: var(--fonte-destaque);
-    background-color: var(--cor-5);
+    background-color: var(--cor-4);
     border: none;
     margin-left: 10px;  
     padding: 2px 0;
@@ -181,7 +175,7 @@ footer {
 .offcanvas-body .list-group .list-group-item a {
     display: block;
     color: var(--cor-3);
-    font-size: 3rem;
+    font-size: 1.5rem;
     line-height: 1;
     margin: 0;
 }

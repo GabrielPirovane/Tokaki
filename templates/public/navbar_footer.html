@@ -19,6 +19,7 @@
         <title>Tokaki</title>
     </head>
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-expand-md fixed-top">
@@ -69,7 +70,7 @@
                 <img src="/static/img/profile_icon.jpg" alt="" class="foto-perfil">
                 <div class="d-flex flex-column ms-3 ">
                     <span class="fw-bold d-block fs-5 perfil">Faça login para visualizar</span>
-                    <span class="text-muted small fs-6 sub-perfil">Faça login para visualizar</span>
+                    <span class="fw-semibold small fs-8 sub-perfil">Faça login para visualizar</span>
                 </div>
             </div>
             <div class="offcanvas-body">
@@ -96,5 +97,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
         crossorigin="anonymous"></script>
+    {% block scripts %}
+    {% endblock %}
 </body>
 </html>

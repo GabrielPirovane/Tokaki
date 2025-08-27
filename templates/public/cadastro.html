@@ -1,172 +1,291 @@
 {% extends "/public/fundo_login_cadastro.html" %}
 {% block head %}
-<link rel="stylesheet" href="static/css/public/style_cadastro.css">
+<link rel="stylesheet" href="/static/css/public/style_cadastro.css">
 {% endblock %}
 {% block conteudo %}
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
-                <div class="card formulario">
-                    <div class="card-body px-5">
-                        <center>
-                            <a href="/"><img src="/static/img/logo_colorida.png" alt="" height="110px"></a>
-                        </center>
-                        <h2 class="text-center mb-1">CRIE SUA CONTA</h2>
-                        <h5 class="text-center subtitulo">Acesse um universo de músicas e eventos</h5>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card formulario">
+                <div class="card-body px-5">
+                    <center>
+                        <a href="/"><img src="/static/img/logo_colorida.png" alt="" height="110px"></a>
+                    </center>
+                    <h2 class="text-center mb-1">CRIE SUA CONTA</h2>
+                    <h5 class="text-center subtitulo">Acesse um universo de músicas e eventos</h5>
+                    <h6 class="text-center text-danger fs-6 mt-3">* Campos obrigatórios</h6>
 
-                        <div class="imagens-login">
-                            <img src="/static/img/google-icon.png" alt="" height="70px" class="rounded-circle">
-                            <img src="/static/img/facebook-logo.png" alt="" height="70px">
-                        </div>
-                        <div class="d-flex align-items-center my-3">
-                            <hr class="flex-grow-1">
-                            <span class="mx-4">OU</span>
-                            <hr class="flex-grow-1">
-                        </div>
-                        <form method="POST" action="/cadastro">
-                            <div class="mb-3">
-                                <h1 class="titulo-form mt-2">Escolha o tipo de usuário</h1>
-                                <div class="check">
-                                    <div>
-                                        <input class="form-check-input" type="radio" name="radioDefault"
-                                            id="radioDefault1">
-                                        <label class="form-check-label ms-2" for="tipo_usuario">
-                                            Contratante de serviços musicais
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <input class="form-check-input" type="radio" name="radioDefault"
-                                            id="radioDefault2">
-                                        <label class="form-check-label ms-2" for="tipo_usuario">
-                                            Músico
-                                        </label>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="nome" class="titulo-form">Nome Completo</label>
-                                <input type="text" class="form-control" id="nome" name="nome"
-                                    placeholder="Ex: José Silva" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="nome" class="titulo-form">Nome de Usuário</label>
-                                <input type="text" class="form-control" id="nome" name="nome"
-                                    placeholder="usuarioexemplo" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="titulo-form">Email</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="exemplo@email.com" required>
-                            </div>
-                            <div class="row">
-                                <div class="col mb-3">
-                                    <label for="cpf" class="titulo-form">CPF</label>
-                                    <input type="text" class="form-control" id="cpf" name="cpf"
-                                        placeholder="xxx.xxx.xxx-xx" required>
-                                </div>
-                                <div class="col mb-3">
-                                    <label for="genero" class="titulo-form">Gênero</label>
-                                    <select class="form-select ">
-                                        <option disabled selected hidden>Selecione seu gênero</option>
-                                        <option value="1">Masculino</option>
-                                        <option value="2">Feminino</option>
-                                        <option value="3">Outro</option>
-                                        <option value="3">Prefiro não informar</option>
-                                    </select>
-                                </div>
-
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col mb-3">
-                                    <label for="telefone" class="titulo-form">Telefone</label>
-                                    <input type="text" class="form-control" id="telefone" name="telefone"
-                                        placeholder="(xx) xxxxx-xxxx" required>
-                                </div>
-                                <div class="col mb-3">
-                                    <label for="data_nascimento" class="titulo-form">Data de Nascimento</label>
-                                    <input type="date" class="form-control" id="data_nascimento" name="data_nascimento"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="logradouro" class="titulo-form">Logradouro</label>
-                                <input type="text" class="form-control" id="logradouro" name="logradouro"
-                                    placeholder="Ex: Rua 25 de Março" required>
-                            </div>
-                            <div class="row">
-                                <div class="col mb-3">
-                                    <label for="bairro" class="titulo-form">Bairro</label>
-                                    <input type="text" class="form-control" id="bairro" name="bairro"
-                                        placeholder="Ex: Morada do Sol" required>
-                                </div>
-                                <div class="col-3 mb-3">
-                                    <label for="numero" class="titulo-form">Número</label>
-                                    <input type="text" class="form-control" id="numero" name="numero"
-                                        placeholder="Ex: 23" required>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col mb-3 w-auto">
-                                    <label for="cidade" class="titulo-form">Cidade</label>
-                                    <input type="text" class="form-control" id="cidade" name="cidade"
-                                        placeholder="Ex: Rio de Janeiro" required>
-                                </div>
-                                <div class="col mb-3">
-                                    <label for="estado" class="titulo-form">Estado</label>
-                                    <select class="form-select">
-                                        <option value="" disabled selected hidden>Selecione seu Estado</option>
-                                        {% for u in uf %}
-                                        <option value="1">{{u.nome}}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="complemento" class="titulo-form">Complemento</label>
-                                <input type="text" class="form-control" id="complemento" name="complemento"
-                                    placeholder="Ex: Apartamento Térreo" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="senha" class="titulo-form">Senha</label>
-                                <input type="password" class="form-control" id="senha" name="senha"
-                                    placeholder="Digite uma senha" required>
-                                <small class="aviso-senha text-muted mt-4">*A senha deve ter de 8 a 20 caracteres,
-                                    ter
-                                    letras e números e não pode conter caracteres especiais.</small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="senha" class="titulo-form">Confirmar Senha</label>
-                                <input type="password" class="form-control" id="confirmação_senha" name="senha"
-                                    placeholder="Confirme sua senha" required>
-                            </div>
-                            <div class="mb-3">
-                                <center>
-                                    <label for="recaptcha" class="form-label"></label>
-                                    <div class="g-recaptcha" data-sitekey="6LfGoG0rAAAAAJo_Yr9NdQiRFHT3vtAzajB8sC1N">
-                                    </div>
-                                </center> <br>
-                            </div>
-                            <center>
-                                <button type="submit" class="btn w-50 botao fs-3">Cadastrar</button>
-                            </center>
-
-                            <hr>
-                            <center>
-                                <p class="d-inline fs-5">Já tem uma conta?</p>
-                                <a href="/login" class="fs-5">Entrar</a>
-                                <p class="aviso-final mt-4">Ao continuar, você concorda com os <a href="">Termos de
-                                        Serviço</a> do Tokaki e confirma que leu nossa <a href="">Política de
-                                        Privacidade</a>. Aviso na coleta de informações</p>
-                            </center>
-
-
-                        </form>
+                    <div class="d-flex align-items-center my-3">
+                        <hr class="flex-grow-1">
+                        <span class="mx-4">CADASTRAR COM</span>
+                        <hr class="flex-grow-1">
                     </div>
+
+                    <div class="imagens-login">
+                        <img src="/static/img/google-icon.png" alt="" height="70px" class="rounded-circle">
+                        <img src="/static/img/facebook-logo.png" alt="" height="70px">
+                    </div>
+
+                    <div class="d-flex align-items-center my-3">
+                        <hr class="flex-grow-1">
+                        <span class="mx-4">OU</span>
+                        <hr class="flex-grow-1">
+                    </div>
+
+                    <form method="POST" action="/cadastro" id="form-cadastro">
+                        {% set first_error_set = false %}
+
+                        <!-- Tipo de usuário -->
+                        <div class="mb-3">
+                            <h1 class="titulo-form mt-2">* Escolha o tipo de usuário</h1>
+                            <div class="check">
+                                <div>
+                                    <input class="form-check-input" type="radio" name="tipo_usuario" id="radioDefault1"
+                                        value="contratante" required>
+                                    <label class="form-check-label ms-2" for="radioDefault1">
+                                        Contratante de serviços musicais
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="radio" name="tipo_usuario" id="radioDefault2"
+                                        value="musico">
+                                    <label class="form-check-label ms-2" for="radioDefault2">
+                                        Músico
+                                    </label>
+                                </div>
+                            </div>
+
+                            {% if errors.tipo_usuario %}
+                            <small id="erro-tipo-usuario" class="erro-mensagem">{{ errors.tipo_usuario }}</small>
+                            {% endif %}
+                        </div>
+
+                        <!-- Nome -->
+                        <div class="mb-3">
+                            <label for="nome" class="titulo-form">*Nome</label>
+                            <input type="text" class="form-control" id="nome" name="nome" maxlength="100" minlength="2"
+                                placeholder="José" value="{{ form_data.nome if form_data else '' }}" {% if errors.nome
+                                and not first_error_set %}autofocus{% set first_error_set=true %}{% endif %} required>
+                            {% if errors.nome %}
+                            <small id="erro-nome" class="erro-mensagem">{{ errors.nome }}</small>
+                            {% endif %}
+                        </div>
+
+                        <!-- Sobrenome -->
+                        <div class="mb-3">
+                            <label for="sobrenome" class="titulo-form">*Sobrenome</label>
+                            <input type="text" class="form-control" id="sobrenome" name="sobrenome" maxlength="100"
+                                minlength="2" placeholder="Silva Campos"
+                                value="{{ form_data.sobrenome if form_data else '' }}" {% if errors.sobrenome and not
+                                first_error_set %}autofocus{% set first_error_set=true %}{% endif %} required>
+                            {% if errors.sobrenome %}
+                            <small id="erro-sobrenome" class="erro-mensagem">{{ errors.sobrenome }}</small>
+                            {% endif %}
+                        </div>
+
+                        <!-- Nome de Usuário -->
+                        <div class="mb-3">
+                            <label for="nome_usuario" class="titulo-form">*Nome de Usuário</label>
+                            <input type="text" class="form-control" id="nome_usuario" name="nome_usuario" maxlength="20"
+                                placeholder="usuarioexemplo123"
+                                value="{{ form_data.nome_usuario if form_data else '' }}" {% if errors.nome_usuario and
+                                not first_error_set %}autofocus{% set first_error_set=true %}{% endif %} required>
+                            {% if errors.nome_usuario %}
+                            <small id="erro-nome-usuario" class="erro-mensagem">{{ errors.nome_usuario }}</small>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="titulo-form">*Email</label>
+                            <input type="email" class="form-control" id="email" name="email" maxlength="254"
+                                placeholder="exemplo@email.com" value="{{ form_data.email if form_data else '' }}" {% if
+                                errors.email and not first_error_set %}autofocus{% set first_error_set=true %}{% endif
+                                %} required>
+                            <small id="erro-email-js" class="erro-mensagem" style="display: none;"></small>
+                            {% if errors.email %}
+                            <small id="erro-email-backend" class="erro-mensagem">{{ errors.email }}</small>
+                            {% endif %}
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="cpf" class="titulo-form">CPF</label>
+                                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="xxx.xxx.xxx-xx"
+                                    value="{{ form_data.cpf if form_data else '' }}" {% if errors.cpf and not
+                                    first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
+                                {% if errors.cpf %}
+                                <small id="erro-cpf" class="erro-mensagem">{{ errors.cpf }}</small>
+                                {% endif %}
+                            </div>
+                            <div class="col mb-3">
+                                <label for="genero" class="titulo-form">Gênero</label>
+                                <select class="form-select" id="genero" name="genero">
+                                    <option disabled selected hidden>Selecione seu gênero</option>
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Feminino</option>
+                                    <option value="3">Outro</option>
+                                    <option value="4">Prefiro não informar</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="telefone" class="titulo-form">Telefone</label>
+                                <input type="text" class="form-control" id="telefone" name="telefone" maxlength="15"
+                                    placeholder="(xx) xxxxx-xxxx">
+                                <small id="erro-telefone" class="erro-mensagem"></small>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="data_nascimento" class="titulo-form">Data de Nascimento</label>
+                                <input type="text" class="form-control" id="data_nascimento" maxlength="10"
+                                    name="data_nascimento" placeholder="dd/mm/aaaa"
+                                    value="{{ form_data.data_nascimento if form_data else '' }}" {% if
+                                    errors.data_nascimento and not first_error_set %}autofocus{% set
+                                    first_error_set=true %}{% endif %}>
+                                {% if errors.data_nascimento %}
+                                <small id="erro-data-nascimento" class="erro-mensagem">{{ errors.data_nascimento
+                                    }}</small>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- CEP e Logradouro -->
+                        <div class="row">
+                            <div class="col-4 mb-3">
+                                <label for="cep" class="titulo-form">CEP</label>
+                                <input type="text" class="form-control" id="cep" name="cep" maxlength="9"
+                                    placeholder="Ex: xxxxx-xxx">
+                                <small id="erro-cep" class="erro-mensagem"></small>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="logradouro" class="titulo-form">Endereço</label>
+                                <input type="text" class="form-control" id="logradouro" name="logradouro"
+                                    maxlength="150" placeholder="Ex: Rua 25 de Março"
+                                    value="{{ form_data.logradouro if form_data else '' }}" {% if errors.logradouro and
+                                    not first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
+                                {% if errors.logradouro %}
+                                <small id="erro-logradouro" class="erro-mensagem">{{ errors.logradouro }}</small>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Número e Bairro -->
+                        <div class="row">
+                            <div class="col-3 mb-3">
+                                <label for="numero" class="titulo-form">Número</label>
+                                <input type="number" class="form-control" id="numero" name="numero" placeholder="Ex: 23"
+                                    maxlength="6" value="{{ form_data.numero if form_data else '' }}" {% if
+                                    errors.numero and not first_error_set %}autofocus{% set first_error_set=true %}{%
+                                    endif %}>
+                                <small id="erro-numero" class="erro-mensagem"></small>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="bairro" class="titulo-form">Bairro</label>
+                                <input type="text" class="form-control" id="bairro" name="bairro" maxlength="50"
+                                    placeholder="Ex: Morada do Sol" value="{{ form_data.bairro if form_data else '' }}"
+                                    {% if errors.bairro and not first_error_set %}autofocus{% set first_error_set=true
+                                    %}{% endif %}>
+                                {% if errors.bairro %}
+                                <small id="erro-bairro" class="erro-mensagem">{{ errors.bairro }}</small>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Cidade e Estado -->
+                        <div class="row">
+                            <div class="col mb-3 w-auto">
+                                <label for="cidade" class="titulo-form">Cidade</label>
+                                <input type="text" class="form-control" id="cidade" name="cidade" maxlength="50"
+                                    placeholder="Ex: Rio de Janeiro" value="{{ form_data.cidade if form_data else '' }}"
+                                    {% if errors.cidade and not first_error_set %}autofocus{% set first_error_set=true
+                                    %}{% endif %}>
+                                {% if errors.cidade %}
+                                <small id="erro-cidade" class="erro-mensagem">{{ errors.cidade }}</small>
+                                {% endif %}
+                            </div>
+                            <div class="col mb-3">
+                                <label for="estado" class="titulo-form">Estado</label>
+                                <select class="form-select" id="estado" name="estado">
+                                    <option value="" disabled selected hidden>Selecione seu Estado</option>
+                                    {% for u in uf %}
+                                    <option value="1">{{ u.nome }}</option>
+                                    {% endfor %}
+                                </select>
+                                <small id="erro-estado" class="erro-mensagem"></small>
+                            </div>
+                        </div>
+
+                        <!-- Complemento -->
+                        <div class="mb-3">
+                            <label for="complemento" class="titulo-form">Complemento</label>
+                            <input type="text" class="form-control" id="complemento" name="complemento" maxlength="200"
+                                placeholder="Ex: Apartamento Térreo"
+                                value="{{ form_data.complemento if form_data else '' }}" {% if errors.complemento and
+                                not first_error_set %}autofocus{% set first_error_set=true %}{% endif %}>
+                            <small id="erro-complemento" class="erro-mensagem"></small>
+                        </div>
+
+                        <!-- Senha -->
+                        <div class="mb-3">
+                            <label for="senha" class="titulo-form">*Senha</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="senha" name="senha"
+                                    placeholder="Digite uma senha" maxlength="20" minlength="8" required>
+                                <button class="btn btn-outline-secondary border-start-0 rounded-start-0" type="button"
+                                    id="toggleSenha">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+
+                            <small class="aviso-senha text-muted mt-2">
+                                *A senha deve ter de 8 a 20 caracteres, ter letras e números e não pode conter acentos
+                                ou sinais gráficos.
+                            </small>
+                            <div id="strengthBarContainer">
+                                <div id="strengthBarFill"></div>
+                            </div>
+                            <span id="strengthText"></span>
+                        </div>
+
+                        <!-- Confirmação de Senha -->
+                        <div class="mb-3">
+                            <label for="confirmacao_senha" class="titulo-form">*Confirmar Senha</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="confirmacao_senha"
+                                    name="confirmacao_senha" placeholder="Confirme sua senha" maxlength="20"
+                                    minlength="8" required>
+                                <button class="btn btn-outline-secondary border-start-0 rounded-start-0" type="button"
+                                    id="toggleConfirmacao">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+
+                            <small id="erro-senha" class="erro-mensagem" style="display:none;">As senhas não
+                                coincidem</small>
+                        </div>
+
+                        <!-- reCAPTCHA -->
+                        <center>
+                            <div class="d-flex justify-content-center my-5">
+                                <div class="g-recaptcha" data-sitekey="6LfGoG0rAAAAAJo_Yr9NdQiRFHT3vtAzajB8sC1N"></div>
+                            </div>
+                        </center>
+
+                        <!-- Submit -->
+                        <center>
+                            <button type="submit" id="submit-button" class="btn w-50 botao fs-3">Cadastrar</button>
+                        </center>
+
+                        <hr>
+
+                        <center>
+                            <p class="d-inline fs-5">Já tem uma conta?</p>
+                            <a href="/login" class="fs-5">Entrar</a>
+                            <p class="aviso-final mt-4">
+                                Ao continuar, você concorda com os <a href="">Termos de Serviço</a> do Tokaki e confirma
+                                que leu nossa <a href="">Política de Privacidade</a>. Aviso na coleta de informações
+                            </p>
+                        </center>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,5 +1,11 @@
 {% extends "/admin/base.html" %}
 {% block conteudo %}
-<center><h1>#TODO
-</h1></center>
+<div class="d-flex flex-column justify-content-cente align-items-center">
+    <span>
+        <a class="btn btn-success w-auto me-4" href="/admin/fotos/moderar" role="button">Aceitar</a>
+        <a class="btn btn-danger w-auto" href="/admin/fotos/moderar" role="button">Excluir</a>
+    </span>
+
+    <img src="/static/img/mosaico/img1.jpg" alt="" width="30%" height="30%" class="mt-4">
+</div>
 {% endblock %}

@@ -10,7 +10,7 @@ INSERT INTO administrador (id) VALUES (?);
 """
 
 SQL_SELECT_ADMINISTRADOR_BY_ID = """
-SELECT a.id, u.nome AS nome_administrador
+SELECT a.id, u.nome || ' ' || u.sobrenome AS nome_administrador
 FROM administrador a
 JOIN usuario u ON a.id = u.id
 WHERE a.id = ?;
@@ -21,7 +21,7 @@ SELECT COUNT(*) FROM administrador;
 """
 
 SQL_SELECT_ADMINISTRADOR = """
-SELECT a.id, u.nome AS nome_administrador, u.email AS email_administrador
+SELECT a.id, u.nome || ' ' || u.sobrenome AS nome_administrador, u.email AS email_administrador
 FROM administrador a
 JOIN usuario u ON a.id = u.id
 ORDER BY nome_administrador;

@@ -1,0 +1,39 @@
+{% extends "/public/fundo_login_cadastro.html" %}
+{% block head %}
+<link rel="stylesheet" href="static/css/public/style_esqueci_senha.css">
+{% endblock %}
+{% block conteudo %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card formulario">
+                    <div class="card-body px-5">
+                        <center>
+                            <a href="/"><img src="/static/img/logo_colorida.png" alt="" height="110px"></a>
+                        </center>
+                        <h2 class="text-center mb-1">Esqueceu a senha?</h2>
+                        <h5 class="text-center subtitulo">Redefina-a já!</h5>
+                        <form id="formEsqueciSenha">
+                            <div id="formContent">
+                                <div class="my-5">
+                                    <label for="email" class="titulo-form">Insira seu endereço de email</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="exemplo@email.com" required>
+                                </div>
+                                <center>
+                                    <button type="submit" class="btn w-50 botao fs-3">Prosseguir</button>
+                                </center>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/esqueci_senha.js"></script>
+{% endblock %}

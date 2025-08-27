@@ -6,6 +6,7 @@
   --cor-3: #3d291b;
   --cor-4: #e6ccb2;
   --cor-5: #212529;
+  --cor-6: #af3e51;
 }
 
 body {
@@ -143,6 +144,30 @@ a:hover {
   margin-left: 4px;
 }
 
+.erro-mensagem {
+  font-family: var(--fonte-base);
+  color: var(--cor-6);
+  /* Força sobrescrever Bootstrap */
+  font-size: 0.85em;
+  margin-top: 15px;
+}
+
+#submit-button.btn-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+#submit-button.btn-disabled:hover,
+#submit-button.btn-disabled:focus {
+  background-color: inherit !important;
+  color: inherit !important;
+  box-shadow: none !important;
+}
+
+
 .form-check-input:checked {
   background-color: var(--cor-1);
   border-color: var(--cor-1);
@@ -150,4 +175,75 @@ a:hover {
 
 .form-check-label {
   font-family: var(--fonte-base);
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#strengthBarContainer {
+  display: flex;
+  width: 75%;
+  max-width: auto;
+  height: 0;
+  /* barra escondida inicialmente */
+  overflow: hidden;
+  /* esconde conteúdo */
+  border-radius: 5px;
+  background-color: #ddd;
+  margin-top: 5px;
+  transition: height 0.3s;
+}
+
+#strengthBarFill {
+  height: 100%;
+  width: 0%;
+  border-radius: 5px;
+  transition: width 0.3s, background-color 0.3s;
+  background-color: red;
+}
+
+#strengthText {
+  display: block;
+  font-family: var(--fonte-base);
+  font-size: 1em;
+  margin-top: 5px;
+}
+
+#toggleSenha {
+    border-color: #dfe3e6;
+    background-color: white;
+    color: #495057;
+    transition: none; 
+}
+
+#toggleSenha:hover,
+#toggleSenha:focus,
+#toggleSenha:active {
+    background-color: white; 
+    border-color: #dfe3e6;   
+    color: #495057;          
+    box-shadow: none;         
+    outline: none;          
+}
+
+#toggleConfirmacao {
+    border-color: #dfe3e6;
+    background-color: white;
+    color: #495057;
+    transition: none; 
+}
+
+#toggleConfirmacao:hover,
+#toggleConfirmacao:focus,
+#toggleConfirmacao:active {
+    background-color: white; 
+    border-color: #dfe3e6;   
+    color: #495057;          
+    box-shadow: none;         
+    outline: none;          
 }

@@ -6,6 +6,7 @@
   --cor-3: #3d291b;
   --cor-4: #e6ccb2;
   --cor-5: #212529;
+  --cor-6: #af3e51;
 }
 
 body {
@@ -36,7 +37,6 @@ a:hover {
   min-height: 100vh;
 }
 
-/* Container do fundo */
 .fundo {
   position: fixed;
   inset: 0;
@@ -44,7 +44,6 @@ a:hover {
   overflow: hidden;
 }
 
-/* Mosaico */
 .mosaico {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -133,15 +132,21 @@ a:hover {
   margin-top: 10px;
 }
 
-.aviso-senha {
-  font-family: var(--fonte-base);
-  margin-top: 15px;
-  font-size: 0.6em;
-  color: var(--cor-5);
-  opacity: 0.96;
-  margin-top: 10px;
+.esqueceu-senha {
+  font-family: var(--fonte-destaque);
   margin-left: 4px;
+  margin-top: 10px;
+  font-size: 1em;
+  color: var(--cor-2);
 }
+
+
+.esqueceu-senha {
+  font-family: var(--fonte-base);
+  margin-top: 2em;
+}
+
+
 
 .form-check-input:checked {
   background-color: var(--cor-1);
@@ -150,4 +155,29 @@ a:hover {
 
 .form-check-label {
   font-family: var(--fonte-base);
+}
+
+.erro-mensagem {
+  font-family: var(--fonte-base);
+  color: var(--cor-6);
+  /* Força sobrescrever Bootstrap */
+  font-size: 0.85em;
+  margin-top: 15px;
+}
+
+#toggleSenha {
+  border-color: #dfe3e6;
+  background-color: white;
+  color: #495057;
+  transition: none;
+}
+
+#toggleSenha:hover,
+#toggleSenha:focus,
+#toggleSenha:active {
+  background-color: white;
+  border-color: #dfe3e6;
+  color: #495057;
+  box-shadow: none;
+  outline: none;
 }

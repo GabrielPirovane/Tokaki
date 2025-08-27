@@ -5,70 +5,158 @@
     --cor-2: #7f5539;
     --cor-3: #3d291b;
     --cor-4: #e6ccb2;
+    --cor-5: #e7d9cb;
 }
-body {
-    overflow-y: scroll;
-    font-family: var(--fonte-destaque);
-}
-nav {
-    height: 5em;
-    font-family: var(--fonte-destaque);
-    background-color: var(--cor-1) !important;
-}
-footer {
-    height: 7em;
-    font-family: var(--fonte-destaque);
-    background-color: var(--cor-1);
-    color: var(--cor-3);
-}
+
+/* ---------- BASE ---------- */
 body {
     overflow-y: scroll;
     font-family: var(--fonte-base);
 }
+
+/* ---------- NAVBAR ---------- */
 nav {
     height: 5em;
     font-family: var(--fonte-destaque);
     background-color: var(--cor-1) !important;
-}
-footer {
-    height: 7em;
-    font-family: var(--fonte-destaque);
-    background-color: var(--cor-1);
-    color: var(--cor-3);
 }
 
 #nav-login {
     font-family: var(--fonte-destaque);
     font-size: 0.5em;
 }
+
 .navbar-nav .nav-link {
     font-size: 2rem;
     font-family: var(--fonte-destaque);
     font-weight: 700;
     letter-spacing: 1px;
-   
-}
-.placeholder {
-    color: var(--cor-2);
 }
 
+/* ---------- FOOTER ---------- */
+footer {
+    height: 7em;
+    font-family: var(--fonte-destaque);
+    background-color: var(--cor-1);
+    color: var(--cor-3);
+}
+
+/* ---------- BOTÃO HAMBÚRGUER ---------- */
+.menu-hamburguer {
+    color: var(--cor-3);
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+    transition: transform 0.2s ease;
+}
+
+.menu-hamburguer:hover,
+.menu-hamburguer:focus,
+.menu-hamburguer:active {
+    border: none;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent;
+    transform: scale(1.1);
+    opacity: 90%;
+    cursor: pointer;
+}
+
+.menu-hamburguer:hover i,
+.menu-hamburguer:focus i,
+.menu-hamburguer:active i {
+    opacity: 0.8;
+}
+
+/* ---------- PERFIL E ÍCONE ---------- */
 #icone-perfil {
     font-size: 1.8em;
     margin-bottom: 2em;
     filter: invert();
 }
-#secao-nav {
-    color: var(--cor-3);
+
+.foto-perfil {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  overflow: hidden;
+  border: 2px solid #000;
+  max-width: 30vw;     /* não cresce demais em telas pequenas */
+  height: auto;        /* ajusta a altura automaticamente quando usar max-width */
+  aspect-ratio: 1 / 1; /* garante proporção quadrada moderna */
 }
+
+
+.perfil {
+    color: var(--cor-5);
+}
+
+.sub-perfil {
+    color: var(--cor-5);
+    opacity: 0.8;
+}
+
+/* ---------- BARRA DE PESQUISA ---------- */
 #barra-pesquisa {
     width: 50em;
     border-radius: 1em;
 }
+
 #barra-pesquisa .btn {
     background-color: var(--cor-2) !important;
     color: #fff !important;
     border: none !important;
 }
+
 #barra-pesquisa .btn:hover {
     opacity: 80%;
+}
+
+/* ---------- OFFCANVAS ---------- */
+#offcanvasMenu {
+    background-color: var(--cor-1) !important;
+    width: 30em !important;
+    height: 50%;
+    border-radius: 3em !important;
+    border: none !important;
+    overflow: hidden;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.offcanvas-body {
+    background-color: var(--cor-5);
+    border: none;
+    padding: 8px 16px !important;
+}
+
+.offcanvas-header {
+    background-color: var(--cor-2 );
+}
+
+/* ---------- LISTA MENU ---------- */
+.offcanvas-body .list-group {
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+    padding: 0;
+    list-style: none;
+}
+
+.offcanvas-body .list-group .list-group-item {
+    font-family: var(--fonte-destaque);
+    background-color: var(--cor-5);
+    border: none;
+    margin-left: 10px;  
+    padding: 2px 0;
+    list-style: none;
+}
+
+.offcanvas-body .list-group .list-group-item a {
+    display: block;
+    color: var(--cor-3);
+    font-size: 3rem;
+    line-height: 1;
+    margin: 0;
 }

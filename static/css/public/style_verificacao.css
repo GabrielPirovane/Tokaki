@@ -6,3 +6,116 @@
     --cor-3: #3d291b;
     --cor-4: #e6ccb2;
 }
+
+
+.otp-input {
+  width: 50px;
+  height: 60px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+body {
+  font-family: var(--fonte-destaque);
+}
+
+select {
+  font-family: var(--fonte-base);
+}
+
+hr {
+  color: var(--cor-2);
+}
+
+a {
+  color: var(--cor-5);
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+.body_cadastro {
+  margin: 0;
+  background-color: var(--cor-3);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.subtitulo {
+  font-family: var(--fonte-base);
+  font-size: 1em;
+  color: var(--cor-1);
+  text-align: center;
+  margin-top: 0;
+}
+
+
+.titulo-form {
+  font-family: var(--fonte-destaque);
+  font-size: 1.2em;
+}
+
+.imagens-login {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.formulario {
+  background-color: white;
+  font: var(--fonte-base);
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-control {
+  font-family: var(--fonte-base);
+}
+
+.botao {
+  font-family: var(--fonte-destaque);
+  color: var(--cor-4);
+  background-color: var(--cor-2);
+}
+
+.botao:hover {
+  background-color: var(--cor-1);
+  color: var(--cor-3);
+}
+
+.aviso-final {
+  font-size: 0.8em;
+  color: var(--cor-5);
+  opacity: 0.6;
+  margin-top: 10px;
+}
+
+
+.erro-mensagem {
+  font-family: var(--fonte-base);
+  color: var(--cor-6);
+  /* Força sobrescrever Bootstrap */
+  font-size: 0.85em;
+  margin-top: 15px;
+}
+
+#submit-button.btn-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+#submit-button.btn-disabled:hover,
+#submit-button.btn-disabled:focus {
+  background-color: inherit !important;
+  color: inherit !important;
+  box-shadow: none !important;
+}

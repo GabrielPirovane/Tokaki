@@ -5,11 +5,7 @@ import {
   initTelefone,
   initDataNascimentoInput,
   initSenha
-} from '/static/js/cadastro.js';
-
-import {
-  initLoginValidation
-} from '/static/js/login.js';
+} from '/static/js/funcoes_cadastro.js';
 
 initFormValidation();
 initCPFInput();

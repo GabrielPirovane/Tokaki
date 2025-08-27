@@ -11,7 +11,7 @@
 html {
     height: 100%;
 }
-/* ---------- BASE ---------- */
+
 body {
     overflow-y: scroll;
     font-family: var(--fonte-base);
@@ -22,7 +22,7 @@ body {
     overflow-x: hidden; 
 }
 
-/* ---------- NAVBAR ---------- */
+
 nav {
     height: 5em;
     font-family: var(--fonte-destaque);
@@ -30,9 +30,28 @@ nav {
 }
 
 main {
-    flex: 1; /* ocupa o espaço entre navbar e footer */
+    flex: 1; 
     display: flex;
     flex-direction: column;
+}
+
+footer {
+    height: 7em;
+    font-family: var(--fonte-destaque);
+    background-color: var(--cor-1);
+    color: var(--cor-3);
+    position: fixed;
+    bottom:0;
+    left:0;
+}
+
+.navbar-brand img {
+    width:3em;
+    height:auto;
+}
+
+.navbar-brand:hover {
+    opacity: 90%;
 }
 
 #nav-login {
@@ -47,19 +66,6 @@ main {
     letter-spacing: 1px;
 }
 
-/* ---------- FOOTER ---------- */
-footer {
-    height: 7em;
-    font-family: var(--fonte-destaque);
-    background-color: var(--cor-1);
-    color: var(--cor-3);
-    position: fixed;
-    bottom:0;
-    left:0;
-}
-
-
-/* ---------- BOTÃO HAMBÚRGUER ---------- */
 .menu-hamburguer {
     color: var(--cor-3);
     border: none;
@@ -87,7 +93,7 @@ footer {
     opacity: 0.8;
 }
 
-/* ---------- PERFIL E ÍCONE ---------- */
+
 #icone-perfil {
     font-size: 1.8em;
     margin-bottom: 2em;
@@ -118,18 +124,19 @@ footer {
 }
 
 /* ---------- BARRA DE PESQUISA ---------- */
-#barra-pesquisa {
-    width: 50em;
+.barra-pesquisa {
     border-radius: 1em;
+    width: 40em;
+    max-width: 40em; 
 }
 
-#barra-pesquisa .btn {
+.barra-pesquisa .btn {
     background-color: var(--cor-2) !important;
     color: #fff !important;
     border: none !important;
 }
 
-#barra-pesquisa .btn:hover {
+.barra-pesquisa .btn:hover {
     opacity: 80%;
 }
 

@@ -29,51 +29,6 @@ a:hover {
   opacity: 0.8;
 }
 
-.body_cadastro {
-  margin: 0;
-  background-color: var(--cor-3);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.fundo {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.mosaico {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 10px;
-  width: 120%;
-  height: 120%;
-  animation: mover 30s linear infinite alternate;
-  filter: blur(2px) brightness(0.95);
-}
-
-/* Imagens */
-.mosaico img {
-  width: 400px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 15px;
-  transform: rotate(-5deg);
-}
-
-/* Movimento suave */
-@keyframes mover {
-  0% {
-    transform: translate(-5%, -5%);
-  }
-
-  100% {
-    transform: translate(-10%, -10%);
-  }
-}
-
 .subtitulo {
   font-family: var(--fonte-base);
   font-size: 1em;
@@ -140,13 +95,10 @@ a:hover {
   color: var(--cor-2);
 }
 
-
 .esqueceu-senha {
   font-family: var(--fonte-base);
   margin-top: 2em;
 }
-
-
 
 .form-check-input:checked {
   background-color: var(--cor-1);

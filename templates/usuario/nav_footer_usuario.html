@@ -1,37 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="static/img/logo_colorida.png" type="image/x-icon">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <!-- Fontes -->
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-        <link
-            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-            rel="stylesheet">
-        <!--  -->
-        <link rel="stylesheet" href="/static/css/usuario/style_nav_footer_usuario.css">
-        {% block head %}
-        {% endblock %}
-        <title>Tokaki</title>
-    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/img/logo_colorida.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/usuario/style_nav_footer_usuario.css">
+    {% block head %}
+    {% endblock %}
+    <title>Tokaki</title>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-expand-md fixed-top">
             <div class="container-fluid">
-                <img src="/static/img/logo_colorida.png" alt="Bootstrap" width="4%" height="4%"
-                    class="img-fluid me-3 logo">
+                <a href="/" class="navbar-brand d-flex align-items-center">
+                    <img src="/static/img/logo_colorida.png" alt="Bootstrap" class="img-fluid">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <form class="d-flex me-auto" role="search" id="barra-pesquisa">
+                    <form class="barra-pesquisa" role="search" id="barra-pesquisa">
                         <div class="input-group">
                             <span class="input-group-text">
                                 <i class="bi bi-search"></i>
@@ -73,6 +67,7 @@
                         </li>
                     </ul>
                 </div>
+            </div>
         </nav>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
             <div class="offcanvas-header d-flex align-items-center justify-content-between">
@@ -80,7 +75,7 @@
                     <a href="/{{nome_usuario}}/" class="d-flex align-items-center text-decoration-none">
                         <img src="/static/img/profile_icon.jpg" alt="" class="foto-perfil">
                     </a>
-                    
+
                     <div class="d-flex flex-column ms-3">
                         <span class="fw-bold d-block fs-5 perfil">{{usuario.nome + " " + usuario.sobrenome}}</span>
                         <span class="small fs-6 sub-perfil">{{nome_usuario}}</span>

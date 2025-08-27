@@ -294,8 +294,7 @@ async def post_login(
     if not usuario:
         return RedirectResponse("/login?error=invalid", status_code=303)
 
-    if usuario.tipo_usuario != "administrador":
-        
+    if usuario.tipo_usuario != "administrador": 
         username = usuario.nome_usuario
 
         # salva sessão (incluindo tipo para acesso rápido)

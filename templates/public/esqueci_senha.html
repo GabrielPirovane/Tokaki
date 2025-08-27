@@ -1,6 +1,6 @@
 {% extends "/public/fundo_login_cadastro.html" %}
 {% block head %}
-<link rel="stylesheet" href="static/css/public/style_login.css">
+<link rel="stylesheet" href="static/css/public/style_esqueci_senha.css">
 {% endblock %}
 {% block conteudo %}
 <div class="container">
@@ -14,19 +14,26 @@
                         </center>
                         <h2 class="text-center mb-1">Esqueceu a senha?</h2>
                         <h5 class="text-center subtitulo">Redefina-a já!</h5>
-                        <form method="POST" action="/cadastro">
-                            <div class="my-5">
-                                <label for="email" class="titulo-form">Insira seu endereço de email</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="exemplo@email.com" required>
+                        <form id="formEsqueciSenha">
+                            <div id="formContent">
+                                <div class="my-5">
+                                    <label for="email" class="titulo-form">Insira seu endereço de email</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="exemplo@email.com" required>
+                                </div>
+                                <center>
+                                    <button type="submit" class="btn w-50 botao fs-3">Prosseguir</button>
+                                </center>
                             </div>
-                            <center>
-                                <button type="submit" class="btn w-50 botao fs-3">Prosseguir</button>
                         </form>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/esqueci_senha.js"></script>
 {% endblock %}

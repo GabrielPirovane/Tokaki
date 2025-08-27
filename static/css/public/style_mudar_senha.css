@@ -102,6 +102,7 @@ a:hover {
   margin-bottom: 20px;
 }
 
+
 .formulario {
   background-color: white;
   font: var(--fonte-base);
@@ -125,28 +126,6 @@ a:hover {
   color: var(--cor-3);
 }
 
-.aviso-final {
-  font-size: 0.8em;
-  color: var(--cor-5);
-  opacity: 0.6;
-  margin-top: 10px;
-}
-
-.esqueceu-senha {
-  font-family: var(--fonte-destaque);
-  margin-left: 4px;
-  margin-top: 10px;
-  font-size: 1em;
-  color: var(--cor-2);
-}
-
-
-.esqueceu-senha {
-  font-family: var(--fonte-base);
-  margin-top: 2em;
-}
-
-
 
 .form-check-input:checked {
   background-color: var(--cor-1);
@@ -165,19 +144,32 @@ a:hover {
   margin-top: 15px;
 }
 
-#toggleSenha {
-  border-color: #dfe3e6;
-  background-color: white;
-  color: #495057;
-  transition: none;
+
+#strengthBarContainer {
+  display: flex;
+  width: 75%;
+  max-width: auto;
+  height: 0;
+  /* barra escondida inicialmente */
+  overflow: hidden;
+  /* esconde conteúdo */
+  border-radius: 5px;
+  background-color: #ddd;
+  margin-top: 5px;
+  transition: height 0.3s;
 }
 
-#toggleSenha:hover,
-#toggleSenha:focus,
-#toggleSenha:active {
-  background-color: white;
-  border-color: #dfe3e6;
-  color: #495057;
-  box-shadow: none;
-  outline: none;
+#strengthBarFill {
+  height: 100%;
+  width: 0%;
+  border-radius: 5px;
+  transition: width 0.3s, background-color 0.3s;
+  background-color: red;
+}
+
+#strengthText {
+  display: block;
+  font-family: var(--fonte-base);
+  font-size: 1em;
+  margin-top: 5px;
 }

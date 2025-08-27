@@ -21,4 +21,5 @@ class Usuario:
     data_nascimento: str | None
     verificado: bool
     tipo_usuario: str | None
-    
+    token_redefinicao: str | None = None
+    token_expiracao: str | None = None

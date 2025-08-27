@@ -16,10 +16,17 @@ from email_validator import validate_email, EmailNotValidError
 from pydantic import BaseModel, field_validator
 from pydantic import ValidationError
 from datetime import date
+from routes.email_util import send_reset_email
+from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
+import os
+
 import re
 from io import BytesIO
 import bcrypt
 
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+serializer = URLSafeTimedSerializer(SECRET_KEY)
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
@@ -182,9 +189,9 @@ async def post_cadastro(
     if validacao_nome_usuario:
         errors["nome_usuario"] = validacao_nome_usuario
     elif cpf != "":
+        cpf = re.sub(r"[^0-9]", "", cpf)
         if not validador_cpf.validate(cpf) or len(cpf) < 11:
             errors["cpf"] = "Cpf inválido."
-        cpf = re.sub(r"[^0-9]", "", cpf)
     elif not validacao_email:
         errors["email"] = "Email inválido."
     elif len(data_nascimento) < 10 and data_nascimento != "":
@@ -355,11 +362,84 @@ async def get_foto(request: Request, sessao: Optional[dict] = Depends(get_sessao
         "/public/ampliar_foto.html", {"request": request, "sessao": sessao}
     )
 
-#rou
 @router.get("/esqueci-senha")
-async def get_esqueci_senha(
-    request: Request, sessao: Optional[dict] = Depends(get_sessao)
-):
+async def get_esqueci_senha(request: Request):
     return templates.TemplateResponse(
-        "/public/esqueci_senha.html", {"request": request, "sessao": sessao}
+        "/public/esqueci_senha.html", {"request": request}
     )
+
+@router.post("/esqueci-senha")
+async def post_esqueci_senha(request: Request, email: str = Form(...)):
+    repo = usuario_repo.UsuarioRepo("dados.db")
+    usuario = repo.get_by_email(email)
+
+    if not usuario:
+        return templates.TemplateResponse(
+            "/public/esqueci_senha.html",
+            {"request": request, "message": "Se este email estiver cadastrado, enviamos instruções para redefinir a senha."},
+        )
+
+    token = serializer.dumps(email, salt="reset-senha")
+    reset_link = f"http://127.0.0.1:8000/mudar-senha/{token}"
+
+    repo.update_token(email=email, token=token, expiracao=60)
+
+    send_reset_email(to_email=email, reset_link=reset_link)
+    return templates.TemplateResponse(
+        "/public/esqueci_senha.html",
+        {"request": request, "message": "Se este email estiver cadastrado, enviamos instruções para redefinir a senha."},
+    )
+    
+@router.get("/mudar-senha/{token}", response_class=HTMLResponse)
+async def get_mudar_senha(request: Request, token: str):
+    try:
+        email = serializer.loads(token, salt="reset-senha", max_age=3600)
+    except SignatureExpired:
+        return templates.TemplateResponse(
+            "/public/mudar_senha.html",
+            {"request": request, "error": "O link expirou, peça um novo email."},
+        )
+    except BadSignature:
+        return templates.TemplateResponse(
+            "/public/mudar_senha.html",
+            {"request": request, "error": "Link inválido."},
+        )
+
+
+    repo = usuario_repo.UsuarioRepo("dados.db")
+    usuario = repo.get_by_email(email)
+    if not usuario:
+        return templates.TemplateResponse(
+            "/public/mudar_senha.html",
+            {"request": request, "error": "Usuário não encontrado."},
+        )
+
+
+    return templates.TemplateResponse(
+        "/public/mudar_senha.html",
+        {"request": request, "email": email, "token": token},
+    )
+
+    
+@router.post("/mudar-senha/{token}", response_class=HTMLResponse)
+async def post_mudar_senha(request: Request, token: str, senha: str = Form(...)):
+    try:
+        email = serializer.loads(token, salt="reset-senha", max_age=3600)
+    except SignatureExpired:
+        return templates.TemplateResponse("/public/esqueci_senha.html", {"request": request, "error": "O link expirou."})
+    except BadSignature:
+        return templates.TemplateResponse("/public/esqueci_senha.html", {"request": request, "error": "Link inválido."})
+
+    repo = usuario_repo.UsuarioRepo("dados.db")
+    usuario = repo.get_by_email(email)
+    if not usuario:
+        return templates.TemplateResponse("/public/mudar_senha.html", {"request": request, "error": "Usuário não encontrado."})
+
+    senha_hash = bcrypt.hashpw(senha.encode(), bcrypt.gensalt())
+    try:
+        repo.update_senha(id=usuario.id, nova_senha=senha_hash.decode())
+        repo.clear_token(id=usuario.id)
+    except Exception:
+        return templates.TemplateResponse("/public/mudar_senha.html", {"request": request, "error": "Erro ao atualizar senha."})
+
+    return templates.TemplateResponse("/public/login.html", {"request": request, "success": "Senha atualizada com sucesso!"})

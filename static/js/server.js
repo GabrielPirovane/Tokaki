@@ -7,6 +7,10 @@ import {
   initSenha
 } from '/static/js/cadastro.js';
 
+import {
+  initLoginValidation
+} from '/static/js/login.js';
+
 initFormValidation();
 initCPFInput();
 initCEPInput();
@@ -28,13 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const value = senha.value.trim();
 
     if (value === "") {
-      container.style.height = '0';   // some quando o campo está vazio
+      container.style.height = '0';  
       barFill.style.width = '0%';
       text.textContent = '';
       return;
     }
 
-    container.style.height = '15px';  // aparece quando tem texto
+    container.style.height = '15px';  
     const score = zxcvbn(value).score;
 
     text.textContent = labels[score];

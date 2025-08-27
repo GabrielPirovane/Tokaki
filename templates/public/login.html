@@ -1,71 +1,77 @@
 {% extends "/public/fundo_login_cadastro.html" %}
 {% block head %}
-<link rel="stylesheet" href="static/css/public/style_login.css">
+<link rel="stylesheet" href="/static/css/public/style_login.css">
 {% endblock %}
 {% block conteudo %}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
-                <div class="card formulario">
-                    <div class="card-body px-5">
-                        <center>
-                            <a href="/"><img src="/static/img/logo_colorida.png" alt="" height="110px"></a>
-                        </center>
-                        <h2 class="text-center mb-1">BEM-VINDO DE VOLTA!</h2>
-                        <h5 class="text-center subtitulo">Acesse sua conta</h5>
-                        <form method="POST" action="/login">
-                            <div class="mb-3">
-                                <label for="email" class="titulo-form">Email</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="exemplo@email.com" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="senha" class="titulo-form">Senha</label>
+        <div class="col-md-6 mt-5">
+            <div class="card formulario">
+                <div class="card-body px-5">
+                    <center>
+                        <a href="/"><img src="/static/img/logo_colorida.png" alt="" height="110px"></a>
+                    </center>
+                    <h2 class="text-center mb-1">BEM-VINDO DE VOLTA!</h2>
+                    <h5 class="text-center subtitulo">Acesse sua conta</h5>
+
+                    <form method="POST" action="/login" id="form-login">
+                        <div class="mb-3">
+                            <label for="email" class="titulo-form">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   placeholder="exemplo@email.com" required>
+                            <small id="erro-email-js" class="erro-mensagem" style="display:none;"></small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="senha" class="titulo-form">Senha</label>
+                            <div class="input-group mb-2">
                                 <input type="password" class="form-control" id="senha" name="senha"
-                                    placeholder="Digite uma senha" required>
-                                <a href="/esqueci-senha" class="text-decoration-none">
-                                    <h3 class="esqueceu-senha">Esqueceu sua senha?</h3>
-                                </a>
+                                       placeholder="Digite uma senha" maxlength="20" minlength="8" required>
+                                <button class="btn btn-outline-secondary border-start-0 rounded-start-0"
+                                        type="button" id="toggleSenha">
+                                    <i class="bi bi-eye"></i>
+                                </button>
                             </div>
+                            <small> <a href="/esqueci-senha" class="esqueceu-senha">Esqueceu a senha?</a></small>
+                            <small id="erro-senha-js" class="erro-mensagem" style="display:none;"></small>
+                        </div>
 
-                            <div class="mb-3">
-                                <center>
-                                    <label for="recaptcha" class="form-label"></label>
-                                    <div class="g-recaptcha" data-sitekey="6LfGoG0rAAAAAJo_Yr9NdQiRFHT3vtAzajB8sC1N">
-                                    </div>
-                                </center> <br>
-                            </div>
+                        <div class="mb-3">
                             <center>
-                                <button type="submit" class="btn w-50 botao fs-3">Entrar</button>
+                                <div class="g-recaptcha" data-sitekey="6LfGoG0rAAAAAJo_Yr9NdQiRFHT3vtAzajB8sC1N"></div>
                             </center>
+                            <br>
+                        </div>
 
-                            <div class="d-flex align-items-center my-3">
-                                <hr class="flex-grow-1">
-                                <span class="mx-4">OU CONECTE COM</span>
-                                <hr class="flex-grow-1">
+                        <center>
+                            <button type="submit" id="submit-button" class="btn w-50 botao fs-3">Entrar</button>
+                        </center>
+
+                        <div class="d-flex align-items-center my-3">
+                            <hr class="flex-grow-1">
+                            <span class="mx-4">OU CONECTE COM</span>
+                            <hr class="flex-grow-1">
+                        </div>
+                        <center>
+                            <div class="imagens-login">
+                                <img src="/static/img/google-icon.png" alt="" height="70px" class="rounded-circle">
+                                <img src="/static/img/facebook-logo.png" alt="" height="70px">
                             </div>
-                            <center>
-                                <div class="imagens-login">
-                                    <img src="/static/img/google-icon.png" alt="" height="70px" class="rounded-circle">
-                                    <img src="/static/img/facebook-logo.png" alt="" height="70px">
-                                </div>
-                                <hr class="flex-grow-1">
-                                <p class="d-inline fs-5">Ainda não tem uma conta?</p>
-                                <a href="/cadastro" class="fs-5">Cadastre-se</a>
-                                <p class="aviso-final mt-4">Ao continuar, você concorda com os <a href="">Termos
-                                        de
-                                        Serviço</a> do Tokaki e confirma que leu nossa <a href="">Política de
-                                        Privacidade</a>. Aviso na coleta de informações</p>
-
-                            </center>
-
-
-                        </form>
-                    </div>
+                            <hr class="flex-grow-1">
+                            <p class="d-inline fs-5">Ainda não tem uma conta?</p>
+                            <a href="/cadastro" class="fs-5">Cadastre-se</a>
+                            <p class="aviso-final mt-4">
+                                Ao continuar, você concorda com os <a href="">Termos de Serviço</a> do Tokaki e confirma
+                                que leu nossa <a href="">Política de Privacidade</a>.
+                            </p>
+                        </center>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/login.js"></script>
 {% endblock %}

@@ -18,9 +18,13 @@ CREATE TABLE IF NOT EXISTS usuario (
     cep TEXT CHECK(LENGTH(cep) == 8),
     data_nascimento DATE,
     verificado BOOLEAN DEFAULT FALSE,
+<<<<<<< HEAD
     tipo_usuario TEXT CHECK(tipo_usuario IN ('musico', 'contratante')),
     token_redefinicao TEXT DEFAULT NULL,
     token_expiracao DATETIME DEFAULT NULL,
+=======
+    tipo_usuario TEXT CHECK(tipo_usuario IN ('musico', 'contratante', 'administrador')),
+>>>>>>> d13389b6294c30561cf60de826eaf635bc504ffb
     FOREIGN KEY (id_cidade) REFERENCES cidade(id)
 );
 """
@@ -104,11 +108,11 @@ WHERE u.email = ?
 
 SQL_SELECT_USUARIO_BY_ID = """
 SELECT u.id, u.id_cidade, u.nome, u.sobrenome, u.nome_usuario, u.senha, u.email, u.cpf, u.telefone, u.genero,
-u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado, u.tipo_usuario,
-c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
+       u.logradouro, u.numero, u.bairro, u.complemento, u.cep, u.data_nascimento, u.verificado, u.tipo_usuario,
+       c.nome AS nome_cidade, c.id_uf, uf.nome AS nome_uf
 FROM usuario u
-JOIN cidade c ON u.id_cidade = c.id
-JOIN uf ON c.id_uf = uf.id
+LEFT JOIN cidade c ON u.id_cidade = c.id
+LEFT JOIN uf ON c.id_uf = uf.id
 WHERE u.id = ?;
 """
 
